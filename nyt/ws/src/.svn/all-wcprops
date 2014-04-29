@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src
+END
+config.properties
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/config.properties
+END
+oscache.properties
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/oscache.properties
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/applicationContext.xml
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/log4j.properties
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/jdbc.properties
+END

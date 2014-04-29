@@ -1,0 +1,1046 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+</welcome-file-list>
+
+<!-- 公共配置 -->
+	<filter>
+		<filter-name>encodeFilter</filter-name>
+		<filter-class>com.meibaolian.web.base.filter.EncodeFileter</filter-class>
+		<init-param>
+			<param-name>encode</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodeFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+<!-- 相关请求参数打印 -->	
+	<filter>
+		<filter-name>paramLogFilter</filter-name>
+		<filter-class>com.meibaolian.web.base.filter.ParameterLogFileter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>paramLogFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+<!-- 内存缓存过滤器 
+	<filter>
+		<filter-name>CacheFilter</filter-name>
+		<filter-class>com.opensymphony.oscache.web.filter.CacheFilter</filter-class>
+		<init-param>  
+                <param-name>time</param-name>  
+                <param-value>30</param-value>  
+        </init-param> 
+	</filter>
+	<filter-mapping>
+		<filter-name>CacheFilter</filter-name>
+		<url-pattern>/dict/*</url-pattern>
+	</filter-mapping>	-->
+<!-- 权限验证过滤器 -->
+ <!--  
+	<filter>
+		<filter-name>validatePurviewFilter</filter-name>
+		<filter-class>com.meibaolian.web.base.filter.ValidaterUserFileter
+		</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>validatePurviewFilter</filter-name>
+		<url-pattern>/app/*</url-pattern>
+	</filter-mapping>
+
+--> 
+
+
+
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+<!-- 手机验证码 -->	
+	<servlet>
+		<servlet-name>phoneCheckCode</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>phoneCheckCode</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>phoneCheckCode</servlet-name>
+		<url-pattern>/phoneCheckCode</url-pattern>
+	</servlet-mapping>
+	
+	
+<!-- 用户登录 -->	
+	<servlet>
+
+		<servlet-name>userLogin</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>userLogin</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>userLogin</servlet-name>
+		<url-pattern>/userLogin</url-pattern>
+	</servlet-mapping>
+
+<!-- 用户注册-->	
+	<servlet>
+		<servlet-name>userRegister</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>userRegister</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>userRegister</servlet-name>
+		<url-pattern>/userRegister</url-pattern>
+	</servlet-mapping>
+<!-- 删除用户-->	
+	<servlet>
+		<servlet-name>userDelete</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>userDelete</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>userDelete</servlet-name>
+		<url-pattern>/userDelete</url-pattern>
+	</servlet-mapping>
+<!-- 用户修改密码-->	
+	<servlet>
+		<servlet-name>userUpdatePwd</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>userUpdatePwd</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>userUpdatePwd</servlet-name>
+		<url-pattern>/userUpdatePwd</url-pattern>
+	</servlet-mapping>
+<!-- 用户完善信息接口-->	
+	<servlet>
+		<servlet-name>userPerfectInfo</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>userPerfectInfo</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>userPerfectInfo</servlet-name>
+		<url-pattern>/app/userPerfectInfo</url-pattern>
+	</servlet-mapping>
+<!-- 用户拨打号码统计接口-->	
+	<servlet>
+		<servlet-name>callPhoneLog</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>callPhoneLog</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>callPhoneLog</servlet-name>
+		<url-pattern>/callPhoneLog</url-pattern>
+	</servlet-mapping>
+<!-- 用户更新通讯信息-->	
+	<servlet>
+		<servlet-name>userUpdateContects</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>userUpdateContects</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>userUpdateContects</servlet-name>
+		<url-pattern>/app/user/userUpdateContects</url-pattern>
+	</servlet-mapping>
+<!-- 通用查看求购信息,供应信息详情接口-->	
+	<servlet>
+		<servlet-name>generalDetail</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>generalDetail</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>generalDetail</servlet-name>
+		<url-pattern>/dict/generalDetail</url-pattern>
+	</servlet-mapping>
+<!-- 通用查看车讯信息,货讯信息详情接口-->	
+	<servlet>
+		<servlet-name>generalTransportDetail</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>generalTransportDetail</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>generalTransportDetail</servlet-name>
+		<url-pattern>/dict/generalTransportDetail</url-pattern>
+	</servlet-mapping>
+	
+
+	
+	
+	
+	<!-- 添加我的客户  -->
+	<servlet>
+		<servlet-name>addCustomer</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>addCustomer</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>addCustomer</servlet-name>
+		<url-pattern>/app/customer/addCustomer</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 获取我的客户列表  -->
+	<servlet>
+		<servlet-name>getCustomer</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>getCustomer</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>getCustomer</servlet-name>
+		<url-pattern>/app/customer/getCustomer</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 删除我的客户信息  -->
+	<servlet>
+		<servlet-name>delCustomer</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>delCustomer</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>delCustomer</servlet-name>
+		<url-pattern>/app/customer/delCustomer</url-pattern>
+	</servlet-mapping>
+	
+	
+
+	<!-- ====字典数据====  -->
+	
+	
+	
+	
+	<!-- 铁路、公路运价  -->
+	<servlet>
+		<servlet-name>rate</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>rate</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>rate</servlet-name>
+		<url-pattern>/dict/rate</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<!-- 省市  -->
+	<servlet>
+		<servlet-name>provinces</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>provinces</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>provinces</servlet-name>
+		<url-pattern>/dict/provinces</url-pattern>
+	</servlet-mapping>
+	<!-- 站点  -->
+	<servlet>
+		<servlet-name>station</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>station</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>station</servlet-name>
+		<url-pattern>/dict/station</url-pattern>
+	</servlet-mapping>
+	<!-- 广告图片地址  -->
+	<servlet>
+		<servlet-name>advertising</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>advertising</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>advertising</servlet-name>
+		<url-pattern>/dict/advertising</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 省市县 -->
+	<servlet>
+	 <servlet-name>deliveryarea</servlet-name>
+	 <servlet-class>com.meibaolian.web.base.ServletProxy</servlet-class>
+	 <init-param>
+			<param-name>targetBean</param-name>
+			<param-value>deliveryarea</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>deliveryarea</servlet-name>
+	<url-pattern>/dict/deliveryarea</url-pattern>
+	</servlet-mapping>
+	<!-- 县下面的煤矿 煤场 坑口信息 -->
+	<servlet>
+	 <servlet-name>deliveryplace</servlet-name>
+	 <servlet-class>com.meibaolian.web.base.ServletProxy</servlet-class>
+	 <init-param>
+			<param-name>targetBean</param-name>
+			<param-value>deliveryplace</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>deliveryplace</servlet-name>
+	<url-pattern>/dict/deliveryplace</url-pattern>
+	</servlet-mapping>
+	<!-- 帮助中心接口 -->
+	<servlet>
+	 <servlet-name>helpCenter</servlet-name>
+	 <servlet-class>com.meibaolian.web.base.ServletProxy</servlet-class>
+	 <init-param>
+			<param-name>targetBean</param-name>
+			<param-value>helpCenter</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>helpCenter</servlet-name>
+	<url-pattern>/dict/helpCenter</url-pattern>
+	</servlet-mapping>
+	<!-- 投诉接口 -->
+	<servlet>
+	 <servlet-name>userProposalServlet</servlet-name>
+	 <servlet-class>com.meibaolian.web.base.ServletProxy</servlet-class>
+	 <init-param>
+			<param-name>targetBean</param-name>
+			<param-value>userProposalServlet</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>userProposalServlet</servlet-name>
+	<url-pattern>/app/userProposal</url-pattern>
+	</servlet-mapping>
+	<!-- 煤炭检测信息 -->
+	<servlet>
+	 <servlet-name>qualityControlServlet</servlet-name>
+	 <servlet-class>com.meibaolian.web.base.ServletProxy</servlet-class>
+	 <init-param>
+			<param-name>targetBean</param-name>
+			<param-value>qualityControlServlet</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>qualityControlServlet</servlet-name>
+	<url-pattern>/dict/qualityControl</url-pattern>
+	</servlet-mapping>
+	
+	<!-- ====运输====  -->
+	<!-- 发布车讯 -->
+	<servlet>
+		<servlet-name>newTransportSupply</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>newTransportSupply</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>newTransportSupply</servlet-name>
+		<url-pattern>/app/transportSupply/newTransportSupply</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 发布车讯后展示车讯列表 -->
+	<servlet>
+		<servlet-name>listTransportSupply</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>listTransportSupply</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>listTransportSupply</servlet-name>
+		<url-pattern>/transportSupply/listTransportSupply</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!--  关键字查询车讯 -->
+	<servlet>
+		<servlet-name>searchTransportSupplyByKey</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>searchTransportSupplyByKey</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>searchTransportSupplyByKey</servlet-name>
+		<url-pattern>/transportSupply/searchByKey</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!--  起止地查询车讯 -->
+	<servlet>
+		<servlet-name>searchTransportSupplyByPlace</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>searchTransportSupplyByPlace</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>searchTransportSupplyByPlace</servlet-name>
+		<url-pattern>/transportSupply/searchByPlace</url-pattern>
+	</servlet-mapping>
+	
+	<!--  获取已发布车讯 -->
+	<servlet>
+		<servlet-name>getTransportSupply</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>getTransportSupply</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>getTransportSupply</servlet-name>
+		<url-pattern>/transportSupply/getTransportSupply</url-pattern>
+	</servlet-mapping>
+	
+	<!--  删除已发布车讯 -->
+	<servlet>
+		<servlet-name>delTransportSupply</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>delTransportSupply</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>delTransportSupply</servlet-name>
+		<url-pattern>/app/transportSupply/delTransportSupply</url-pattern>
+	</servlet-mapping>
+	
+	<!--  重新发布车讯 -->
+	<servlet>
+		<servlet-name>renewTransportSupply</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>renewTransportSupply</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>renewTransportSupply</servlet-name>
+		<url-pattern>/app/transportSupply/renewTransportSupply</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- 发布货讯 -->
+	<servlet>
+		<servlet-name>newTransportDemand</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>newTransportDemand</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>newTransportDemand</servlet-name>
+		<url-pattern>/app/transportDemand/newTransportDemand</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 发布货讯后展示货讯列表 -->
+	<servlet>
+		<servlet-name>listTransportDemand</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>listTransportDemand</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>listTransportDemand</servlet-name>
+		<url-pattern>/transportDemand/listTransportDemand</url-pattern>
+	</servlet-mapping>
+	
+	<!--  关键字查询货讯 -->
+	<servlet>
+		<servlet-name>searchTransportDemandByKey</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>searchTransportDemandByKey</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>searchTransportDemandByKey</servlet-name>
+		<url-pattern>/transportDemand/searchByKey</url-pattern>
+	</servlet-mapping>	
+	
+	<!--  获取已发布货讯 -->
+	<servlet>
+		<servlet-name>getTransportDemand</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>getTransportDemand</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>getTransportDemand</servlet-name>
+		<url-pattern>/transportDemand/getTransportDemand</url-pattern>
+	</servlet-mapping>
+	
+	<!--  删除已发布货讯 -->
+	<servlet>
+		<servlet-name>delTransportDemand</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>delTransportDemand</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>delTransportDemand</servlet-name>
+		<url-pattern>/app/transportDemand/delTransportDemand</url-pattern>
+	</servlet-mapping>
+	
+	<!--  重新发布货讯 -->
+	<servlet>
+		<servlet-name>renewTransportDemand</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>renewTransportDemand</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>renewTransportDemand</servlet-name>
+		<url-pattern>/app/transportDemand/renewTransportDemand</url-pattern>
+	</servlet-mapping>
+	
+	<!--  按起止地查询货讯  -->
+	<servlet>
+		<servlet-name>searchTransportDemandByPlace</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>searchTransportDemandByPlace</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>searchTransportDemandByPlace</servlet-name>
+		<url-pattern>/transportDemand/searchByPlace</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>typeList</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>typeList</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>typeList</servlet-name>
+		<url-pattern>/dirc/typeList</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>uploadFile</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>uploadFile</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>uploadFile</servlet-name>
+		<url-pattern>/uploadFile</url-pattern>
+	</servlet-mapping>
+	
+
+	<!-- 发布桉木信息-->
+	<servlet>
+		<servlet-name>addVennerInfo</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>addVennerInfo</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet>
+		<servlet-name>addSupply</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>addSupply</param-value>
+		</init-param>
+	</servlet>
+
+	
+
+	<servlet-mapping>
+		<servlet-name>addVennerInfo</servlet-name>
+		<url-pattern>/app/nyt/addVennerInfo</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 查询桉木求购信息-->
+	<servlet>
+		<servlet-name>listVeneerInfo</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>listVeneerInfo</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>listVeneerInfo</servlet-name>
+		<url-pattern>/app/nyt/listVeneerInfo</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet-mapping>
+		<servlet-name>addSupply</servlet-name>
+		<url-pattern>/app/nyt/addSupply</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>addPurchase</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>addPurchase</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>addPurchase</servlet-name>
+		<url-pattern>/app/nyt/addPurchase</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet>
+		<servlet-name>veneerInfoSerarch</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>veneerInfoSerarch</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>veneerInfoSerarch</servlet-name>
+		<url-pattern>/app/nyt/veneerInfoSerarch</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>supplySearch</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>supplySearch</param-value>
+		</init-param>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>supplySearch</servlet-name>
+		<url-pattern>/nyt/supplySearch</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>purchaseSearch</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>purchaseSearch</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>purchaseSearch</servlet-name>
+		<url-pattern>/nyt/purchaseSearch</url-pattern>
+	</servlet-mapping>
+
+	
+	
+	<servlet>
+		<servlet-name>updateVennerInfo</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>updateVennerInfo</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateVennerInfo</servlet-name>
+		<url-pattern>/app/nyt/updateVennerInfo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>queryMyVeneerInfo</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>queryMyVeneerInfo</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>queryMyVeneerInfo</servlet-name>
+		<url-pattern>/app/nyt/queryMyVeneerInfo</url-pattern>
+	</servlet-mapping>
+
+	
+	<servlet>
+		<servlet-name>nytMySupply</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>nytMySupply</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>nytMySupply</servlet-name>
+		<url-pattern>/app/nyt/nytMySupply</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>nytMyPurchase</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>nytMyPurchase</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>nytMyPurchase</servlet-name>
+		<url-pattern>/app/nyt/nytMyPurchase</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 单板供应 -->
+	<servlet>
+		<servlet-name>veneerSearch</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>veneerSearch</param-value>
+		</init-param>
+	</servlet>
+ 
+	<servlet-mapping>
+		<servlet-name>veneerSearch</servlet-name>
+		<url-pattern>/nyt/veneerSearch</url-pattern>
+	</servlet-mapping>
+
+
+    <servlet>
+		<servlet-name>delVeneerInfo</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>delVeneerInfo</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delVeneerInfo</servlet-name>
+		<url-pattern>/app/nyt/delVeneerInfo</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet>
+		<servlet-name>delPurchaseInfo</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>delPurchaseInfo</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delPurchaseInfo</servlet-name>
+		<url-pattern>/app/nyt/delPurchaseInfo</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet>
+		<servlet-name>delSupplyInfo</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>delSupplyInfo</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delSupplyInfo</servlet-name>
+		<url-pattern>/app/nyt/delSupplyInfo</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet>
+		<servlet-name>updateNytMySupply</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>updateNytMySupply</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateNytMySupply</servlet-name>
+		<url-pattern>/app/nyt/updateNytMySupply</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet>
+		<servlet-name>updateNytMyPurchase</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>updateNytMyPurchase</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateNytMyPurchase</servlet-name>
+		<url-pattern>/app/nyt/updateNytMyPurchase</url-pattern>
+	</servlet-mapping>
+	
+	 <servlet>
+		<servlet-name>addCollect</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>addCollect</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addCollect</servlet-name>
+		<url-pattern>/app/nyt/addCollect</url-pattern>
+	</servlet-mapping>
+	 <servlet>
+		<servlet-name>delCollect</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>delCollect</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delCollect</servlet-name>
+		<url-pattern>/app/nyt/delCollect</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getCollect</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>getCollect</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getCollect</servlet-name>
+		<url-pattern>/app/nyt/getCollect</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>getRates</servlet-name>
+		<servlet-class>
+			com.meibaolian.web.base.ServletProxy
+		</servlet-class>
+		<init-param>
+			<param-name>targetBean</param-name>
+			<param-value>getRates</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getRates</servlet-name>
+		<url-pattern>/dict/getRates</url-pattern>
+	</servlet-mapping>
+</web-app>

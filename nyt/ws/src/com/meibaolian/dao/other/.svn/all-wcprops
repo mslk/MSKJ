@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/other
+END
+IQualityControlDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/other/IQualityControlDao.java
+END
+IUserProposalDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/other/IUserProposalDao.java
+END
+IAdvertisingDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/other/IAdvertisingDao.java
+END

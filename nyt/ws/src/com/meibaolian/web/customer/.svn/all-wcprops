@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/customer
+END
+GetCustomer.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/customer/GetCustomer.java
+END
+DelCustomer.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/customer/DelCustomer.java
+END
+AddCustomer.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/customer/AddCustomer.java
+END

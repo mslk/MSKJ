@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase
+END
+DelPurchase.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase/DelPurchase.java
+END
+SearchPurchase.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase/SearchPurchase.java
+END
+NewPurchase.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase/NewPurchase.java
+END
+SearchByPlace.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase/SearchByPlace.java
+END
+ListPurchase.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase/ListPurchase.java
+END
+SearchByKey.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase/SearchByKey.java
+END
+GetPurchase.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase/GetPurchase.java
+END
+RenewPurchase.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/purchase/RenewPurchase.java
+END

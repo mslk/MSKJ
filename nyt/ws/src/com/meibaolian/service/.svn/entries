@@ -1,0 +1,64 @@
+10
+
+dir
+244
+https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service
+https://192.168.1.2/svn/guangxi_nongyitong
+
+
+
+2014-04-29T09:27:44.187875Z
+241
+zhaojian
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+84504c7f-c513-4e45-a3dd-adc4cfabdf4e
+
+customer
+dir
+
+log
+dir
+
+other
+dir
+
+dictionary
+dir
+
+transportDemand
+dir
+
+searchlog
+dir
+
+transportSupply
+dir
+
+nyt
+dir
+
+provider
+dir
+
+purchase
+dir
+
+useraid
+dir
+
+user
+dir
+

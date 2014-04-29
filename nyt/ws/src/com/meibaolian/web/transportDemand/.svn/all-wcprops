@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand
+END
+NewTransportDemand.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand/NewTransportDemand.java
+END
+ListTransportDemand.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand/ListTransportDemand.java
+END
+GetTransportDemand.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand/GetTransportDemand.java
+END
+SearchByPlace.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand/SearchByPlace.java
+END
+RenewTransportDemand.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand/RenewTransportDemand.java
+END
+SearchByKey.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand/SearchByKey.java
+END
+DelTransportDemand.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand/DelTransportDemand.java
+END
+SearchTransportDemand.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/transportDemand/SearchTransportDemand.java
+END

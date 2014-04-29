@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/customer
+END
+ICustomerJsonDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/customer/ICustomerJsonDao.java
+END
+ICustomerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/customer/ICustomerDao.java
+END

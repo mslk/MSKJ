@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+body{font-size:12px; color:#454545; margin:0; padding:0}
+img{border:0}
+ul,li{margin:0; padding:0; float:left; list-style:none; list-style-type:none}
+
+input.text{ width:150px;}
+
+.tit_lm{width:auto; height:24px; padding:5px; background:url(../images/lm_bg01.jpg) repeat-x;}
+.tit_box{padding-left:24px; height:24px; line-height:24px; font-size:14px; font-weight:bold; float:left}
+.tit_bts{padding-right:5px; float:right; height:24px}
+.tit_bts li{height:24px; padding-left:5px}
+.bts_link{display:inline-block; color:#49688B; height:22px; line-height:22px; padding:0 10px; text-align:center; border:1px solid #87A3C1; background:url(../images/bt_bg.jpg) bottom repeat-x; text-decoration:none}
+.bts_link:hover{display:inline-block; color:#65713E; height:22px; line-height:22px; padding:0 10px; text-align:center; border:1px solid #9DAD69; background:url(../images/bt_over.jpg) bottom repeat-x; text-decoration:none}
+
+textarea{width: 520px;height: 145px;overflow: auto;max-width: 520px;max-height: 145px;min-width: 520px;min-height: 145px;}
+span{font-size:12px;}
+
+.tipsbox { margin-left:-20px;}
+
+.publictable { width:96%; margin-top:10px; margin-left:20px;}
+.publictable .thead{height:24px; padding:5px;}
+.publictable tr,
+.publictable td{background:#fff;}
+.publictable td{text-align:left; padding:0 10px; height:37px; line-height:24px;}
+.publictable input[type="text"],
+.publictable input[type="password"]{ height:22px; line-height:22px; padding:0 2px; border:#ddd solid 1px;
+	border-radius:3px;-moz-border-radius:3px;
+	transition: box-shadow .2s ease-out 0s;
+}
+.publictable input[type="submit"],
+.publictable input[type="button"] { height:25px; cursor:pointer; border:1px solid #BCBCBC; background:url(../images/btn_bg.png) repeat-x;
+	border-radius:3px;-moz-border-radius:3px;
+}
+.publictable input[type="submit"]:active,
+.publictable input[type="button"]:active { background:#fff;}
+/*top*/
+.topbody {}
+#top_box {width:100%; height:110px; clear:both}
+#top_box .tow_links{padding-top:48px; height:16px; line-height:16px; float:right; padding-right:15px}
+#top_box .tow_links li{padding-right:3px}
+#top_box .tow_links a{color:#E0F7FE; text-decoration:none}
+#top_box .tow_links a:hover{color:#FFF; text-decoration:none}

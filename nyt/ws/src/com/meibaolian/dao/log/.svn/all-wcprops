@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/log
+END
+IAccesslogModuleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/log/IAccesslogModuleDao.java
+END
+IAccesslogLoginDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/log/IAccesslogLoginDao.java
+END

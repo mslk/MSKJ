@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+
+
+table{background:#D6D6D6}
+.thead{height:24px; padding:5px; background:url(../images/lm_bg01.jpg) repeat-x;}
+tr,td{background:#fff;}
+td{text-align:left; padding:5px 10px 5px 10px; line-height:24px}
+textarea{width: 520px;height: 145px;overflow: auto;max-width: 520px;max-height: 145px;min-width: 520px;min-height: 145px;}
+span{font-size:12px;}
+
+
+

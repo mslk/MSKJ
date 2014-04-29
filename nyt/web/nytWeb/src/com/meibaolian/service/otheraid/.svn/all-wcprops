@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/otheraid
+END
+ICallPhoneLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/otheraid/ICallPhoneLogService.java
+END
+IImportDateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/otheraid/IImportDateService.java
+END
+IHelpCenterService.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/otheraid/IHelpCenterService.java
+END
+IQualityControlService.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/otheraid/IQualityControlService.java
+END
+IAdvertisingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/otheraid/IAdvertisingService.java
+END

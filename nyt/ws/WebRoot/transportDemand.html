@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>货讯相关</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<script type="text/javascript">
+		function encodeAttr(fid,arr){
+			for(var i=0;i<arr.length;i++){
+				var obj = document.getElementById(arr[i]);
+				obj.value = encodeURIComponent(obj.value);
+				obj.value = encodeURIComponent(obj.value);
+			}
+			document.getElementById(fid).submit();
+		}
+	</script>
+  </head>
+  
+  <body>
+  
+  	<strong id="form1">关键字查询货讯 </strong>
+    <hr>
+    <form name="f1" id="f1" action="transportDemand/searchByKey" method="post" target="_blank" >
+      <table border="0">
+        <tr>
+          <td>userid:</td>
+          <td><input type="text" name="userid" id="f1_userid"></td>
+          <td>用户id </td>
+        </tr>
+         <tr>
+          <td>keyword:</td>
+          <td><input type="text" name="keyword" id="f1_keyword" placeHolder="请输入关键字查询"></td>
+          <td>关键字（目的地）</td>
+        </tr> 
+        <tr>
+          <td>page:</td>
+          <td><input type="text" name="page" id="f1_page"></td>
+          <td>页码</td>
+        </tr> 
+        <tr>
+          <td>pageSize:</td>
+          <td><input type="text" name="pageSize" id="f1_pageSize"></td>
+          <td>每页数据量</td>
+        </tr> 
+        <tr>
+          <td>order:</td>
+          <td><input type="text" name="order" id="f1_order"></td>
+          <td>排序参数(参照接口文档公共字段)</td>
+        </tr> 
+        <tr>
+          <td colspan="2" align="center"><input type="submit" value="查询" /></td>
+        </tr> 
+      </table>
+    </form>
+    
+    <br>
+    <strong id="form2">发布货讯</strong>
+    <hr>
+    <form name="f2" id="f2" action="app/transportDemand/newTransportDemand" method="post" target="_blank" >
+      <table border="0">
+        <tr>
+          <td>userid:</td>
+          <td><input type="text" name="userid" id="f2_userid"></td>
+          <td><font color="red">*</font> 用户id </td>
+        </tr>
+        <tr>
+          <td>token:</td>
+          <td><input type="text" name="token" id="f2_token"></td>
+          <td><font color="red">*</font> 用户令牌</td>
+        </tr>
+        <!--<tr>
+          <td>username:</td>
+          <td><input type="text" name="username" id="f2_username"></td>
+          <td>用户名</td>
+        </tr> 
+         <tr>
+          <td>phone:</td>
+          <td><input type="text" name="phone" id="f2_phone"></td>
+          <td>联系电话</td>
+        </tr> 
+         -->
+         <tr>
+          <td>startid:</td>
+          <td><input type="text" name="startid" id="f2_startid"></td>
+          <td>交货地区县编号</td>
+        </tr> 
+         <tr>
+          <td>start:</td>
+          <td><input type="text" name="start" id="f2_start"></td>
+          <td> 交货地区县</td>
+        </tr> 
+         <tr>
+          <td>startshortname:</td>
+          <td><input type="text" name="startshortname" id="f2_startshortname"></td>
+          <td>交货地简称</td>
+        </tr> 
+        <tr>
+          <td>startcityid:</td>
+          <td><input type="text" name="startcityid" id="f2_startcityid"></td>
+          <td>交货地城市编号</td>
+        </tr> 
+        <tr>
+          <td>startcityname:</td>
+          <td><input type="text" name="startcityname" id="f2_startcityname"></td>
+          <td> 交货地城市名称</td>
+        </tr> 
+        <tr>
+          <td>startprvid:</td>
+          <td><input type="text" name="startprvid" id="f2_startprvid"></td>
+          <td>交货地省份编号</td>
+        </tr> 
+        <tr>
+          <td>startprvname:</td>
+          <td><input type="text" name="startprvname" id="f2_startprvname"></td>
+          <td><font color="red">*</font> 交货地省份名称</td>
+        </tr>
+         <tr>
+          <td>stopid:</td>
+          <td><input type="text" name="stopid" id="f2_stopid"></td>
+          <td>收货地点编号</td>
+        </tr> 
+         <tr>
+          <td>stop:</td>
+          <td><input type="text" name="stop" id="f2_stop"></td>
+          <td> 收货地区县</td>
+        </tr> 
+        <tr>
+          <td>stopshortname:</td>
+          <td><input type="text" name="stopshortname" id="f2_stopshortname"></td>
+          <td>收货地简称</td>
+        </tr> 
+        <tr>
+          <td>stopcityid:</td>
+          <td><input type="text" name="stopcityid" id="f2_stopcityid"></td>
+          <td>收货地城市编号</td>
+        </tr> 
+        <tr>
+          <td>stopcityname:</td>
+          <td><input type="text" name="stopcityname" id="f2_stopcityname"></td>
+          <td>收货地城市名称</td>
+        </tr> 
+        <tr>
+          <td>stopprvid:</td>
+          <td><input type="text" name="stopprvid" id="f2_stopprvid"></td>
+          <td>收货地省份编号</td>
+        </tr> 
+        <tr>
+          <td>stopprvname:</td>
+          <td><input type="text" name="stopprvname" id="f2_stopprvname"></td>
+          <td><font color="red">*</font> 收货地省份名称</td>
+        </tr>
+         <tr>
+          <td>price:</td>
+          <td><input type="text" name="price" id="f2_price"></td>
+          <td><font color="red">*</font> 价格</td>
+        </tr> 
+        <tr>
+          <td>sendoutdate:</td>
+          <td><input type="text" name="sendoutdate" id="f2_sendoutdate"></td>
+          <td><font color="red">*</font> 发货时间</td>
+        </tr> 
+        <tr>
+          <td>validdate:</td>
+          <td><input type="text" name="validdate" id="f2_validdate"></td>
+          <td><font color="red">*</font> 有效期</td>
+        </tr> 
+        <tr>
+          <td>quantity:</td>
+          <td><input type="text" name="quantity" id="f2_quantity"></td>
+          <td><font color="red">*</font> 数量</td>
+        </tr> 
+        <tr>
+          <td>pushtype:</td>
+          <td>启用<input type="radio" name="pushtype" value="1">关闭<input type="radio" name="pushtype" value="0"></td>
+          <td>推送开关</td>
+        </tr> 
+        <tr>
+          <td colspan="2" align="center"><input type="submit" value="提交" /></td>
+        </tr> 
+      </table>
+    </form>
+    
+    <strong id="form6">发布货讯后展示货讯列表</strong>
+    <hr>
+    <form name="f6" id="f6" action="transportDemand/listTransportDemand" method="post" target="_blank" >
+      <table border="0">
+        <tr>
+          <td>id:</td>
+          <td><input type="text" name="id" id="f6_id"></td>
+          <td><font color="red">*</font> 货讯id </td>
+        </tr>
+         <!--<tr>
+          <td>keyword:</td>
+          <td><input type="text" name="keyword" id="f6_keyword"></td>
+          <td>关键字（姓名／目的地／电话）</td>
+        </tr> 
+        --><tr>
+          <td>page:</td>
+          <td><input type="text" name="page" id="f6_page"></td>
+          <td>页码</td>
+        </tr> 
+        <tr>
+          <td>pageSize:</td>
+          <td><input type="text" name="pageSize" id="f6_pageSize"></td>
+          <td>每页数据量</td>
+        </tr> 
+        <tr>
+          <td>order:</td>
+          <td><input type="text" name="order" id="f6_order"></td>
+          <td>排序参数(参照接口文档公共字段)</td>
+        </tr> 
+        <tr>
+          <td colspan="2" align="center"><input type="submit" value="查询" /></td>
+        </tr> 
+      </table>
+    </form>
+    
+    
+   <br>
+    <strong id="form3">获取已发布货讯</strong>
+    <hr>
+    <form name="f3" id="f3" action="transportDemand/getTransportDemand" method="get" target="_blank" >
+      <table border="0">
+        <tr>
+          <td>userid:</td>
+          <td><input type="text" name="userid" id="f3_userid"></td>
+          <td><font color="red">*</font> 用户id </td>
+        </tr>
+        <tr>
+          <td>page:</td>
+          <td><input type="text" name="page" id="f3_page"></td>
+          <td>页码</td>
+        </tr> 
+        <tr>
+          <td>pageSize:</td>
+          <td><input type="text" name="pageSize" id="f3_pageSize"></td>
+          <td>每页数据量</td>
+        </tr> 
+        <tr>
+          <td>order:</td>
+          <td><input type="text" name="order" id="f3_order"></td>
+          <td>排序参数(参照接口文档公共字段)</td>
+        </tr> 
+        <tr>
+          <td colspan="2" align="center"><input type="submit" value="查询" /></td>
+        </tr> 
+      </table>
+    </form>
+        
+     <br>
+    <strong id="form4">删除已发布货讯</strong>
+    <hr>
+    <form name="f4" id="f4" action="app/transportDemand/delTransportDemand" method="get" target="_blank" >
+      <table border="0">
+        <tr>
+          <td>userid:</td>
+          <td><input type="text" name="userid" id="f4_userid"></td>
+          <td><font color="red">*</font> 用户id </td>
+        </tr>
+        <tr>
+          <td>token:</td>
+          <td><input type="text" name="token" id="f4_token"></td>
+          <td><font color="red">*</font> 用户令牌</td>
+        </tr>
+        <tr>
+          <td>id:</td>
+          <td><input type="text" name="id" id="f4_id"></td>
+          <td><font color="red">*</font> 货讯id</td>
+        </tr> 
+        <tr>
+          <td colspan="2" align="center"><input type="submit" value="提交" /></td>
+        </tr> 
+      </table>
+    </form>
+    
+    <br>
+    <strong id="form5">重新发布货讯</strong>
+    <hr>
+    <form name="f5" id="f5" action="app/transportDemand/renewTransportDemand" method="get" target="_blank" >
+      <table border="0">
+        <tr>
+          <td>userid:</td>
+          <td><input type="text" name="userid" id="f5_userid"></td>
+          <td><font color="red">*</font> 用户id </td>
+        </tr>
+        <tr>
+          <td>token:</td>
+          <td><input type="text" name="token" id="f5_token"></td>
+          <td><font color="red">*</font> 用户令牌</td>
+        </tr>
+        <tr>
+          <td>id:</td>
+          <td><input type="text" name="id" id="f5_id"></td>
+          <td><font color="red">*</font> 货讯id</td>
+        </tr> 
+        <tr>
+          <td>price:</td>
+          <td><input type="text" name="price" id="f5_price"></td>
+          <td><font color="red">*</font> 价格</td>
+        </tr> 
+        <tr>
+          <td>quantity:</td>
+          <td><input type="text" name="quantity" id="f5_quantity"></td>
+          <td><font color="red">*</font> 数量</td>
+        </tr> 
+        <tr>
+          <td>sendoutdate:</td>
+          <td><input type="text" name="sendoutdate" id="f5_sendoutdate"></td>
+          <td><font color="red">*</font> 发货时间</td>
+        </tr> 
+         <tr>
+          <td>validdate:</td>
+          <td><input type="text" name="validdate" id="f5_validdate"></td>
+          <td><font color="red">*</font> 有效期</td>
+        </tr> 
+        <tr>
+          <td colspan="2" align="center"><input type="submit" value="提交" /></td>
+        </tr> 
+      </table>
+    </form>
+    <br/>
+    <strong id="form7">起止地查询货讯 </strong>
+    <hr>
+    <form name="f7" id="f7" action="transportDemand/searchByPlace" method="post" target="_blank" >
+      <table border="0">
+        <tr>
+          <td>userid:</td>
+          <td><input type="text" name="userid" id="f7_userid"></td>
+          <td>用户id </td>
+        </tr>
+        <tr>
+          <td>startid:</td>
+          <td><input type="text" name="startid" id="f7_startid"></td>
+          <td>交货地区县编号</td>
+        </tr> 
+         <tr>
+          <td>start:</td>
+          <td><input type="text" name="start" id="f7_start"></td>
+          <td>交货地区县名称</td>
+        </tr> 
+        <tr>
+          <td>startcityid:</td>
+          <td><input type="text" name="startcityid" id="f7_startcityid"></td>
+          <td>交货地城市编号</td>
+        </tr> 
+        <tr>
+          <td>startcityname:</td>
+          <td><input type="text" name="startcityname" id="f7_startcityname"></td>
+          <td>交货地城市名称</td>
+        </tr> 
+        <tr>
+          <td>startprvid:</td>
+          <td><input type="text" name="startprvid" id="f7_startprvid"></td>
+          <td>交货地省份编号</td>
+        </tr> 
+        <tr>
+          <td>startprvname:</td>
+          <td><input type="text" name="startprvname" id="f7_startprvname"></td>
+          <td>交货地省份名称</td>
+        </tr> 
+        <tr>
+          <td>stop:</td>
+          <td><input type="text" name="stop" id="f7_stop"></td>
+          <td>收货地区县名称  </td>
+        </tr> 
+        <tr>
+          <td>stopid:</td>
+          <td><input type="text" name="stopid" id="f7_stopid"></td>
+          <td>收货地点区县编号</td>
+        </tr> 
+        <tr>
+          <td>stopcityid:</td>
+          <td><input type="text" name="stopcityid" id="f7_stopcityid"></td>
+          <td>收货地城市编号</td>
+        </tr> 
+        <tr>
+          <td>stopcityname:</td>
+          <td><input type="text" name="stopcityname" id="f7_stopcityname"></td>
+          <td>收货地城市名称</td>
+        </tr> 
+        <tr>
+          <td>stopprvid:</td>
+          <td><input type="text" name="stopprvid" id="f7_stopprvid"></td>
+          <td>收货地省份编号</td>
+        </tr> 
+        <tr>
+          <td>stopprvname:</td>
+          <td><input type="text" name="stopprvname" id="f7_stopprvname"></td>
+          <td>收货地省份名称</td>
+        </tr>
+        <tr>
+          <td>page:</td>
+          <td><input type="text" name="page" id="f7_page"></td>
+          <td>页码</td>
+        </tr> 
+        <tr>
+          <td>pageSize:</td>
+          <td><input type="text" name="pageSize" id="f7_pageSize"></td>
+          <td>每页数据量</td>
+        </tr> 
+        <tr>
+          <td>order:</td>
+          <td><input type="text" name="order" id="f7_order"></td>
+          <td>排序参数(参照接口文档公共字段)</td>
+        </tr> 
+        <tr>
+          <td colspan="2" align="center"><input type="submit" value="查询" /></td>
+        </tr> 
+      </table>
+    </form>
+ 
+  </body>
+</html>

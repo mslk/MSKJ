@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/provider
+END
+IProviderInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/provider/IProviderInfoDao.java
+END
+IProviderDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/provider/IProviderDao.java
+END

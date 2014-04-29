@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/base
+END
+DaoUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/base/DaoUtil.java
+END
+QueryResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/base/QueryResult.java
+END
+IBaseDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/base/IBaseDao.java
+END
+IReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/base/IReader.java
+END
+GenericGetType.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao/base/GenericGetType.java
+END

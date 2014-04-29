@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary
+END
+IRailwayrateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/IRailwayrateDao.java
+END
+IProvinceDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/IProvinceDao.java
+END
+IBeginStationDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/IBeginStationDao.java
+END
+ICoalMineDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/ICoalMineDao.java
+END
+IDeliveryplaceDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/IDeliveryplaceDao.java
+END
+IHelpCenterDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/IHelpCenterDao.java
+END
+IDeliveryareaDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/IDeliveryareaDao.java
+END
+IHighwayrateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/IHighwayrateDao.java
+END
+ICoalParticleSizeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/ICoalParticleSizeDao.java
+END
+ICoalTypeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/ICoalTypeDao.java
+END
+ICountyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/ICountyDao.java
+END
+IStationDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/dictionary/IStationDao.java
+END

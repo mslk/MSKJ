@@ -1,0 +1,771 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:util="http://www.springframework.org/schema/util"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:cache="http://www.springframework.org/schema/cache"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/util 
+http://www.springframework.org/schema/util/spring-util-3.0.xsd
+http://www.springframework.org/schema/cache 
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+http://www.springframework.org/schema/cache/spring-cache.xsd"> 
+<!-- 
+<context:annotation-config /> 
+<context:component-scan base-package="com"/>
+-->
+
+	<bean id="dataSource66" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    <property name="driverClass" value="${jdbc66.driverClassName}" />
+    <property name="jdbcUrl" value="${jdbc66.url}"/>
+    <property name="user" value="${jdbc66.username}"/>
+    <property name="password" value="${jdbc66.password}"/>
+        <!--连接池中保留的最小连接数。-->
+         <property name="minPoolSize" value="1" />
+         <!--连接池中保留的最大连接数。Default: 15 -->
+		 <property name="maxPoolSize" value="50" />
+		 <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		 <property name="initialPoolSize" value="1" />
+		 <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		 <property name="maxIdleTime" value="25000" />
+		 <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		 <property name="acquireIncrement" value="1" />
+		 <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+		 <property name="acquireRetryAttempts" value="30" />
+		 <!--两次连接中间隔时间，单位毫秒。Default: 1000 -->
+		 <property name="acquireRetryDelay" value="1000" />
+		 <!--如果设为true那么在取得连接的同时将校验连接的有效性。Default: false -->
+		 <property name="testConnectionOnCheckin" value="true" />
+		 <!--c3p0将建一张名为Test的空表，并使用其自带的查询语句进行测试。如果定义了这个参数那么
+			属性preferredTestQuery将被忽略。你不能在这张Test表上进行任何操作，它将只供c3p0测试
+			使用。Default: null-->
+		 <property name="automaticTestTable" value="t_c3p0" />
+		 <!--每*秒检查所有连接池中的空闲连接。Default: 0 -->
+		 <property name="idleConnectionTestPeriod" value="18000" />
+		 <!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将抛出
+			SQLException,如设为0则无限期等待。单位毫秒。Default: 0 -->
+		 <property name="checkoutTimeout" value="5000" />
+         <!--t_c3p0 就是一个测试表    网上说这个配置已经稳定运行了一年了 -->  
+</bean>
+
+<bean id="dataSource68" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+         <property name="driverClass" value="${jdbc68.driverClassName}" />
+         <property name="jdbcUrl" value="${jdbc68.url}"/>
+         <property name="user" value="${jdbc68.username}"/>
+         <property name="password" value="${jdbc68.password}"/>
+          <!--连接池中保留的最小连接数。-->
+         <property name="minPoolSize" value="5" />
+         <!--连接池中保留的最大连接数。Default: 15 -->
+		 <property name="maxPoolSize" value="50" />
+		 <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		 <property name="initialPoolSize" value="5" />
+		 
+</bean> 
+
+<bean id="jdbcTempleateDefault" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="dataSource66"></property>
+</bean>
+<bean id="jdbcTeplements68" class="org.springframework.jdbc.core.JdbcTemplate">
+    <property name="dataSource" ref="dataSource68"></property>
+</bean>
+<context:property-placeholder location="classpath:jdbc.properties"/>
+
+<bean id="jdbcTeplementHashs" class="com.meibaolian.dao.base.JdbcTemplateHash">
+  <property  name="jdbcTeplements">
+    <map>
+    <entry key="default" value-ref="jdbcTempleateDefault"></entry>
+      <entry key="dataSource68" value-ref="jdbcTeplements68"></entry>
+    </map>
+    </property>
+</bean>
+
+<!-- 事务管理器 
+<bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource"></property>
+</bean>
+
+<tx:advice id="transactionAdvice" transaction-manager="dataSourceTransactionManager">
+	<tx:attributes>
+		<tx:method name="add*" propagation="REQUIRED" />
+		<tx:method name="del*" propagation="REQUIRED" />
+		<tx:method name="delete*" propagation="REQUIRED" />
+		<tx:method name="update*" propagation="REQUIRED" />
+		<tx:method name="update_search*" propagation="REQUIRED" />
+		<tx:method name="search*" propagation="NOT_SUPPORTED" read-only="true" />
+		<tx:method name="get*" propagation="NOT_SUPPORTED"    read-only="true"/>
+		<tx:method name="*" propagation="REQUIRED"  />
+	 </tx:attributes>
+</tx:advice> 
+-->
+<!-- 面向切面 
+<aop:config proxy-target-class="true">
+            <aop:pointcut id="interceptorPointCuts" expression="execution(* com.meibaolian.service.*.*(..))" />
+             <aop:advisor advice-ref="transactionAdvice" pointcut-ref="interceptorPointCuts" />
+</aop:config>
+-->
+
+<bean id="baseDao" abstract="true" class="com.meibaolian.dao.base.impl.BaseDao">
+  <property name="jdbcTempleate" ref="jdbcTempleateDefault"></property>
+  <property name="jdbcTemplateHashs" ref="jdbcTeplementHashs"></property>
+</bean>
+
+
+
+<!-- ===================  -->
+<!-- dao层 -->
+<!-- 用户 -->
+<bean id="userDao" class="com.meibaolian.dao.user.impl.UserDao" parent="baseDao">
+</bean>
+<!-- 用户拨打号码统计 -->
+<bean id="userAidDao" class="com.meibaolian.dao.useraid.impl.UserAidDao" parent="baseDao">
+</bean>
+
+<!-- 卖方  -->
+<bean id="providerDao" class="com.meibaolian.dao.provider.impl.ProviderDao" parent="baseDao">
+</bean>
+<bean id="providerJsonDao" class="com.meibaolian.dao.provider.impl.ProviderJsonDao" parent="baseDao">
+</bean>
+<bean id="providerpushDao" class="com.meibaolian.dao.providerpush.impl.ProviderpushDao" parent="baseDao">
+</bean>
+
+<!-- 买方  -->
+<bean id="purchaseDao" class="com.meibaolian.dao.purchase.impl.PurchaseDao" parent="baseDao">
+</bean>
+<bean id="purchaseJsonDao" class="com.meibaolian.dao.purchase.impl.PurchaseJsonDao" parent="baseDao">
+</bean>
+<bean id="purchasepushDao" class="com.meibaolian.dao.purchasepush.impl.PurchasepushDao" parent="baseDao">
+</bean>
+
+<!-- 查询记录  -->
+<bean id="searchlogDao" class="com.meibaolian.dao.searchlog.impl.SearchlogDao" parent="baseDao">
+</bean>
+<bean id="searchlogTransportDao" class="com.meibaolian.dao.searchlog.impl.SearchlogTransportDao" parent="baseDao">
+</bean>
+<!-- 我的客户  -->
+<bean id="customerDao" class="com.meibaolian.dao.customer.impl.CustomerDao" parent="baseDao">
+</bean>
+<bean id="customerJsonDao" class="com.meibaolian.dao.customer.impl.CustomerJsonDao" parent="baseDao">
+</bean>
+
+
+<!-- ====字典数据====  -->
+<!-- 煤矿  -->
+<bean id="coalMineDao" class="com.meibaolian.dao.dictionary.impl.CoalMineDao" parent="baseDao">
+</bean>
+
+<!-- 发货站点 -->
+<bean id="beginStationDao" class="com.meibaolian.dao.dictionary.impl.BeginStationDao" parent="baseDao" >
+</bean>
+
+<!-- 铁路  -->
+<bean id="railwayrateDao" class="com.meibaolian.dao.dictionary.impl.RailwayrateDao" parent="baseDao">
+</bean>
+<!-- 公路 -->
+<bean id="highwayrateDao" class="com.meibaolian.dao.dictionary.impl.HighwayrateDao" parent="baseDao">
+</bean>
+
+<!--  煤种 -->
+<bean id="coalTypeDao" class="com.meibaolian.dao.dictionary.impl.CoalTypeDao" parent="baseDao"> </bean>
+<!-- 煤粒度类型 -->
+<bean id="coalParticleSizeDao" class="com.meibaolian.dao.dictionary.impl.CoalParticleSizeDao" parent="baseDao">
+</bean>
+
+<!-- 收货地省 -->
+<bean id="provinceDao" class="com.meibaolian.dao.dictionary.impl.ProvinceDao" parent="baseDao">
+</bean>
+<!-- 收货地区县 -->
+<bean id="countyDao" class="com.meibaolian.dao.dictionary.impl.CountyDao" parent="baseDao">
+</bean>
+<!-- 站点 -->
+<bean id="stationDao" class="com.meibaolian.dao.dictionary.impl.StationDao" parent="baseDao">
+</bean>
+<!-- 广告图片 -->
+<bean id="advertisingDao" class="com.meibaolian.dao.other.imple.AdvertisingDao" parent="baseDao">
+</bean>
+
+<!-- 省市县-->
+<bean id="deliveryareaDao" class="com.meibaolian.dao.dictionary.impl.DeliveryareaDao" parent="baseDao">
+</bean>
+<!-- 县下面的煤矿 煤场 坑口信息 -->
+<bean id="deliveryplaceDao" class="com.meibaolian.dao.dictionary.impl.DeliveryplaceDao" parent="baseDao">
+</bean>
+
+<!-- ====运输====  -->
+<!-- 车讯 -->
+<bean id="transportSupplyDao" class="com.meibaolian.dao.transportSupply.impl.TransportSupplyDao" parent="baseDao">
+</bean>
+<!-- 车讯推送 -->
+<bean id="transportSupplyPushDao" class="com.meibaolian.dao.transportSupplyPush.impl.TransportSupplyPushDao" parent="baseDao">
+</bean>
+<!-- 货讯 -->
+<bean id="transportDemandDao" class="com.meibaolian.dao.transportDemand.impl.TransportDemandDao" parent="baseDao">
+</bean>
+<!-- 货讯推送 -->
+<bean id="transportDemandPushDao" class="com.meibaolian.dao.transportDemandPush.impl.TransportDemandPushDao" parent="baseDao">
+</bean>
+
+<!-- 帮助中心 -->
+<bean id="helpCenterDao" class="com.meibaolian.dao.dictionary.impl.HelpCenterDao" parent="baseDao"></bean>
+
+<!-- 用户投诉信息 -->
+<bean id="userProposalDao" class="com.meibaolian.dao.other.imple.UserProposalDao" parent="baseDao"></bean>
+
+<!-- 煤炭检测信息 -->
+<bean id="qualityControlDao" class="com.meibaolian.dao.other.imple.QualityControlDao" parent="baseDao"></bean>
+<!-- 登陆日志 -->
+<bean id="accesslogLoginDao" class="com.meibaolian.dao.log.imple.AccesslogLoginDao" parent="baseDao"></bean>
+<!-- 模块登陆日志 -->
+<bean id="accesslogModuleDao" class="com.meibaolian.dao.log.imple.AccesslogModuleDao" parent="baseDao"></bean>
+
+<bean id="typeListDao" class="com.meibaolian.dao.nyt.impl.TypeListDao" parent="baseDao">
+</bean>
+ 
+<bean id="vennerInfoDao" class="com.meibaolian.dao.nyt.impl.VennerInfoDao" parent="baseDao">
+</bean>
+
+<bean id="supplyDao" class="com.meibaolian.dao.nyt.impl.SupplyDao" parent="baseDao">
+</bean>
+<bean id="supplyExpandDao" class="com.meibaolian.dao.nyt.impl.SupplyExpandDao" parent="baseDao">
+</bean>
+<bean id="purchaseInfoDao" class="com.meibaolian.dao.nyt.impl.PurchaseInfoDao" parent="baseDao">
+</bean>
+<bean id="purchaseExpandDao" class="com.meibaolian.dao.nyt.impl.PurchaseExpandDao" parent="baseDao">
+</bean>
+
+<!-- 我的收藏 -->
+<bean id="collectInfoDao" class="com.meibaolian.dao.nyt.impl.Collect_infoDao" parent="baseDao">
+</bean>
+
+<!-- 单板供应 -->
+<bean id="veneerDao" class="com.meibaolian.dao.nyt.impl.VeneerDao" parent="baseDao">
+</bean>
+<!--  海汽运价--> 
+<bean id="freight_ratesDao" class="com.meibaolian.dao.nyt.impl.Freight_ratesDao" parent="baseDao">
+</bean>
+
+<!-- ===================  -->
+<!-- service 层 -->
+<!-- 用户 -->
+<bean id="userService" class="com.meibaolian.service.user.impl.UserService">
+<property name="userDao" ref="userDao"></property>
+</bean>
+<!-- 用户拨打号码统计 -->
+<bean id="userAidService" class="com.meibaolian.service.useraid.impl.UserAidService" >
+<property name="userAidDao" ref="userAidDao"></property>
+</bean>
+
+<!-- 卖方  -->
+<bean id="providerService" class="com.meibaolian.service.provider.impl.ProviderService">
+<property name="providerJsonDao" ref="providerJsonDao"></property>
+<property name="providerDao" ref="providerDao"></property>
+<property name="providerpushDao" ref="providerpushDao"></property>
+<property name="userDao" ref="userDao"></property>
+</bean>
+
+<!-- 买方  -->
+<bean id="purchaseService" class="com.meibaolian.service.purchase.impl.PurchaseService">
+<property name="purchaseJsonDao" ref="purchaseJsonDao"></property>
+<property name="purchaseDao" ref="purchaseDao"></property>
+<property name="purchasepushDao" ref="purchasepushDao"></property>
+<property name="userDao" ref="userDao"></property>
+</bean>
+
+<!-- 查询记录  -->
+<bean id="searchlogService" class="com.meibaolian.service.searchlog.imlp.SearchlogService">
+<property name="searchlogDao" ref="searchlogDao"></property>
+<property name="searchlogTransportDao" ref="searchlogTransportDao"></property>
+</bean>
+
+<!-- 我的客户  -->
+<bean id="customerService" class="com.meibaolian.service.customer.impl.CustomerService">
+<property name="customerDao" ref="customerDao"></property>
+<property name="customerJsonDao" ref="customerJsonDao"></property>
+</bean> 
+
+<!-- ====字典数据====  -->
+<!-- 煤矿  -->
+<bean id="coalMineService" class="com.meibaolian.service.dictionary.impl.CoalMineService">
+<property name="coalMineDao" ref="coalMineDao"></property>
+</bean>
+
+<!-- 发货站点 -->
+<bean id="beginStationService" class="com.meibaolian.service.dictionary.impl.BeginStationService">
+<property name="beginStationDao" ref="beginStationDao"></property>
+</bean>
+
+<!-- 铁路 -->
+<bean id="railwayrateService" class="com.meibaolian.service.dictionary.impl.RailwayrateService">
+<property name="railwayrateDao" ref="railwayrateDao"></property>
+</bean>
+<!-- 公路 -->
+<bean id="highwayrateService" class="com.meibaolian.service.dictionary.impl.HighwayrateService">
+<property name="highwayrateDao" ref="highwayrateDao"></property>
+</bean>
+<!--  煤种 -->
+<bean id="coalTypeService" class="com.meibaolian.service.dictionary.impl.CoalTypeService">
+<property name="coalTypeDao" ref="coalTypeDao"></property>
+</bean>
+<!-- 煤粒度类型 -->
+<bean id="coalParticleSizeService" class="com.meibaolian.service.dictionary.impl.CoalParticleSizeService">
+<property name="coalParticleSizeDao" ref="coalParticleSizeDao"></property>
+</bean>
+<!-- 收货地省 -->
+<bean id="provinceService" class="com.meibaolian.service.dictionary.impl.ProvinceService" >
+<property name="provinceDao" ref="provinceDao"></property>
+</bean>
+
+<!-- 收货地区县 -->
+<bean id="countyService" class="com.meibaolian.service.dictionary.impl.CountyService" >
+<property name="countyDao" ref="countyDao"></property>
+</bean>
+
+<!-- 站点 -->
+<bean id="stationService" class="com.meibaolian.service.dictionary.impl.StationService" >
+<property name="stationDao" ref="stationDao"></property>
+</bean>
+
+<!-- 省市县-->
+<bean id="deliveryareaService" class="com.meibaolian.service.dictionary.impl.DeliveryareaService">
+<property name="deliveryareaDao" ref="deliveryareaDao"></property>
+</bean>
+<!-- 县下面的煤矿 煤场 坑口信息 -->
+<bean id="deliveryplaceService" class="com.meibaolian.service.dictionary.impl.DeliveryplaceService" >
+<property name="deliveryplaceDao" ref="deliveryplaceDao"></property>
+</bean>
+
+<!-- 广告图片 -->
+<bean id="advertisingService" class="com.meibaolian.service.other.imple.AdvertisingService" >
+<property name="advertisingDao" ref="advertisingDao"></property>
+</bean>
+<!-- ====运输====  -->
+<!-- 车讯 -->
+<bean id="transportSupplyService" class="com.meibaolian.service.transportSupply.impl.TransportSupplyService" >
+<property name="transportSupplyDao" ref="transportSupplyDao"></property>
+<property name="transportSupplyPushDao" ref="transportSupplyPushDao"></property>
+</bean>
+<!-- 货讯 -->
+<bean id="transportDemandService" class="com.meibaolian.service.transportDemand.impl.TransportDemandService" >
+<property name="transportDemandDao" ref="transportDemandDao"></property>
+<property name="transportDemandPushDao" ref="transportDemandPushDao"></property>
+</bean>
+
+<!-- 帮助中心 -->
+<bean id="helpCenterService" class="com.meibaolian.service.dictionary.impl.HelpCenterService" >
+<property name="helpCenterDao" ref="helpCenterDao"></property>
+</bean>
+
+<!-- 用户投诉信息 -->
+<bean id="userProposalService" class="com.meibaolian.service.other.imple.UserProposalService" >
+<property name="userProposalDao" ref="userProposalDao"></property>
+</bean>
+
+<!-- 煤炭检测信息 -->
+<bean id="qualityControlService" class="com.meibaolian.service.other.imple.QualityControlService" >
+<property name="qualityControlDao" ref="qualityControlDao"></property>
+</bean>
+
+<!-- 日志记录 -->
+<bean id="logService" class="com.meibaolian.service.log.imple.LogService" >
+<property name="accesslogLoginDao" ref="accesslogLoginDao"></property>
+<property name="accesslogModuleDao" ref="accesslogModuleDao"></property>
+</bean>
+<bean id="typeListService" class="com.meibaolian.service.nyt.impl.TypeListService" >
+<property name="typeListDao" ref="typeListDao"></property>
+</bean>
+
+  
+<bean id="vennerInfoService" class="com.meibaolian.service.nyt.impl.VennerInfoService">
+<property name="vennerInfoDao" ref="vennerInfoDao"></property>
+</bean> 
+
+<bean id="collectInfoService" class="com.meibaolian.service.nyt.impl.Collect_infoService">
+<property name="dao" ref="collectInfoDao"></property>
+</bean> 
+
+<bean id="supplyService" class="com.meibaolian.service.nyt.impl.SupplyService" >
+<property name="supplyDao" ref="supplyDao"></property>
+<property name="supplyExpandDao" ref="supplyExpandDao"></property>
+</bean>
+
+<bean id="purchaseInfoService" class="com.meibaolian.service.nyt.impl.PurchaseInfoService" >
+<property name="purchaseInfoDao" ref="purchaseInfoDao"></property>
+<property name="purchaseExpandDao" ref="purchaseExpandDao"></property>
+</bean>
+
+<!-- 单板供应 -->
+<bean id="veneerService" class="com.meibaolian.service.nyt.impl.VeneerService" >
+<property name="veneerDao" ref="veneerDao"></property>
+<property name="fr" ref="freight_ratesCache"></property>
+</bean>
+<!-- 海汽运价 -->
+<bean id="freight_ratesService" class="com.meibaolian.service.nyt.impl.Freight_ratesService" >
+<property name="dao" ref="freight_ratesDao"></property>
+</bean>
+<bean id="freight_ratesCache" class="com.meibaolian.cache.Freight_ratesCache" >
+<property name="freight_ratesService" ref="freight_ratesService"></property>
+</bean>  
+
+<!-- ===================  -->
+<!-- servlet 层 -->
+<bean id="phoneCheckCode" class="com.meibaolian.web.user.PhoneCheckCode">
+<property name="userService" ref="userService"></property>
+</bean>
+
+<bean id="userLogin" class="com.meibaolian.web.user.UserLogin" > 
+<property name="userService" ref="userService"></property>
+<property name="logService" ref="logService"></property>
+</bean>
+
+<bean id="userRegister" class="com.meibaolian.web.user.UserRegister" > 
+<property name="userService" ref="userService"></property>
+</bean>
+
+<bean id="userUpdatePwd" class="com.meibaolian.web.user.UserUpdatePwd" > 
+<property name="userService" ref="userService"></property>
+</bean>
+
+<bean id="userDelete" class="com.meibaolian.web.user.UserDelete" >
+<property name="userService" ref="userService"></property>
+</bean>
+
+
+<!-- 卖方  -->
+<bean id="newProvider" class="com.meibaolian.web.provider.NewProvider" > 
+<property name="providerService" ref="providerService"></property>
+</bean>
+
+<bean id="getProvider" class="com.meibaolian.web.provider.GetProvider" > 
+<property name="providerService" ref="providerService"></property>
+</bean>
+
+<bean id="delProvider" class="com.meibaolian.web.provider.DelProvider" > 
+<property name="providerService" ref="providerService"></property>
+</bean>
+
+<bean id="searchProvider" class="com.meibaolian.web.provider.SearchProvider" > 
+<property name="providerService" ref="providerService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+
+<bean id="renewProvider" class="com.meibaolian.web.provider.RenewProvider" > 
+<property name="providerService" ref="providerService"></property>
+</bean>
+
+<bean id="listProvider" class="com.meibaolian.web.provider.ListProvider" > 
+<property name="providerService" ref="providerService"></property>
+</bean>
+
+<bean id="searchProviderByKey" class="com.meibaolian.web.provider.SearchByKey" > 
+<property name="providerService" ref="providerService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+<!-- 买方  -->
+<bean id="newPurchase" class="com.meibaolian.web.purchase.NewPurchase" > 
+<property name="purchaseService" ref="purchaseService"></property>
+</bean>
+
+<bean id="getPurchase" class="com.meibaolian.web.purchase.GetPurchase" > 
+<property name="purchaseService" ref="purchaseService"></property>
+</bean>
+
+<bean id="delPurchase" class="com.meibaolian.web.purchase.DelPurchase" > 
+<property name="purchaseService" ref="purchaseService"></property>
+</bean>
+
+<bean id="searchPurchase" class="com.meibaolian.web.purchase.SearchPurchase" > 
+<property name="purchaseService" ref="purchaseService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+
+<bean id="renewPurchase" class="com.meibaolian.web.purchase.RenewPurchase" > 
+<property name="purchaseService" ref="purchaseService"></property>
+</bean>
+
+<bean id="listPurchase" class="com.meibaolian.web.purchase.ListPurchase" > 
+<property name="purchaseService" ref="purchaseService"></property>
+</bean>
+
+<bean id="searchPurchaseByKey" class="com.meibaolian.web.purchase.SearchByKey" > 
+<property name="purchaseService" ref="purchaseService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+
+<bean id="searchPurchaseByPlace" class="com.meibaolian.web.purchase.SearchByPlace" > 
+<property name="purchaseService" ref="purchaseService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+
+<!--  -->
+<bean id="callPhoneLog" class="com.meibaolian.web.user.PhoneCallNumber" > 
+<property name="userAidService" ref="userAidService"></property>
+</bean>
+
+<bean id="userUpdateContects" class="com.meibaolian.web.user.UserUpdateContects" >
+<property name="userService" ref="userService"></property>
+</bean>
+
+<bean id="userUpdatePushStatus" class="com.meibaolian.web.user.UserUpdatePushStatus">
+<property name="userService" ref="userService"></property>
+</bean>
+
+<!-- 用户完善信息接口 -->
+<bean id="userPerfectInfo" class="com.meibaolian.web.user.UserPerfectInfo">
+<property name="userService" ref="userService"></property>
+</bean>
+
+<!-- 查询 供应商 采购商 信息通用接口 -->
+<bean id="generalDetail" class="com.meibaolian.web.common.GeneralDetail">
+<property name="providerService" ref="providerService"></property>
+<property name="purchaseService" ref="purchaseService"></property>
+</bean>
+
+<!-- 查询 车讯 货讯 信息通用接口 -->
+<bean id="generalTransportDetail" class="com.meibaolian.web.common.GeneralTransportDetail">
+<property name="transportDemandService" ref="transportDemandService"></property>
+<property name="transportSupplyService" ref="transportSupplyService"></property>
+</bean>
+
+<!-- 我的客户  -->
+<bean id="addCustomer" class="com.meibaolian.web.customer.AddCustomer">
+<property name="customerService" ref="customerService"></property>
+</bean>
+
+<bean id="getCustomer" class="com.meibaolian.web.customer.GetCustomer">
+<property name="customerService" ref="customerService"></property>
+</bean>
+
+<bean id="delCustomer" class="com.meibaolian.web.customer.DelCustomer">
+<property name="customerService" ref="customerService"></property>
+</bean>
+
+
+
+<!-- ====字典数据====  -->
+<!-- 煤矿  -->
+<bean id="coalMine" class="com.meibaolian.web.dictionary.CoalMine">
+<property name="coalMineService" ref="coalMineService"></property>
+</bean>
+
+<!-- 发货站点 -->
+<bean id="beginStation" class="com.meibaolian.web.dictionary.BeginStation">
+<property name="beginStationService" ref="beginStationService"></property>
+</bean>
+
+<!-- 铁路  -->
+<bean id="rate" class="com.meibaolian.web.dictionary.Rate">
+<property name="railwayrateService" ref="railwayrateService"></property>
+<property name="highwayrateService" ref="highwayrateService"></property>
+</bean>
+<!--  煤种 -->
+<bean id="coalType" class="com.meibaolian.web.dictionary.CoalType">
+<property name="coalTypeService" ref="coalTypeService"></property>
+</bean>
+
+
+<!-- 煤粒度类型 -->
+<bean id="coalParticleSizeType" class="com.meibaolian.web.dictionary.CoalParticleSizeType">
+<property name="coalParticleSizeService" ref="coalParticleSizeService"></property>
+</bean>
+<!-- 省市 -->
+<bean id="provinces" class="com.meibaolian.web.dictionary.Provinces" >
+<property name="provinceService" ref="provinceService"></property>
+</bean>
+<!-- 站点 -->
+<bean id="station" class="com.meibaolian.web.dictionary.Station" >
+<property name="stationService" ref="stationService"></property>
+</bean>
+<!-- 广告图片 -->
+<bean id="advertising" class="com.meibaolian.web.other.Advertising" >
+<property name="advertisingService" ref="advertisingService"></property>
+</bean>
+<!-- 省市县-->
+<bean id="deliveryarea" class="com.meibaolian.web.dictionary.Deliveryarea">
+<property name="deliveryareaService" ref="deliveryareaService"></property>
+</bean>
+<!-- 县下面的煤矿 煤场 坑口信息 -->
+<bean id="deliveryplace" class="com.meibaolian.web.dictionary.Deliveryplace" >
+<property name="deliveryplaceService" ref="deliveryplaceService"></property>
+</bean>
+
+<!-- 帮助手册接口 -->
+<bean id="helpCenter" class="com.meibaolian.web.dictionary.HelpCenter">
+<property name="helpCenterService" ref="helpCenterService"></property>
+</bean>
+
+
+<!-- 用户投诉信息 -->
+<bean id="userProposalServlet" class="com.meibaolian.web.other.UserProposalServlet" >
+<property name="userProposalService" ref="userProposalService"></property>
+</bean>
+
+<!-- 煤炭检测信息 -->
+<bean id="qualityControlServlet" class="com.meibaolian.web.other.QualityControlServlet" >
+<property name="qualityControlService" ref="qualityControlService"></property>
+</bean>
+
+<!-- ====运输====  -->
+<!-- 发布车讯 -->
+<bean id="newTransportSupply" class="com.meibaolian.web.transportSupply.NewTransportSupply" >
+<property name="transportSupplyService" ref="transportSupplyService"></property>
+</bean>
+<!-- 发布车讯后展示车讯列表 -->
+<bean id="listTransportSupply" class="com.meibaolian.web.transportSupply.ListTransportSupply" >
+<property name="transportSupplyService" ref="transportSupplyService"></property>
+</bean>
+<!-- 关键字查询车讯 -->
+<bean id="searchTransportSupplyByKey" class="com.meibaolian.web.transportSupply.SearchByKey" >
+<property name="countyService" ref="countyService"></property>
+<property name="transportSupplyService" ref="transportSupplyService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+<!-- 起止地查询车讯 -->
+<bean id="searchTransportSupplyByPlace" class="com.meibaolian.web.transportSupply.SearchByPlace" >
+<property name="transportSupplyService" ref="transportSupplyService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+<!-- 获取已发布车讯 -->
+<bean id="getTransportSupply" class="com.meibaolian.web.transportSupply.GetTransportSupply" >
+<property name="transportSupplyService" ref="transportSupplyService"></property>
+</bean>
+<!-- 删除已发布车讯 -->
+<bean id="delTransportSupply" class="com.meibaolian.web.transportSupply.DelTransportSupply" >
+<property name="transportSupplyService" ref="transportSupplyService"></property>
+</bean>
+<!-- 重新发布车讯 -->
+<bean id="renewTransportSupply" class="com.meibaolian.web.transportSupply.RenewTransportSupply" >
+<property name="transportSupplyService" ref="transportSupplyService"></property>
+</bean>
+
+<!-- 发布货讯 -->
+<bean id="newTransportDemand" class="com.meibaolian.web.transportDemand.NewTransportDemand" >
+<property name="transportDemandService" ref="transportDemandService"></property>
+</bean>
+<!-- 发布货讯后展示货讯列表 -->
+<bean id="listTransportDemand" class="com.meibaolian.web.transportDemand.ListTransportDemand" >
+<property name="transportDemandService" ref="transportDemandService"></property>
+</bean>
+<!-- 关键字查询货讯 -->
+<bean id="searchTransportDemandByKey" class="com.meibaolian.web.transportDemand.SearchByKey" >
+<property name="countyService" ref="countyService"></property>
+<property name="transportDemandService" ref="transportDemandService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+<!-- 获取已发布货讯 -->
+<bean id="getTransportDemand" class="com.meibaolian.web.transportDemand.GetTransportDemand" >
+<property name="transportDemandService" ref="transportDemandService"></property>
+</bean>
+<!-- 删除已发布货讯 -->
+<bean id="delTransportDemand" class="com.meibaolian.web.transportDemand.DelTransportDemand" >
+<property name="transportDemandService" ref="transportDemandService"></property>
+</bean>
+<!-- 重新发布货讯 -->
+<bean id="renewTransportDemand" class="com.meibaolian.web.transportDemand.RenewTransportDemand" >
+<property name="transportDemandService" ref="transportDemandService"></property>
+</bean>
+<!-- 按起止地查询货讯 -->
+<bean id="searchTransportDemandByPlace" class="com.meibaolian.web.transportDemand.SearchByPlace" >
+<property name="transportDemandService" ref="transportDemandService"></property>
+<property name="searchlogService" ref="searchlogService"></property>
+</bean>
+<bean id="uploadFile" class="com.meibaolian.web.user.UploadFile" >
+</bean>
+<!-- 类型 -->
+<bean id="typeList" class="com.meibaolian.web.nyt.TypeList" >
+<property name="typeListService" ref="typeListService"></property>
+</bean>
+<bean id="addSupply" class="com.meibaolian.web.nyt.AddSupply" >
+<property name="supplyService" ref="supplyService"></property>
+</bean>
+
+<bean id="supplySearch" class="com.meibaolian.web.nyt.SupplySearch" >
+<property name="supplyService" ref="supplyService"></property>
+</bean>
+
+<bean id="addPurchase" class="com.meibaolian.web.nyt.AddPurchase" >
+<property name="purchaseInfoService" ref="purchaseInfoService"></property>
+</bean>
+<bean id="purchaseSearch" class="com.meibaolian.web.nyt.PurchaseSearch" >
+<property name="purchaseInfoService" ref="purchaseInfoService"></property>
+</bean>
+
+<bean id="nytMySupply" class="com.meibaolian.web.nyt.NytMySupply" >
+<property name="supplyService" ref="supplyService"></property>
+</bean>
+
+<bean id="nytMyPurchase" class="com.meibaolian.web.nyt.NytMyPurchase" >
+<property name="purchaseInfoService" ref="purchaseInfoService"></property>
+</bean>
+
+
+
+ <bean id="addVennerInfo" class="com.meibaolian.web.nyt.AddVennerInfo">
+<property name="vennerInfoService" ref="vennerInfoService"></property>
+</bean> 
+ <bean id="listVeneerInfo" class="com.meibaolian.web.nyt.ListVeneerInfo">
+<property name="vennerInfoService" ref="vennerInfoService"></property>
+</bean> 
+
+ <bean id="veneerInfoSerarch" class="com.meibaolian.web.nyt.VeneerInfoSerarch">
+<property name="vennerInfoService" ref="vennerInfoService"></property>
+</bean> 
+
+
+<bean id="updateVennerInfo" class="com.meibaolian.web.nyt.UpdateVennerInfo">
+<property name="vennerInfoService" ref="vennerInfoService"></property>
+</bean> 
+
+<bean id="queryMyVeneerInfo" class="com.meibaolian.web.nyt.QueryMyVeneerInfo">
+<property name="vennerInfoService" ref="vennerInfoService"></property>
+</bean> 
+
+<bean id="delVeneerInfo" class="com.meibaolian.web.nyt.DelVeneerInfo">
+<property name="vennerInfoService" ref="vennerInfoService"></property>
+</bean> 
+
+<bean id="delPurchaseInfo" class="com.meibaolian.web.nyt.DelPurchaseInfo">
+<property name="vennerInfoService" ref="vennerInfoService"></property>
+</bean> 
+
+<bean id="delSupplyInfo" class="com.meibaolian.web.nyt.DelSupplyInfo">
+<property name="vennerInfoService" ref="vennerInfoService"></property>
+</bean> 
+
+<bean id="updateNytMySupply" class="com.meibaolian.web.nyt.UpdateNytMySupply">
+<property name="supplyService" ref="supplyService"></property>
+</bean> 
+
+<bean id="updateNytMyPurchase" class="com.meibaolian.web.nyt.UpdateNytMyPurchase">
+<property name="purchaseInfoService" ref="purchaseInfoService"></property>
+</bean> 
+
+<!-- 单板供应 -->
+<bean id="veneerSearch" class="com.meibaolian.web.nyt.VeneerSearch" >
+	<property name="veneerService" ref="veneerService"></property>
+</bean>
+<bean id="addCollect" class="com.meibaolian.web.nyt.AddCollect" >
+	<property name="service" ref="collectInfoService"></property>
+</bean>
+<bean id="delCollect" class="com.meibaolian.web.nyt.DelCollect" >
+	<property name="service" ref="collectInfoService"></property>
+</bean>
+<bean id="getCollect" class="com.meibaolian.web.nyt.Collect_infoSearch" >
+	<property name="service" ref="collectInfoService"></property>
+	<property name="vService" ref="vennerInfoService"></property>
+	<property name="sService" ref="supplyService"></property>
+	<property name="pService" ref="purchaseInfoService"></property>
+</bean>
+<!-- 获取运价 -->
+<bean id="getRates" class="com.meibaolian.web.nyt.Freight_ratesSearch" >
+	<property name="fr" ref="freight_ratesCache"></property>
+</bean>
+
+</beans>

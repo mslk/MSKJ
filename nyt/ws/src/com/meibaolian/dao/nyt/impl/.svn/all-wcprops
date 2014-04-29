@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl
+END
+SupplyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/guangxi_nongyitong/!svn/ver/118/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/SupplyDao.java
+END
+SupplyExpandDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/guangxi_nongyitong/!svn/ver/130/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/SupplyExpandDao.java
+END
+TypeListDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/guangxi_nongyitong/!svn/ver/105/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/TypeListDao.java
+END
+Collect_infoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/Collect_infoDao.java
+END
+VeneerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/guangxi_nongyitong/!svn/ver/162/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/VeneerDao.java
+END
+Freight_ratesDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/guangxi_nongyitong/!svn/ver/173/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/Freight_ratesDao.java
+END
+PurchaseInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/guangxi_nongyitong/!svn/ver/118/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/PurchaseInfoDao.java
+END
+VennerInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/guangxi_nongyitong/!svn/ver/241/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/VennerInfoDao.java
+END
+PurchaseExpandDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/guangxi_nongyitong/!svn/ver/130/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao/nyt/impl/PurchaseExpandDao.java
+END

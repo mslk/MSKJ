@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace
+END
+Show.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/Show.java
+END
+Update.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/Update.java
+END
+Search.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/Search.java
+END
+DelType.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/DelType.java
+END
+SearchType.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/SearchType.java
+END
+Add.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/Add.java
+END
+DelPlace.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/DelPlace.java
+END
+AddType.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/AddType.java
+END
+DelArea.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/DelArea.java
+END
+SearchArea.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action/deliveryplace/SearchArea.java
+END

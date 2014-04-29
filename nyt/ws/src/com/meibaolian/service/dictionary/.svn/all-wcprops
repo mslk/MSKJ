@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary
+END
+IProvinceService.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/IProvinceService.java
+END
+IBeginStationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/IBeginStationService.java
+END
+ICoalMineService.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/ICoalMineService.java
+END
+IDeliveryplaceService.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/IDeliveryplaceService.java
+END
+IHelpCenterService.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/IHelpCenterService.java
+END
+IDeliveryareaService.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/IDeliveryareaService.java
+END
+IHighwayrateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/IHighwayrateService.java
+END
+ICoalParticleSizeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/ICoalParticleSizeService.java
+END
+ICoalTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/ICoalTypeService.java
+END
+ICountyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/ICountyService.java
+END
+IStationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/IStationService.java
+END
+IRailwayrateService.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/service/dictionary/IRailwayrateService.java
+END

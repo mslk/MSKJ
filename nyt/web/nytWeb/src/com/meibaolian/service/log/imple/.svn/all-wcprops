@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/log/imple
+END
+SearchLogTransportService.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/log/imple/SearchLogTransportService.java
+END
+SearchLogCoalService.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/log/imple/SearchLogCoalService.java
+END
+AccessLogModuleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/log/imple/AccessLogModuleService.java
+END
+AccessLogLoginService.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/guangxi_nongyitong/!svn/ver/92/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service/log/imple/AccessLogLoginService.java
+END

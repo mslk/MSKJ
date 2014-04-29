@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>上传文件模板</title>
+	<style>
+	body{  padding:0; background-color:#ededed;
+}
+img { vertical-align:bottom; max-width:100%;}
+.box { padding-bottom:10px; text-align:center;}
+/*
+div {
+	position:fixed;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	z-index:-1;
+	}
+*/
+	div  > img {
+	//height:100%;
+	width:100%;
+	border:0;
+	}
+	</style>
+</head>
+
+<body>
+<font  color="red" >
+<h2>
+请复制以下内容，新建一个html ，并把图片上传返回的地址，替换以下img 里面的src="图片地址"
+<Br/>
+如果需要展示多张图片，请复制多个 &lt;img src="m_5_2.jpg" /> 并替换相关图片
+</h2></font>
+
+	&lt;!DOCTYPE html> <br/>
+	&lt;html>          <br/>
+		&lt;head>      <br/>
+		    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  <br/>
+			&lt;style>   <br/>
+			body{  padding:0; background-color:#ededed; <br/>
+		}  <br/>
+		img { vertical-align:bottom; max-width:100%;} <br/>
+		.box { padding-bottom:10px; text-align:center;} <br/>
+
+			div  > img {  <br/> 
+			//height:100%; <br/>
+			width:100%;    <br/>
+			border:0;      <br/>
+			}              <br/>
+			&lt;/style>    <br/>
+		&lt;/head>         <br/>
+		
+		&lt;body>          <br/>
+			&lt;div class="box">  <br/>
+			&lt;!--修改图片地址即可， 如果需要显示多个，请复制 多个img -->  <br/>
+			&lt;img src="m_5_2.jpg" />  <br/>
+			&lt;/div>    <br/>
+		&lt;/body>   <br/>
+		&lt;/html>   <br/>
+
+</body>
+</html>

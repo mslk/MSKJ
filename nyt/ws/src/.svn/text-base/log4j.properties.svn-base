@@ -1,0 +1,30 @@
+log4j.rootLogger=DEBUG, A1 ,CONSOLE
+#spring
+log4j.category.org.springframework = warn
+#struts2
+log4j.logger.com.opensymphony.xwork2= warn
+#hibernate
+log4j.logger.org.hibernate=warn
+#proxool连接池
+log4j.logger.org.logicalcobwebs.proxool=warn
+##限制org.apache.commons.beanutils
+log4j.logger.org.apache=warn
+##限制org.apache.http
+log4j.logger.org.apache.http=warn
+##com.mchange.v2.c3p0
+log4j.logger.com.mchange=warn
+# 应用于控制台 
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.Threshold=DEBUG
+log4j.appender.CONSOLE.Target=System.out
+log4j.appender.CONSOLE.Encoding=UTF-8
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+#log4j.appender.CONSOLE.layout.ConversionPattern=%d(line-%L) %-5p - %m%n
+log4j.appender.CONSOLE.layout.ConversionPattern=%d [%t] %-5p %C{2}.%M(%L) %-4r %x - %m%n
+#（每天产生一个日志文件）
+log4j.appender.A1=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+log4j.appender.A1.Encoding=UTF-8
+log4j.appender.A1.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss} [%c](%L)-[%p] %m%n
+log4j.appender.A1.File=/tmp/nytWS/log4.log
+#log4j.appender.A1.MaxFileSize=100KB
