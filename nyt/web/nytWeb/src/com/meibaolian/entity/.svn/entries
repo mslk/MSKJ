@@ -1,7 +1,7 @@
 10
 
 dir
-246
+247
 https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/entity
 https://192.168.1.2/svn/guangxi_nongyitong
 
@@ -604,40 +604,6 @@ chpeng
 
 458
 
-County.java
-file
-
-
-
-
-2014-04-29T09:43:46.156800Z
-ec04e9a9b4cf54b519b2e2c58f5c0575
-2014-04-04T08:36:24.322750Z
-92
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1676
-
 CoalParticleSize.hbm.xml
 file
 
@@ -671,6 +637,40 @@ chpeng
 
 
 919
+
+County.java
+file
+
+
+
+
+2014-04-29T09:43:46.156800Z
+ec04e9a9b4cf54b519b2e2c58f5c0575
+2014-04-04T08:36:24.322750Z
+92
+chpeng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1676
 
 UserProposal.hbm.xml
 file
@@ -978,40 +978,6 @@ chpeng
 
 4568
 
-CoalType.hbm.xml
-file
-
-
-
-
-2014-04-29T09:43:46.186801Z
-2da7332dec1f3d51707afb408e876fb6
-2014-04-04T08:36:24.322750Z
-92
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-727
-
 DeliveryPlaceInfo.java
 file
 
@@ -1045,6 +1011,40 @@ chpeng
 
 
 3350
+
+CoalType.hbm.xml
+file
+
+
+
+
+2014-04-29T09:43:46.186801Z
+2da7332dec1f3d51707afb408e876fb6
+2014-04-04T08:36:24.322750Z
+92
+chpeng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+727
 
 SearchLogCoal.java
 file

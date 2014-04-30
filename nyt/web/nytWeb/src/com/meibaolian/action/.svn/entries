@@ -1,7 +1,7 @@
 10
 
 dir
-246
+247
 https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/action
 https://192.168.1.2/svn/guangxi_nongyitong
 
@@ -26,10 +26,10 @@ chpeng
 
 84504c7f-c513-4e45-a3dd-adc4cfabdf4e
 
-choose
+coaltype
 dir
 
-coaltype
+choose
 dir
 
 log
@@ -44,10 +44,10 @@ dir
 deliveryplace
 dir
 
-provider
+userInfo
 dir
 
-userInfo
+provider
 dir
 
 coalparticlesize
