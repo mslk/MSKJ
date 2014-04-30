@@ -15,17 +15,17 @@ svn:wc:ra_dav:version-url
 V 98
 /svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/WebRoot/station.html
 END
-sale.html
-K 25
-svn:wc:ra_dav:version-url
-V 95
-/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/WebRoot/sale.html
-END
 Veneer.html
 K 25
 svn:wc:ra_dav:version-url
 V 98
 /svn/guangxi_nongyitong/!svn/ver/243/trunk/server/java_server/webservice/nytWS/WebRoot/Veneer.html
+END
+sale.html
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/WebRoot/sale.html
 END
 collect.html
 K 25
@@ -39,29 +39,29 @@ svn:wc:ra_dav:version-url
 V 96
 /svn/guangxi_nongyitong/!svn/ver/243/trunk/server/java_server/webservice/nytWS/WebRoot/rate.html
 END
-supply.html
-K 25
-svn:wc:ra_dav:version-url
-V 98
-/svn/guangxi_nongyitong/!svn/ver/228/trunk/server/java_server/webservice/nytWS/WebRoot/supply.html
-END
 seachQuality.html
 K 25
 svn:wc:ra_dav:version-url
 V 103
 /svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/WebRoot/seachQuality.html
 END
-index.jsp
+supply.html
 K 25
 svn:wc:ra_dav:version-url
-V 96
-/svn/guangxi_nongyitong/!svn/ver/243/trunk/server/java_server/webservice/nytWS/WebRoot/index.jsp
+V 98
+/svn/guangxi_nongyitong/!svn/ver/228/trunk/server/java_server/webservice/nytWS/WebRoot/supply.html
 END
 buy.html
 K 25
 svn:wc:ra_dav:version-url
 V 94
 /svn/guangxi_nongyitong/!svn/ver/91/trunk/server/java_server/webservice/nytWS/WebRoot/buy.html
+END
+index.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/guangxi_nongyitong/!svn/ver/243/trunk/server/java_server/webservice/nytWS/WebRoot/index.jsp
 END
 VeneerInfo.html
 K 25

@@ -1,7 +1,7 @@
 10
 
 dir
-244
+246
 https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/entity
 https://192.168.1.2/svn/guangxi_nongyitong
 
@@ -774,40 +774,6 @@ chpeng
 
 1741
 
-ProviderJson.java
-file
-
-
-
-
-2014-04-29T09:41:15.202166Z
-8b7b3482bf992179bb32b7f61fad8842
-2014-04-04T07:53:50.932125Z
-91
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5874
-
 SearchlogTransport.java
 file
 
@@ -841,6 +807,40 @@ chpeng
 
 
 1719
+
+ProviderJson.java
+file
+
+
+
+
+2014-04-29T09:41:15.202166Z
+8b7b3482bf992179bb32b7f61fad8842
+2014-04-04T07:53:50.932125Z
+91
+chpeng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5874
 
 DeliveryplaceEntity.java
 file
@@ -876,40 +876,6 @@ chpeng
 
 1762
 
-QualityControlEntity.java
-file
-
-
-
-
-2014-04-29T09:41:15.212166Z
-b2acb8c18fe0a1be6e82338985adf6bf
-2014-04-04T07:53:50.932125Z
-91
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2756
-
 VennerSupplyInfo.java
 file
 
@@ -943,6 +909,40 @@ zhaojian
 
 
 1802
+
+QualityControlEntity.java
+file
+
+
+
+
+2014-04-29T09:41:15.212166Z
+b2acb8c18fe0a1be6e82338985adf6bf
+2014-04-04T07:53:50.932125Z
+91
+chpeng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2756
 
 CoalParticleSizeJson.java
 file

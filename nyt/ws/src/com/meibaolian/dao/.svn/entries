@@ -1,7 +1,7 @@
 10
 
 dir
-244
+246
 https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao
 https://192.168.1.2/svn/guangxi_nongyitong
 
@@ -26,16 +26,16 @@ zhaojian
 
 84504c7f-c513-4e45-a3dd-adc4cfabdf4e
 
-other
-dir
-
 log
 dir
 
-providerpush
+other
 dir
 
 provider
+dir
+
+providerpush
 dir
 
 useraid
@@ -44,31 +44,31 @@ dir
 customer
 dir
 
-transportDemandPush
+dictionary
 dir
 
 transportDemand
 dir
 
-dictionary
+transportDemandPush
 dir
 
 searchlog
 dir
 
-transportSupplyPush
-dir
-
 transportSupply
 dir
 
-purchase
+transportSupplyPush
+dir
+
+base
 dir
 
 nyt
 dir
 
-base
+purchase
 dir
 
 purchasepush

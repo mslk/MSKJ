@@ -1,7 +1,7 @@
 10
 
 dir
-244
+246
 https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/dao
 https://192.168.1.2/svn/guangxi_nongyitong
 
@@ -38,10 +38,10 @@ dir
 deliveryplace
 dir
 
-userInfo
+provider
 dir
 
-provider
+userInfo
 dir
 
 coalparticlesize
@@ -65,10 +65,10 @@ dir
 transportSupply
 dir
 
-purchase
+base
 dir
 
-base
+purchase
 dir
 
 user

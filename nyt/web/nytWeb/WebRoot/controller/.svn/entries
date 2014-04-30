@@ -1,7 +1,7 @@
 10
 
 dir
-244
+246
 https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/managementserver/nytWeb/WebRoot/controller
 https://192.168.1.2/svn/guangxi_nongyitong
 
@@ -41,13 +41,13 @@ dir
 deliveryplace
 dir
 
-userInfo
+deliveryplacetype
 dir
 
 provider
 dir
 
-deliveryplacetype
+userInfo
 dir
 
 example
@@ -65,10 +65,10 @@ dir
 receiptplace
 dir
 
-task
+share
 dir
 
-share
+task
 dir
 
 transportDemand

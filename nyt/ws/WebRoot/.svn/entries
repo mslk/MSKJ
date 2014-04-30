@@ -1,7 +1,7 @@
 10
 
 dir
-244
+246
 https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/webservice/nytWS/WebRoot
 https://192.168.1.2/svn/guangxi_nongyitong
 
@@ -94,39 +94,8 @@ chpeng
 
 1230
 
-sale.html
-file
-
-
-
-
-2014-04-29T09:41:11.786970Z
-c4a7cfb19e2e014d8ee0cefe3aa88a43
-2014-04-04T07:53:50.932125Z
-91
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-22475
+WEB-INF
+dir
 
 Veneer.html
 file
@@ -162,8 +131,39 @@ zhaojian
 
 5184
 
-WEB-INF
-dir
+sale.html
+file
+
+
+
+
+2014-04-29T09:41:11.786970Z
+c4a7cfb19e2e014d8ee0cefe3aa88a43
+2014-04-04T07:53:50.932125Z
+91
+chpeng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+22475
 
 collect.html
 file
@@ -233,40 +233,6 @@ zhaojian
 
 1790
 
-supply.html
-file
-
-
-
-
-2014-04-29T09:41:11.796971Z
-021d13a23287281592043153ff9e7c34
-2014-04-24T08:22:16.937875Z
-228
-zhaojian
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-23448
-
 seachQuality.html
 file
 
@@ -301,19 +267,16 @@ chpeng
 
 903
 
-META-INF
-dir
-
-index.jsp
+supply.html
 file
 
 
 
 
-2014-04-29T09:41:11.802971Z
-6e5b4d42419403b2ebff3f2c11d6f32d
-2014-04-29T09:29:00.437875Z
-243
+2014-04-29T09:41:11.796971Z
+021d13a23287281592043153ff9e7c34
+2014-04-24T08:22:16.937875Z
+228
 zhaojian
 
 
@@ -336,7 +299,10 @@ zhaojian
 
 
 
-7483
+23448
+
+META-INF
+dir
 
 buy.html
 file
@@ -371,6 +337,40 @@ chpeng
 
 
 24940
+
+index.jsp
+file
+
+
+
+
+2014-04-29T09:41:11.802971Z
+6e5b4d42419403b2ebff3f2c11d6f32d
+2014-04-29T09:29:00.437875Z
+243
+zhaojian
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7483
 
 VeneerInfo.html
 file

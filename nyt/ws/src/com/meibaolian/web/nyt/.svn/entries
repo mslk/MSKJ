@@ -1,7 +1,7 @@
 10
 
 dir
-244
+246
 https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web/nyt
 https://192.168.1.2/svn/guangxi_nongyitong
 
@@ -25,40 +25,6 @@ zhaojian
 
 
 84504c7f-c513-4e45-a3dd-adc4cfabdf4e
-
-PurchaseSearch.java
-file
-
-
-
-
-2014-04-29T09:41:16.737253Z
-ea8fb9b792880d61a1a310b7464479e8
-2014-04-24T03:57:51.391000Z
-207
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3684
 
 UpdateNytMySupply.java
 file
@@ -93,6 +59,40 @@ zhaojian
 
 
 4130
+
+PurchaseSearch.java
+file
+
+
+
+
+2014-04-29T09:41:16.737253Z
+ea8fb9b792880d61a1a310b7464479e8
+2014-04-24T03:57:51.391000Z
+207
+chpeng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3684
 
 AddSupply.java
 file
@@ -165,40 +165,6 @@ yangxin
 
 2358
 
-DelCollect.java
-file
-
-
-
-
-2014-04-29T09:41:16.748254Z
-e2428485a300bfa5db1b4e20311934c9
-2014-04-29T09:27:44.187875Z
-241
-zhaojian
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1565
-
 VeneerSearch.java
 file
 
@@ -233,17 +199,17 @@ zhaojian
 
 4258
 
-NytMyPurchase.java
+DelCollect.java
 file
 
 
 
 
-2014-04-29T09:41:16.753254Z
-651d2e1da102777b0a4fe1d95595cb2e
-2014-04-21T08:12:12.017571Z
-161
-chpeng
+2014-04-29T09:41:16.748254Z
+e2428485a300bfa5db1b4e20311934c9
+2014-04-29T09:27:44.187875Z
+241
+zhaojian
 
 
 
@@ -265,7 +231,7 @@ chpeng
 
 
 
-2287
+1565
 
 DelPurchaseInfo.java
 file
@@ -301,17 +267,17 @@ yangxin
 
 1731
 
-Freight_ratesSearch.java
+NytMyPurchase.java
 file
 
 
 
 
-2014-04-29T09:41:16.759255Z
-e5d12d91ffb227bcde382cf7b18dedc5
-2014-04-29T09:27:44.187875Z
-241
-zhaojian
+2014-04-29T09:41:16.753254Z
+651d2e1da102777b0a4fe1d95595cb2e
+2014-04-21T08:12:12.017571Z
+161
+chpeng
 
 
 
@@ -333,7 +299,7 @@ zhaojian
 
 
 
-1712
+2287
 
 UpdateVennerInfo.java
 file
@@ -368,6 +334,40 @@ yangxin
 
 
 4005
+
+Freight_ratesSearch.java
+file
+
+
+
+
+2014-04-29T09:41:16.759255Z
+e5d12d91ffb227bcde382cf7b18dedc5
+2014-04-29T09:27:44.187875Z
+241
+zhaojian
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1712
 
 TypeList.java
 file
@@ -437,40 +437,6 @@ zhaojian
 
 4341
 
-SupplySearch.java
-file
-
-
-
-
-2014-04-29T09:41:16.768255Z
-4afd1983258bed37531443238967160b
-2014-04-24T03:57:51.391000Z
-207
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3615
-
 AddVennerInfo.java
 file
 
@@ -504,6 +470,40 @@ zhaojian
 
 
 3726
+
+SupplySearch.java
+file
+
+
+
+
+2014-04-29T09:41:16.768255Z
+4afd1983258bed37531443238967160b
+2014-04-24T03:57:51.391000Z
+207
+chpeng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3615
 
 AddPurchase.java
 file
