@@ -1,64 +1,0 @@
-10
-
-dir
-246
-https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/web
-https://192.168.1.2/svn/guangxi_nongyitong
-
-
-
-2014-04-29T09:27:44.187875Z
-241
-zhaojian
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-84504c7f-c513-4e45-a3dd-adc4cfabdf4e
-
-test
-dir
-
-customer
-dir
-
-other
-dir
-
-dictionary
-dir
-
-transportDemand
-dir
-
-common
-dir
-
-transportSupply
-dir
-
-base
-dir
-
-nyt
-dir
-
-provider
-dir
-
-purchase
-dir
-
-user
-dir
-

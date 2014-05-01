@@ -1,79 +1,0 @@
-10
-
-dir
-246
-https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/webservice/nytWS/src/com/meibaolian/dao
-https://192.168.1.2/svn/guangxi_nongyitong
-
-
-
-2014-04-29T09:27:44.187875Z
-241
-zhaojian
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-84504c7f-c513-4e45-a3dd-adc4cfabdf4e
-
-log
-dir
-
-other
-dir
-
-provider
-dir
-
-providerpush
-dir
-
-useraid
-dir
-
-customer
-dir
-
-dictionary
-dir
-
-transportDemand
-dir
-
-transportDemandPush
-dir
-
-searchlog
-dir
-
-transportSupply
-dir
-
-transportSupplyPush
-dir
-
-base
-dir
-
-nyt
-dir
-
-purchase
-dir
-
-purchasepush
-dir
-
-user
-dir
-

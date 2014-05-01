@@ -1,89 +1,0 @@
-10
-
-dir
-246
-https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/managementserver/nytWeb/WebRoot
-https://192.168.1.2/svn/guangxi_nongyitong
-
-
-
-2014-04-04T08:36:24.322750Z
-92
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-84504c7f-c513-4e45-a3dd-adc4cfabdf4e
-
-test
-dir
-
-META-INF
-dir
-
-index.jsp
-file
-
-
-
-
-2014-04-29T09:43:06.269518Z
-096fcfd7bc2ac8da2987a3cd7001e418
-2014-04-04T08:36:24.322750Z
-92
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4154
-
-controller
-dir
-
-images
-dir
-
-jquery-validate
-dir
-
-WEB-INF
-dir
-
-css
-dir
-
-base
-dir
-
-js
-dir
-

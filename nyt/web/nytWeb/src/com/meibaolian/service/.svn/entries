@@ -1,70 +1,0 @@
-10
-
-dir
-247
-https://192.168.1.2/svn/guangxi_nongyitong/trunk/server/java_server/managementserver/nytWeb/src/com/meibaolian/service
-https://192.168.1.2/svn/guangxi_nongyitong
-
-
-
-2014-04-04T08:36:24.322750Z
-92
-chpeng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-84504c7f-c513-4e45-a3dd-adc4cfabdf4e
-
-otheraid
-dir
-
-coaltype
-dir
-
-receiptplace
-dir
-
-log
-dir
-
-task
-dir
-
-transportDemand
-dir
-
-deliveryplace
-dir
-
-transportSupply
-dir
-
-provider
-dir
-
-purchase
-dir
-
-userInfo
-dir
-
-coalparticlesize
-dir
-
-user
-dir
-
-userProposal
-dir
-
