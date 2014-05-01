@@ -5,5 +5,5 @@ import com.meibaolian.entity.UserInfo;
 
 public interface IUserDao extends IBaseDao<UserInfo>
 {
-
+    
 }
