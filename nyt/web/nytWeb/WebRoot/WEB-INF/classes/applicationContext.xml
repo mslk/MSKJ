@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+           http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+         <property name="driverClass" value="com.mysql.jdbc.Driver" />
+         <!-- 内网测试    -->
+         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/nyt?characterEncoding=utf-8"/>
+         <property name="user" value="root"/>
+         <property name="password" value="kawin"/>
+      
+
+         <!-- 正式外网   
+         <property name="jdbcUrl" value="jdbc:mysql://192.168.10.203:3306/mmbl?characterEncoding=utf-8"/>
+         <property name="user" value="mmbl"/>
+         <property name="password" value="mbl_())!db9001"/>
+		-->
+         <!--连接池中保留的最小连接数。-->
+         <property name="minPoolSize" value="1" />
+         <!--连接池中保留的最大连接数。Default: 15 -->
+		 <property name="maxPoolSize" value="50" />
+		 <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+		 <property name="initialPoolSize" value="1" />
+		 <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		 <property name="maxIdleTime" value="25000" />
+		 <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		 <property name="acquireIncrement" value="1" />
+		 <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+		 <property name="acquireRetryAttempts" value="30" />
+		 <!--两次连接中间隔时间，单位毫秒。Default: 1000 -->
+		 <property name="acquireRetryDelay" value="1000" />
+		 <!--如果设为true那么在取得连接的同时将校验连接的有效性。Default: false -->
+		 <property name="testConnectionOnCheckin" value="true" />
+		 <!--c3p0将建一张名为Test的空表，并使用其自带的查询语句进行测试。如果定义了这个参数那么
+			属性preferredTestQuery将被忽略。你不能在这张Test表上进行任何操作，它将只供c3p0测试
+			使用。Default: null-->
+		 <property name="automaticTestTable" value="t_c3p0" />
+		 <!--每*秒检查所有连接池中的空闲连接。Default: 0 -->
+		 <property name="idleConnectionTestPeriod" value="18000" />
+		 <!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将抛出
+			SQLException,如设为0则无限期等待。单位毫秒。Default: 0
+-->
+		 <property name="checkoutTimeout" value="5000" />
+         <!--t_c3p0 就是一个测试表    网上说这个配置已经稳定运行了一年了 -->  
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+			 <value>classpath:/com/meibaolian/entity/</value>
+            </list>
+		</property>
+	</bean>
+<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    <property name="sessionFactory" ref="sessionFactory"/>
+</bean>
+<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+	<tx:attributes>
+		<tx:method name="add*" propagation="REQUIRED" />
+		<tx:method name="delete*" propagation="REQUIRED" />
+		<tx:method name="update*" propagation="REQUIRED" />
+		<tx:method name="update_search*" propagation="REQUIRED" />
+		<tx:method name="search*" propagation="NOT_SUPPORTED" read-only="true" />
+		<tx:method name="get*" propagation="NOT_SUPPORTED"    read-only="true"/>
+		<tx:method name="*" propagation="REQUIRED"  />
+	 </tx:attributes>
+</tx:advice> 
+
+<!-- 面向切面 -->
+<aop:config proxy-target-class="true">
+            <aop:pointcut id="addressServiceOperation" expression="execution(* com.meibaolian.service.*.*.*(..))" />
+             <aop:advisor advice-ref="transactionAdvice" pointcut-ref="addressServiceOperation" />
+</aop:config>
+	
+
+	<!-- ===基本dao===  -->
+	<bean id="base" class="com.meibaolian.dao.base.imple.BaseDao"
+		abstract="true">
+		<property name="session" ref="sessionFactory"></property>
+	</bean>	
+
+	<bean id="userManagerDao" class="com.meibaolian.dao.user.imple.UserManagerDao"
+		parent="base">
+	</bean>
+
+	<bean id="pushTaskDao" class="com.meibaolian.dao.task.imple.PushTaskDao"
+		parent="base"></bean>
+		<!-- 商户dao  -->
+	<bean id="userInfoDao" class="com.meibaolian.dao.userInfo.imple.UserInfoDao"
+		parent="base"></bean>
+		<!-- 求购信息dao  -->
+	<bean id="purchaseInfoDao" class="com.meibaolian.dao.purchase.imple.PurchaseInfoDao"
+		parent="base"></bean>
+
+	<bean id="purchaseDao" class="com.meibaolian.dao.purchase.imple.PurchaseDao"
+		parent="base"></bean>
+		<!-- 供应信息dao  -->
+	<bean id="providerInfoDao" class="com.meibaolian.dao.provider.imple.ProviderInfoDao"
+		parent="base"></bean>
+
+	<bean id="providerDao" class="com.meibaolian.dao.provider.imple.ProviderDao"
+		parent="base"></bean>	
+	
+		<!-- 交货地dao  -->
+	<bean id="deliveryAreaDao" class="com.meibaolian.dao.deliveryplace.imple.DeliveryAreaDao" parent="base">
+	</bean>
+	<bean id="deliveryPlaceDao" class="com.meibaolian.dao.deliveryplace.imple.DeliveryPlaceDao" parent="base">
+	</bean>
+	<bean id="deliveryplaceTypeDao" class="com.meibaolian.dao.deliveryplace.imple.DeliveryplaceTypeDao" parent="base">
+	</bean>
+		
+		<!-- 货讯dao  -->
+	<bean id="transportDemandDao" class="com.meibaolian.dao.transportDemand.imple.TransportDemandDao" parent="base">
+	</bean>
+	
+		<!-- 车讯dao  -->
+	<bean id="transportSupplyDao" class="com.meibaolian.dao.transportSupply.imple.TransportSupplyDao" parent="base">
+	</bean>
+	
+	<!-- 煤种dao -->
+	<bean id="coalTypeDao" class="com.meibaolian.dao.coaltype.imple.CoalTypeDao"  parent="base">
+	</bean>
+	<!-- 煤种粒度dao -->
+	<bean id="coalParticleSizeDao" class="com.meibaolian.dao.coalparticlesize.impl.CoalParticleSizeDao"  parent="base">
+	</bean>
+	<!-- 其他模块 -->
+	<!-- 拨打电话 -->
+	<bean id="callPhoneLogDao" class="com.meibaolian.dao.otheraid.imple.CallPhoneLogDao" parent="base">
+	</bean>
+	<!-- 广告管理 -->
+	<bean id="advertisingDao" class="com.meibaolian.dao.otheraid.imple.AdvertisingDao" parent="base"></bean>
+	<!-- 帮助信息管理 -->
+	<bean id="helpCenterDao" class="com.meibaolian.dao.otheraid.imple.HelpCenterDao" parent="base"></bean>
+	<!-- 数据导入dao -->
+	<bean id="importDateDao" class="com.meibaolian.dao.otheraid.imple.ImportDateDao" parent="base"></bean>
+	
+	<!-- 收货地dao -->
+	<bean id="provinceDao" class="com.meibaolian.dao.receiptplace.imple.ProvinceDao" parent="base"></bean>
+	<bean id="cityDao" class="com.meibaolian.dao.receiptplace.imple.CityDao" parent="base"></bean>
+	<bean id="countyDao" class="com.meibaolian.dao.receiptplace.imple.CountyDao" parent="base"></bean>
+	
+	<!-- 留言dao -->
+	<bean id="userProposalDao" class="com.meibaolian.dao.userProposal.imple.UserProposalDao" parent="base"></bean>
+	
+	<!-- 日志dao -->
+	<bean id="accessLogLoginDao" class="com.meibaolian.dao.log.imple.AccessLogLoginDao" parent="base"></bean>
+	<bean id="accessLogModuleDao" class="com.meibaolian.dao.log.imple.AccessLogModuleDao" parent="base"></bean>
+	<bean id="searchLogCoalDao" class="com.meibaolian.dao.log.imple.SearchLogCoalDao" parent="base"></bean>
+	<bean id="searchLogTransportDao" class="com.meibaolian.dao.log.imple.SearchLogTransportDao" parent="base"></bean>
+	
+	<!-- 质检dao -->
+	<bean id="qualityControlDao" class="com.meibaolian.dao.otheraid.imple.QualityControlDao" parent="base"></bean>
+	
+	
+	<!-- ===service==== -->
+	<bean id="userManagerService" class="com.meibaolian.service.user.imple.UserManagerService">
+		<property name="userMangerDao" ref="userManagerDao"></property>
+	</bean>
+
+	<bean id="pushTaskService" class="com.meibaolian.service.task.imple.PushTaskService">
+		<property name="pushTaskDao" ref="pushTaskDao"></property>
+	</bean>
+		<!-- 商户service  -->
+	<bean id="userInfoService" class="com.meibaolian.service.userInfo.imple.UserInfoService">
+		<property name="userInfoDao" ref="userInfoDao"></property>
+	</bean>
+		<!-- 求购信息service  -->
+	<bean id="purchaseService" class="com.meibaolian.service.purchase.imple.PurchaseService">
+		<property name="purchaseInfoDao" ref="purchaseInfoDao"></property>
+		<property name="userInfoDao" ref="userInfoDao"></property>
+		<property name="purchaseDao" ref="purchaseDao"></property>
+	</bean>
+		<!-- 供应信息service  -->
+	<bean id="providerService" class="com.meibaolian.service.provider.imple.ProviderService">
+		<property name="providerInfoDao" ref="providerInfoDao"></property>
+		<property name="userInfoDao" ref="userInfoDao"></property>
+		<property name="providerDao" ref="providerDao"></property>
+	</bean>
+		<!-- 交货地service  -->
+	<bean id="deliveryPlaceService" class="com.meibaolian.service.deliveryplace.imple.DeliveryPlaceService">
+		<property name="deliveryPlaceDao" ref="deliveryPlaceDao"></property>
+		<property name="deliveryAreaDao" ref="deliveryAreaDao"></property>
+	</bean>	
+	<bean id="deliveryplaceTypeService" class="com.meibaolian.service.deliveryplace.imple.DeliveryplaceTypeService">
+		<property name="deliveryplaceTypeDao" ref="deliveryplaceTypeDao"></property>
+	</bean>	
+		
+    <!-- 货讯service  -->
+	<bean id="transportDemandService" class="com.meibaolian.service.transportDemand.imple.TransportDemandService">
+		<property name="transportDemandDao" ref="transportDemandDao"></property>
+		<property name="userInfoDao" ref="userInfoDao"></property>
+	</bean>	
+	
+	<!-- 车讯service  -->
+	<bean id="transportSupplyService" class="com.meibaolian.service.transportSupply.imple.TransportSupplyService">
+		<property name="transportSupplyDao" ref="transportSupplyDao"></property>
+		<property name="userInfoDao" ref="userInfoDao"></property>
+	</bean>	
+	
+	<!-- 煤种service -->
+	<bean id="coalTypeService" class="com.meibaolian.service.coaltype.imple.CoalTypeService">
+	<property name="coalTypeDao" ref="coalTypeDao"></property>
+	</bean>
+	<!-- 煤种粒度service -->
+	<bean id="coalParticleSizeService" class="com.meibaolian.service.coalparticlesize.impl.CoalParticleSizeService">
+	<property name="coalParticleSizeDao" ref="coalParticleSizeDao"></property>
+	</bean>
+	
+	<!-- 其他模块 -->
+   <!-- 拨打电话 -->
+   <bean id="callPhoneLogService" class="com.meibaolian.service.otheraid.imple.CallPhoneLogService">
+   <property name="callPhoneLogDao" ref="callPhoneLogDao"></property>
+   </bean>
+   <!-- 广告管理 -->
+	<bean id="advertisingService" class="com.meibaolian.service.otheraid.imple.AdvertisingService" >
+	 <property name="advertisingDao" ref="advertisingDao"></property>
+	</bean>
+   <!-- 帮助信息管理 -->
+	<bean id="helpCenterService" class="com.meibaolian.service.otheraid.imple.HelpCenterService" >
+	 <property name="helpCenterDao" ref="helpCenterDao"></property>
+	</bean>
+	<!-- 数据导入service -->
+	<bean id="importDateService" class="com.meibaolian.service.otheraid.imple.ImportDateService" >
+	 <property name="importDateDao" ref="importDateDao"></property>
+	</bean>
+	
+   <!-- 收货地 service-->
+	<bean id="receiptPlaceService" class="com.meibaolian.service.receiptplace.imple.ReceiptPlaceService" >
+	 <property name="provinceDao" ref="provinceDao"></property>
+	 <property name="cityDao" ref="cityDao"></property>
+	 <property name="countyDao" ref="countyDao"></property>
+	</bean>
+
+	<!-- 留言 service-->
+	<bean id="userProposalService" class="com.meibaolian.service.userProposal.imple.UserProposalService" >
+	 <property name="userProposalDao" ref="userProposalDao"></property>
+	</bean>
+	
+	<!-- 日志service -->
+	<bean id="accessLogLoginService" class="com.meibaolian.service.log.imple.AccessLogLoginService" >
+		<property name="accessLogLoginDao" ref="accessLogLoginDao"></property>
+	</bean>
+	<bean id="accessLogModuleService" class="com.meibaolian.service.log.imple.AccessLogModuleService" >
+		<property name="accessLogModuleDao" ref="accessLogModuleDao"></property>
+	</bean>
+	<bean id="searchLogCoalService" class="com.meibaolian.service.log.imple.SearchLogCoalService" >
+		<property name="searchLogCoalDao" ref="searchLogCoalDao"></property>
+	</bean>
+	<bean id="searchLogTransportService" class="com.meibaolian.service.log.imple.SearchLogTransportService" >
+		<property name="searchLogTransportDao" ref="searchLogTransportDao"></property>
+	</bean>
+	<!-- 质检service -->
+	<bean id="qualityControlService" class="com.meibaolian.service.otheraid.imple.QualityControlService" >
+		<property name="qualityControlDao" ref="qualityControlDao"></property>
+	</bean>
+	
+	<!-- == action == -->
+	<bean id="userManager" class="com.meibaolian.action.user.UserManager"
+		scope="prototype">
+		<property name="userManagerService" ref="userManagerService"></property>
+	</bean>
+
+	<bean id="pushTaskManager" class="com.meibaolian.action.task.PushTaskManager"
+		scope="prototype">
+		<property name="pushTaskService" ref="pushTaskService"></property>
+	</bean>
+
+	<bean id="pushTaskSeach" class="com.meibaolian.action.task.PushTaskSeach"
+		scope="prototype">
+		<property name="pushTaskService" ref="pushTaskService"></property>
+	</bean>
+		<!-- 商户action  -->
+	<bean id="searchUserInfo" class="com.meibaolian.action.userInfo.Search"
+		scope="prototype">
+		<property name="userInfoService" ref="userInfoService"></property>
+	</bean>
+
+	<bean id="showUserInfo" class="com.meibaolian.action.userInfo.Show"
+		scope="prototype">
+		<property name="userInfoService" ref="userInfoService"></property>
+	</bean>
+
+	<bean id="updateUserInfo" class="com.meibaolian.action.userInfo.Update"
+		scope="prototype">
+		<property name="userInfoService" ref="userInfoService"></property>
+	</bean>
+		<!-- 求购信息action  -->
+	<bean id="searchPurchase" class="com.meibaolian.action.purchase.Search"
+		scope="prototype">
+		<property name="purchaseService" ref="purchaseService"></property>
+	</bean>
+	
+	<bean id="showPurchase" class="com.meibaolian.action.purchase.Show"
+		scope="prototype">
+		<property name="purchaseService" ref="purchaseService"></property>
+	</bean>
+	
+	<bean id="updatePurchase" class="com.meibaolian.action.purchase.Update"
+		scope="prototype">
+		<property name="purchaseService" ref="purchaseService"></property>
+	</bean>
+	<bean id="deletePurchase" class="com.meibaolian.action.purchase.Delete"
+		scope="prototype">
+		<property name="purchaseService" ref="purchaseService"></property>
+	</bean>
+	<bean id="purchase_updateStatus" class="com.meibaolian.action.purchase.UpdateStatus"
+		scope="prototype">
+		<property name="purchaseService" ref="purchaseService"></property>
+	</bean>
+		<!-- 供应信息action  -->
+	<bean id="searchProvider" class="com.meibaolian.action.provider.Search"
+		scope="prototype">
+		<property name="providerService" ref="providerService"></property>
+	</bean>
+	
+	<bean id="showProvider" class="com.meibaolian.action.provider.Show"
+		scope="prototype">
+		<property name="providerService" ref="providerService"></property>
+	</bean>
+	
+	<bean id="updateProvider" class="com.meibaolian.action.provider.Update"
+		scope="prototype">
+		<property name="providerService" ref="providerService"></property>
+	</bean>
+	<bean id="deleteProvider" class="com.meibaolian.action.provider.Delete"
+		scope="prototype">
+		<property name="providerService" ref="providerService"></property>
+	</bean>
+	 <bean id="provider_updateStatus" class="com.meibaolian.action.provider.UpdateStatus"
+		scope="prototype">
+		<property name="providerService" ref="providerService"></property>
+	</bean>
+		<!-- action  -->
+		
+   		<!-- 求购信息排序action  -->
+	<bean id="searchSortPurchase" class="com.meibaolian.action.sortOrder.SearchPurchase"
+		scope="prototype">
+		<property name="purchaseService" ref="purchaseService"></property>
+	</bean>
+	
+	<bean id="showSortPurchase" class="com.meibaolian.action.sortOrder.ShowPurchase"
+		scope="prototype">
+		<property name="purchaseService" ref="purchaseService"></property>
+	</bean>
+		<!-- 供应信息排序action  -->
+	<bean id="searchSortProvider" class="com.meibaolian.action.sortOrder.SearchProvider"
+		scope="prototype">
+		<property name="providerService" ref="providerService"></property>
+	</bean>
+	
+	<bean id="showSortProvider" class="com.meibaolian.action.sortOrder.ShowProvider"
+		scope="prototype">
+		<property name="providerService" ref="providerService"></property>
+	</bean>
+	<!-- 货讯排序action  -->
+	<bean id="searchSortTransportDemand" class="com.meibaolian.action.sortOrder.SearchTransportDemand"
+		scope="prototype">
+		<property name="transportDemandService" ref="transportDemandService"></property>
+	</bean>
+	
+	<bean id="showSortTransportDemand" class="com.meibaolian.action.sortOrder.ShowTransportDemand"
+		scope="prototype">
+		<property name="transportDemandService" ref="transportDemandService"></property>
+	</bean>
+	<!-- 车讯排序action  -->
+	<bean id="searchSortTransportSupply" class="com.meibaolian.action.sortOrder.SearchTransportSupply"
+		scope="prototype">
+		<property name="transportSupplyService" ref="transportSupplyService"></property>
+	</bean>
+	
+	<bean id="showSortTransportSupply" class="com.meibaolian.action.sortOrder.ShowTransportSupply"
+		scope="prototype">
+		<property name="transportSupplyService" ref="transportSupplyService"></property>
+	</bean>
+		<!-- 交货地action  -->
+	<bean id="searchDeliveryPlace" class="com.meibaolian.action.deliveryplace.Search"
+		scope="prototype">
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	<bean id="showDeliveryPlace" class="com.meibaolian.action.deliveryplace.Show"
+		scope="prototype">
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	<bean id="updateDeliveryPlace" class="com.meibaolian.action.deliveryplace.Update"
+		scope="prototype">
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	<bean id="addDeliveryPlace" class="com.meibaolian.action.deliveryplace.Add"
+		scope="prototype">
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	<bean id="addDeliveryPlaceType" class="com.meibaolian.action.deliveryplace.AddType"
+		scope="prototype">
+		<property name="deliveryplaceTypeService" ref="deliveryplaceTypeService"></property>
+	</bean>
+	<bean id="searchDeliveryPlaceType" class="com.meibaolian.action.deliveryplace.SearchType"
+		scope="prototype">
+		<property name="deliveryplaceTypeService" ref="deliveryplaceTypeService"></property>
+	</bean>
+	<bean id="delDeliveryPlaceType" class="com.meibaolian.action.deliveryplace.DelType"
+		scope="prototype">
+		<property name="deliveryplaceTypeService" ref="deliveryplaceTypeService"></property>
+	</bean>
+	<bean id="searchDeliveryArea" class="com.meibaolian.action.deliveryplace.SearchArea"
+		scope="prototype">
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	<bean id="delDeliveryPlaceArea" class="com.meibaolian.action.deliveryplace.DelArea"
+		scope="prototype">
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	<bean id="delDeliveryPlace" class="com.meibaolian.action.deliveryplace.DelPlace"
+		scope="prototype">
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	
+	<!-- 货讯action  -->
+	<bean id="searchTransportDemand" class="com.meibaolian.action.transportDemand.Search"
+		scope="prototype">
+		<property name="transportDemandService" ref="transportDemandService"></property>
+	</bean>
+	<bean id="showTransportDemand" class="com.meibaolian.action.transportDemand.Show"
+		scope="prototype">
+		<property name="transportDemandService" ref="transportDemandService"></property>
+	</bean>
+	<bean id="deleteTransportDemand" class="com.meibaolian.action.transportDemand.Delete"
+		scope="prototype">
+		<property name="transportDemandService" ref="transportDemandService"></property>
+	</bean>
+	<bean id="transportDemand_updateStatus" class="com.meibaolian.action.transportDemand.UpdateStatus"
+		scope="prototype">
+		<property name="transportDemandService" ref="transportDemandService"></property>
+	</bean>
+	<bean id="transportDemand_updateSortNum" class="com.meibaolian.action.transportDemand.UpdateSortNum"
+		scope="prototype">
+		<property name="transportDemandService" ref="transportDemandService"></property>
+	</bean>
+	<!-- 车讯action  -->
+	<bean id="searchTransportSupply" class="com.meibaolian.action.transportSupply.Search"
+		scope="prototype">
+		<property name="transportSupplyService" ref="transportSupplyService"></property>
+	</bean>
+	<bean id="showTransportSupply" class="com.meibaolian.action.transportSupply.Show"
+		scope="prototype">
+		<property name="transportSupplyService" ref="transportSupplyService"></property>
+	</bean>
+	<bean id="deleteTransportSupply" class="com.meibaolian.action.transportSupply.Delete"
+		scope="prototype">
+		<property name="transportSupplyService" ref="transportSupplyService"></property>
+	</bean>
+	<bean id="transportSupply_updateStatus" class="com.meibaolian.action.transportSupply.UpdateStatus"
+		scope="prototype">
+		<property name="transportSupplyService" ref="transportSupplyService"></property>
+	</bean>
+	<bean id="transportSupply_updateSortNum" class="com.meibaolian.action.transportSupply.UpdateSortNum"
+		scope="prototype">
+		<property name="transportSupplyService" ref="transportSupplyService"></property>
+	</bean>
+	<!-- 煤种action -->
+	<bean id="coaltypeManager" class="com.meibaolian.action.coaltype.CoaltypeManager" scope="prototype">
+	 <property name="coalTypeService" ref="coalTypeService"></property>
+	</bean>
+	<bean id="coaltypeSearch" class="com.meibaolian.action.coaltype.CoalSeach" scope="prototype">
+	 <property name="coalTypeService" ref="coalTypeService"></property>
+	</bean>
+	<!-- 煤种粒度action -->
+	<bean id="coalParticleSizeManager" class="com.meibaolian.action.coalparticlesize.CoalParticleSizeManager" scope="prototype">
+	 <property name="coalParticleSizeService" ref="coalParticleSizeService"></property>
+	</bean>
+	
+	<bean id="coalParticleSizeSearch" class="com.meibaolian.action.coalparticlesize.CoalParticleSizeSearch" scope="prototype">
+	 <property name="coalParticleSizeService" ref="coalParticleSizeService"></property>
+	</bean>
+	
+	
+	
+	<!--  公共选择 action -->
+	<bean id="chooseController" class="com.meibaolian.action.choose.ChooseController" scope="prototype">
+	 <property name="coalTypeService" ref="coalTypeService"></property>
+	 <property name="coalParticleSizeService" ref="coalParticleSizeService"></property>
+	 <property name="deliveryplaceTypeService" ref="deliveryplaceTypeService"></property>
+	</bean>
+	
+	
+	<!--导入运价数据action  -->
+	<bean id="importRateDataAction" class="com.meibaolian.action.otheraid.ImportRateData"
+		scope="prototype">
+		<property name="importDateService" ref="importDateService"></property>
+	</bean>
+	
+	<!-- 拨打电话次数 -->
+	<bean id="phoneStats" class="com.meibaolian.action.otheraid.PhoneStats" scope="prototype">
+    <property name="callPhoneLogService" ref="callPhoneLogService"></property>
+    </bean>
+     <!-- 广告管理 -->
+     <bean id="advertisingShow" class="com.meibaolian.action.otheraid.AdvertisingShow" scope="prototype">
+     <property name="advertisingService" ref="advertisingService"></property>
+     </bean>
+     <bean id="advertisingManager" class="com.meibaolian.action.otheraid.AdvertisingManager" scope="prototype">
+     <property name="advertisingService" ref="advertisingService"></property>
+     </bean>
+     <!-- 帮助信息管理 -->
+     <bean id="helpCenterShow" class="com.meibaolian.action.otheraid.HelpCenterShow" scope="prototype">
+     <property name="helpCenterService" ref="helpCenterService"></property>
+     </bean>
+	<bean id="helpCenterManager" class="com.meibaolian.action.otheraid.HelpCenterManager" scope="prototype">
+     <property name="helpCenterService" ref="helpCenterService"></property>
+     </bean>
+	<bean id="upFile" class="com.meibaolian.action.otheraid.UpFile" scope="prototype">
+     </bean>
+     <!-- 版本管理 -->
+     <bean id="versionManager" class="com.meibaolian.action.version.VersionManager" scope="prototype">
+     </bean>
+     
+	<!-- 收货地action  -->
+	<bean id="searchReceiptplace" class="com.meibaolian.action.receiptplace.Search" scope="prototype">
+		<property name="receiptPlaceService" ref="receiptPlaceService"></property>
+	</bean>
+	<bean id="showReceiptplace" class="com.meibaolian.action.receiptplace.Show" scope="prototype">
+		<property name="receiptPlaceService" ref="receiptPlaceService"></property>
+	</bean>
+	<bean id="updateReceiptplace" class="com.meibaolian.action.receiptplace.Update" scope="prototype">
+		<property name="receiptPlaceService" ref="receiptPlaceService"></property>
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	<bean id="addReceiptplace" class="com.meibaolian.action.receiptplace.Add" scope="prototype">
+		<property name="receiptPlaceService" ref="receiptPlaceService"></property>
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	<bean id="addToDelivery" class="com.meibaolian.action.receiptplace.AddDelivery" scope="prototype">
+		<property name="receiptPlaceService" ref="receiptPlaceService"></property>
+		<property name="deliveryPlaceService" ref="deliveryPlaceService"></property>
+	</bean>
+	
+	<!-- 留言action  -->
+	<bean id="searchUserProposal" class="com.meibaolian.action.userProposal.Search" scope="prototype">
+		<property name="userProposalService" ref="userProposalService"></property>
+	</bean>
+	<bean id="userProposal_updateStatus" class="com.meibaolian.action.userProposal.UpdateStatus" scope="prototype">
+		<property name="userProposalService" ref="userProposalService"></property>
+	</bean>
+	
+	<!-- 日志action -->
+	<bean id="searchCoal" class="com.meibaolian.action.log.SearchCoal" scope="prototype">
+		<property name="searchLogCoalService" ref="searchLogCoalService"></property>
+	</bean>
+	<bean id="searchLogin" class="com.meibaolian.action.log.SearchLogin" scope="prototype">
+		<property name="accessLogLoginService" ref="accessLogLoginService"></property>
+	</bean>
+	<bean id="searchModule" class="com.meibaolian.action.log.SearchModule" scope="prototype">
+		<property name="accessLogModuleService" ref="accessLogModuleService"></property>
+	</bean>
+	<bean id="searchTransport" class="com.meibaolian.action.log.SearchTransport" scope="prototype">
+		<property name="searchLogTransportService" ref="searchLogTransportService"></property>
+	</bean>
+	
+	<!-- 质检action -->
+	<bean id="addQualityControl" class="com.meibaolian.action.otheraid.AddQualityControl" scope="prototype">
+		<property name="qualityControlService" ref="qualityControlService"></property>
+	</bean>
+	<bean id="searchQualityControl" class="com.meibaolian.action.otheraid.SearchQualityControl" scope="prototype">
+		<property name="qualityControlService" ref="qualityControlService"></property>
+	</bean>
+	<bean id="updateQualityControl" class="com.meibaolian.action.otheraid.UpdateQualityControl" scope="prototype">
+		<property name="qualityControlService" ref="qualityControlService"></property>
+	</bean>
+	<bean id="delQualityControl" class="com.meibaolian.action.otheraid.DelQualityControl" scope="prototype">
+		<property name="qualityControlService" ref="qualityControlService"></property>
+	</bean>
+</beans>

@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 默认的视图主题 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 该属性指定Struts 2中的action由Spring容器创建   -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!--
+		该属性指定需要Struts 2处理的请求后缀，该属性的默认值是action，即所有匹配*.action的请求都由Struts 2处理。
+		如果用户需要指定多个请求后缀，则多个后缀之间以英文逗号（，）隔开。
+	-->
+	<constant name="struts.action.extension" value="action" />
+	<!-- 该属性指定Struts 2应用所需要的国际化资源文件，如果有多份国际化资源文件，则多个资源文件的文件名以英文逗号（,）隔开。 -->
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+	<!-- 当struts的配置文件修改后，系统是否自动重新加载该文件，默认值为false（生产环境下使用），开发阶段最好打开 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!-- 开发模式下使用，这样可以打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="true" />
+	<!-- 设置浏览器是否缓存静态内容，默认值为true（生产环境下使用），开发阶段最好关闭 -->
+	<constant name="struts.serve.static.browserCache " value="false" />
+	<!-- 我们开启动态方法调用，也就是在同一个action中，可以有多个相应的函数 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<!-- 设置编码方式为 UTF-8 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 此constant设置临时文件存放目录，因为默认的default.properties中没有指定 -->
+	<constant name="struts.multipart.saveDir" value="/opt/meibaolianWeb/tmp"></constant>
+	<!-- 此constant 设置上传文件的大小限制 -->
+	<constant name="struts.multipart.maxSize" value="1073741824"></constant>
+
+	<!-- 全局定义包 -->
+	<package name="parent" namespace="/" extends="struts-default"
+		abstract="true">
+<!--
+		<interceptors>
+			<interceptor name="loginInterceptor" class="com.woshare.util.LoginInterceptor"></interceptor>
+			<interceptor-stack name="mydefaultInterceptor">
+				<interceptor-ref name="loginInterceptor">
+					<param name="excludeMethods">checkUser</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mydefaultInterceptor"></default-interceptor-ref>
+-->
+		<!--<interceptors>  
+            <interceptor name="exceptionLog"  
+                class="com.meibaolian.action.base.ExceptionInterceptor" />  
+            <interceptor-stack name="myExceptionLog">  
+                <interceptor-ref name="defaultStack">  
+                    <param name="exception.logEnabled">true</param>  
+                    <param name="exception.logLevel">debug</param>  
+                </interceptor-ref>  
+                <interceptor-ref name="exceptionLog" />  
+            </interceptor-stack>  
+        </interceptors>  
+        <default-interceptor-ref name="myExceptionLog" />  
+        
+		--><global-results>
+			<result name="message">/controller/share/message.jsp</result>
+			<result name="messageBig">/controller/share/messageBig.jsp</result>
+			<result name="login" >/index.jsp</result>
+			<result name="login_redirect" type="redirect" >/index.jsp</result>
+			<result name="advertising">/controller/share/advertising.jsp</result>
+			<result name="main" type="redirect">/controller/share/mainFrame.jsp</result>
+			<result name="errTip">/controller/share/errTip.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="errTip" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+	</package>
+	
+<!--公共选择  -->
+	<package name="choose" namespace="/choose" extends="parent">
+	
+	<action name="controller" class="chooseController" >
+		<result name="coaltype">/controller/share/choose/coalType.jsp</result>
+		<result name="coalParticleSize">/controller/share/choose/coalparticlesize.jsp</result>
+		<result name="deliveryplacetype">/controller/share/choose/deliveryplacetype.jsp</result>
+	</action>
+	
+	</package>
+	
+
+	<!-- 商户管理 -->
+	<package name="userInfo" namespace="/userInfo" extends="parent">
+
+		<!-- 商户列表查询action -->
+		<action name="search" class="searchUserInfo" method="search">
+			<result name="input">/controller/userInfo/search.jsp</result>
+			<result name="success">/controller/userInfo/search.jsp</result>
+		</action>
+		<!-- 商户详情展示action -->
+		<action name="show" class="showUserInfo" method="show">
+			<result name="input">/controller/userInfo/search.jsp</result>
+			<result name="success">/controller/userInfo/show.jsp</result>
+		</action>
+		<!-- 商户状态禁用 、恢复action -->
+		<action name="user_*" class="updateUserInfo" method="{1}">
+			<result name="input">/controller/userInfo/search.jsp</result>
+			<result name="edit">/controller/userInfo/edit.jsp</result>
+			<result name="success">/controller/userInfo/search.jsp</result>
+		</action>
+	</package>
+
+  <!-- 农易通 -->
+  <package name="nyt" namespace="/nyt" extends="parent"> 
+	   <!-- 桉木action -->
+	   <action name="veneer_info*"  class="veneer_infoAction" method="{1}">
+			<result name="input">/controller/nyt/veneersearch.jsp</result>
+			<result name="success">/controller/nyt/veneersearch.jsp</result>
+	   </action> 
+  </package>
+  <!-- 用户管理 -->
+  <package name="user" namespace="/user" extends="parent"> 
+   
+   <!-- 用户管理action -->
+   <action name="system_*"  class="userManager" method="{1}">
+   </action> 
+  </package>
+  <!-- 推送任务管理 -->
+  <package name="pushTask" namespace="/pushTask" extends="parent"> 
+   
+   <!-- 任务管理action -->
+   <action name="task_*"  class="pushTaskManager" method="{1}">
+   </action>
+   
+   <!-- 任务查询action -->
+   <action name="taskSearch_*"  class="pushTaskSeach" method="{1}">
+    <result name="list">/controller/task/list.jsp</result>
+    <result name="detail">/controller/task/detail.jsp</result>
+    <result name="detailToEdit">/controller/task/detailToEdit.jsp</result>
+   </action>
+ 
+  </package>
+  <!-- 其他管理 -->
+  <package name="otherAid" namespace="/otherAid" extends="parent"> 
+   
+   <!-- 手机管理action -->
+   <action name="phoneStats"  class="phoneStats" >
+   <result name="list">/controller/otherAid/phoneStatslist.jsp</result>
+   </action>
+   <!-- 广告管理action -->
+   <action name="advertisingShow"  class="advertisingShow" >
+   <result name="list">/controller/otherAid/advertisinglist.jsp</result>
+   </action>
+   <action name="advertisingManager_*"  class="advertisingManager" method="{1}" >
+   <result name="update">/controller/otherAid/advertisingUpdate.jsp</result>
+   </action>
+   <!-- 帮助信息管理action -->
+   <action name="helpCenterShow"  class="helpCenterShow" >
+   <result name="list">/controller/otherAid/helpcenterlist.jsp</result>
+   </action>
+   <action name="helpCenterManager_*"  class="helpCenterManager"  method="{1}">
+   <result name="update">/controller/otherAid/helpCenterUpdate.jsp</result>
+   </action>
+   <!-- 图片上传 -->
+   <action name="upFile"  class="upFile" >
+   </action>
+   <!-- 导入数据管理action -->
+   <action name="importRateData"  class="importRateDataAction" >
+   	<result name="input">/controller/otherAid/importRateData.jsp</result>
+   	<result name="success">/controller/otherAid/importRateData.jsp</result>
+   </action>
+   
+   <!-- 导入数据跳转action -->
+   <action name="skipToImportRateData"  class="importRateDataAction" method="skipToPage">
+   	<result name="input">/controller/otherAid/importRateData.jsp</result>
+   	<result name="success">/controller/otherAid/importRateData.jsp</result>
+   </action>
+   <!-- 版本xml更新 -->
+   <action name="version_*" class="versionManager" method="{1}">
+   
+   </action>
+   <!-- 添加质检action -->
+   <action name="addQualityControl"  class="addQualityControl" method="add">
+   	<result name="input">/controller/otherAid/addQualityControl.jsp</result>
+   </action>
+   <!-- 查询质检action -->
+   <action name="searchQualityControl"  class="searchQualityControl" method="search">
+   	<result name="input">/controller/otherAid/searchQualityControl.jsp</result>
+   	<result name="success">/controller/otherAid/searchQualityControl.jsp</result>
+   </action>
+   <!-- 跳转修改质检action -->
+   <action name="initUpdateQualityControl"  class="updateQualityControl" method="initUpdate">
+   	<result name="input">/controller/otherAid/searchQualityControl.jsp</result>
+   	<result name="success">/controller/otherAid/updateQualityControl.jsp</result>
+   </action>
+   <!-- 修改质检action -->
+   <action name="updateQualityControl"  class="updateQualityControl" >
+   	<result name="input">/controller/otherAid/searchQualityControl.jsp</result>
+   </action>
+   <!-- 删除质检action -->
+   <action name="delQualityControl"  class="delQualityControl" >
+   	<result name="input">/controller/otherAid/searchQualityControl.jsp</result>
+   </action>
+   
+  </package>
+  
+  
+  	<!-- 求购信息管理 -->
+	<package name="purchase" namespace="/purchase" extends="parent">
+
+		<!-- 求购信息列表查询action -->
+		<action name="search" class="searchPurchase" method="search">
+			<result name="input">/controller/purchase/search.jsp</result>
+			<result name="success">/controller/purchase/search.jsp</result>
+		</action>
+		<!-- 求购信息详情展示action -->
+		<action name="show" class="showPurchase" method="show">
+			<result name="input">/controller/purchase/search.jsp</result>
+			<result name="success">/controller/purchase/show.jsp</result>
+		</action>
+		<!-- 求购信息排序值修改 action -->
+		<action name="updateSortnumber" class="updatePurchase" method="updateSortnumber">
+			<result name="input">/controller/sortOrder/showPurchase.jsp</result>
+		</action>
+		<!-- 求购信息排序值修改 action -->
+		<action name="delete" class="deletePurchase">
+		</action>
+		<!-- 求购信息屏蔽 action -->
+		<action name="invalid" class="purchase_updateStatus" method="invalid">
+		</action>
+		<!-- 求购信息恢复 action -->
+		<action name="enable" class="purchase_updateStatus" method="enable">
+		</action>
+	</package>
+	
+	<!-- 供应信息管理 -->
+	<package name="provider" namespace="/provider" extends="parent">
+
+		<!-- 供应信息列表查询action -->
+		<action name="search" class="searchProvider" method="search">
+			<result name="input">/controller/provider/search.jsp</result>
+			<result name="success">/controller/provider/search.jsp</result>
+		</action>
+		<!-- 供应信息详情展示action -->
+		<action name="show" class="showProvider" method="show">
+			<result name="input">/controller/provider/search.jsp</result>
+			<result name="success">/controller/provider/show.jsp</result>
+		</action>
+		<!-- 供应信息排序值修改action -->
+		<action name="updateSortnumber" class="updateProvider" method="updateSortnumber">
+			<result name="input">/controller/sortOrder/showProvider.jsp</result>
+		</action>
+		<!-- 供应信息删除action -->
+		<action name="delete" class="deleteProvider"></action>
+		<!-- 供应信息屏蔽 action -->
+		<action name="invalid" class="provider_updateStatus" method="invalid">
+		</action>
+		<!-- 供应信息恢复 action -->
+		<action name="enable" class="provider_updateStatus" method="enable">
+		</action>
+	</package>
+	
+	<!-- 供求信息排序管理 -->
+	<package name="sortOrder" namespace="/sortOrder" extends="parent">
+
+		<!-- 求购信息排序列表查询action -->
+		<action name="searchPurchase" class="searchSortPurchase" method="search">
+			<result name="input">/controller/sortOrder/searchPurchase.jsp</result>
+			<result name="success">/controller/sortOrder/searchPurchase.jsp</result>
+		</action>
+		<!-- 求购信息排序详情展示action -->
+		<action name="showPurchase" class="showSortPurchase" method="show">
+			<result name="input">/controller/sortOrder/searchPurchase.jsp</result>
+			<result name="success">/controller/sortOrder/showPurchase.jsp</result>
+		</action>
+		<!-- 供应信息排序列表查询action -->
+		<action name="searchProvider" class="searchSortProvider" method="search">
+			<result name="input">/controller/sortOrder/searchProvider.jsp</result>
+			<result name="success">/controller/sortOrder/searchProvider.jsp</result>
+		</action>
+		<!-- 供应信息排序详情展示action -->
+		<action name="showProvider" class="showSortProvider" method="show">
+			<result name="input">/controller/sortOrder/searchProvider.jsp</result>
+			<result name="success">/controller/sortOrder/showProvider.jsp</result>
+		</action>
+		<!-- 货讯排序列表查询action -->
+		<action name="searchTransportDemand" class="searchSortTransportDemand" method="search">
+			<result name="input">/controller/sortOrder/searchTransportDemand.jsp</result>
+			<result name="success">/controller/sortOrder/searchTransportDemand.jsp</result>
+		</action>
+		<!-- 货讯排序详情展示action -->
+		<action name="showTransportDemand" class="showSortTransportDemand" method="show">
+			<result name="input">/controller/sortOrder/searchTransportDemand.jsp</result>
+			<result name="success">/controller/sortOrder/showTransportDemand.jsp</result>
+		</action>
+		<!-- 车讯排序列表查询action -->
+		<action name="searchTransportSupply" class="searchSortTransportSupply" method="search">
+			<result name="input">/controller/sortOrder/searchTransportSupply.jsp</result>
+			<result name="success">/controller/sortOrder/searchTransportSupply.jsp</result>
+		</action>
+		<!-- 车讯排序详情展示action -->
+		<action name="showTransportSupply" class="showSortTransportSupply" method="show">
+			<result name="input">/controller/sortOrder/searchTransportSupply.jsp</result>
+			<result name="success">/controller/sortOrder/showTransportSupply.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 交货地管理 -->
+	<package name="deliveryplace" namespace="/deliveryplace" extends="parent">
+
+		<!-- 交货地列表查询action -->
+		<action name="search" class="searchDeliveryPlace" method="search">
+			<result name="input">/controller/deliveryplace/search.jsp</result>
+			<result name="success">/controller/deliveryplace/search.jsp</result>
+		</action>
+		<!-- 交货地详情展示action -->
+		<action name="show" class="showDeliveryPlace" method="show">
+			<result name="input">/controller/deliveryplace/search.jsp</result>
+			<result name="success">/controller/deliveryplace/show.jsp</result>
+		</action>
+		<!-- 跳转到交货地修改信息action -->
+		<action name="initUpdate" class="updateDeliveryPlace" method="initUpdate">
+			<result name="success">/controller/deliveryplace/update.jsp</result>
+			<result name="input">/controller/deliveryplace/search.jsp</result>
+		</action>
+		<!-- 交货地修改信息action -->
+		<action name="update" class="updateDeliveryPlace" method="update">
+			<result name="input">/controller/deliveryplace/update.jsp</result>
+		</action>
+		<!-- 跳转到交货地新增信息action -->
+		<action name="initAdd" class="addDeliveryPlace" method="initAdd">
+			<result name="input">/controller/deliveryplace/search.jsp</result>
+			<result name="success">/controller/deliveryplace/add.jsp</result>
+		</action>
+		<!-- 交货地新增信息action -->
+		<action name="add" class="addDeliveryPlace" method="add">
+			<result name="input">/controller/deliveryplace/add.jsp</result>
+		</action>
+		<!-- 新增交货地类型action -->
+		<action name="addType" class="addDeliveryPlaceType" method="add">
+			<result name="input">/controller/deliveryplacetype/add.jsp</result>
+		</action>
+		<!-- 交货地类型列表查询action -->
+		<action name="searchType" class="searchDeliveryPlaceType" method="search">
+			<result name="input">/controller/deliveryplacetype/search.jsp</result>
+			<result name="success">/controller/deliveryplacetype/search.jsp</result>
+		</action>
+		<!-- 删除交货地类型action -->
+		<action name="delType" class="delDeliveryPlaceType" >
+			<result name="input">/controller/deliveryplacetype/search.jsp</result>
+		</action>
+		<!-- 交货地区域列表查询action -->
+		<action name="searchArea" class="searchDeliveryArea" method="search">
+			<result name="input">/controller/deliveryplace/searchArea.jsp</result>
+			<result name="success">/controller/deliveryplace/searchArea.jsp</result>
+		</action>
+		<!-- 删除交货地区域action -->
+		<action name="delArea" class="delDeliveryPlaceArea" >
+			<result name="input">/controller/deliveryplace/searchArea.jsp</result>
+		</action>
+		<!-- 删除交货地action -->
+		<action name="delPlace" class="delDeliveryPlace" >
+			<result name="input">/controller/deliveryplace/search.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 货讯管理 -->
+	<package name="transportDemand" namespace="/transportDemand" extends="parent">
+
+		<!-- 货讯列表查询action -->
+		<action name="search" class="searchTransportDemand" method="search">
+			<result name="input">/controller/transportDemand/search.jsp</result>
+			<result name="success">/controller/transportDemand/search.jsp</result>
+		</action>
+		<!-- 货讯详情展示action -->
+		<action name="show" class="showTransportDemand" method="show">
+			<result name="input">/controller/transportDemand/search.jsp</result>
+			<result name="success">/controller/transportDemand/show.jsp</result>
+		</action>
+		<!-- 货讯删除action -->
+		<action name="delete" class="deleteTransportDemand" >
+		</action>
+		<!-- 货讯信息屏蔽 action -->
+		<action name="invalid" class="transportDemand_updateStatus" method="invalid">
+		</action>
+		<!-- 货讯信息恢复 action -->
+		<action name="enable" class="transportDemand_updateStatus" method="enable">
+		</action>
+		<!-- 货讯信息排序 action -->
+		<action name="updateSortnumber" class="transportDemand_updateSortNum" >
+		</action>
+	</package>
+	
+	<!-- 车讯管理 -->
+	<package name="transportSupply" namespace="/transportSupply" extends="parent">
+
+		<!-- 车讯列表查询action -->
+		<action name="search" class="searchTransportSupply" method="search">
+			<result name="input">/controller/transportSupply/search.jsp</result>
+			<result name="success">/controller/transportSupply/search.jsp</result>
+		</action>
+		<!-- 车讯详情展示action -->
+		<action name="show" class="showTransportSupply" method="show">
+			<result name="input">/controller/transportSupply/search.jsp</result>
+			<result name="success">/controller/transportSupply/show.jsp</result>
+		</action>
+		<!-- 车讯删除action -->
+		<action name="delete" class="deleteTransportSupply" >
+		</action>
+		<!-- 车讯信息屏蔽 action -->
+		<action name="invalid" class="transportSupply_updateStatus" method="invalid">
+		</action>
+		<!-- 车讯信息恢复 action -->
+		<action name="enable" class="transportSupply_updateStatus" method="enable">
+		</action>
+		<!-- 车讯信息排序 action -->
+		<action name="updateSortnumber" class="transportSupply_updateSortNum" >
+		</action>
+	</package>
+	
+	<!--煤 -->
+	<package name="coal" namespace="/coal" extends="parent">
+	
+	<!--煤种 -->
+	<action name="coaltypeManager_*" class="coaltypeManager" method="{1}">
+	<result name="add">/controller/coaltype/add.jsp</result>
+	</action>
+	
+	<action name="coaltypeSearch" class="coaltypeSearch" >
+	<result name="success">/controller/coaltype/list.jsp</result>
+	</action>
+	
+	<!--煤种 粒度-->
+	<action name="coalParticleSizeManager_*" class="coalParticleSizeManager"  method="{1}" >
+	</action>
+	<action name="coalParticleSizeSearch" class="coalParticleSizeSearch"   >
+	<result name="success">/controller/coalparticlesize/list.jsp</result>
+	</action>
+	
+	</package>
+	
+	<!-- 收货地管理 -->
+	<package name="receiptplace" namespace="/receiptplace" extends="parent">
+
+		<!-- 收货地列表查询action -->
+		<action name="search" class="searchReceiptplace" method="search">
+			<result name="input">/controller/receiptplace/search.jsp</result>
+			<result name="success">/controller/receiptplace/search.jsp</result>
+		</action>
+		<!-- 收货地详情展示action -->
+		<action name="show" class="showReceiptplace" method="show">
+			<result name="input">/controller/receiptplace/search.jsp</result>
+			<result name="success">/controller/receiptplace/show.jsp</result>
+		</action>
+		<!-- 跳转到收货地修改信息action -->
+		<action name="initUpdate" class="updateReceiptplace" method="initUpdate">
+			<result name="success">/controller/receiptplace/update.jsp</result>
+			<result name="input">/controller/receiptplace/search.jsp</result>
+		</action>
+		<!-- 收货地修改信息action -->
+		<action name="update" class="updateReceiptplace" method="update">
+			<result name="input">/controller/receiptplace/update.jsp</result>
+		</action>
+		<!-- 收货地新增信息action -->
+		<action name="add" class="addReceiptplace" method="add">
+			<result name="input">/controller/receiptplace/add.jsp</result>
+		</action>
+		<!-- 收货地新增信息action -->
+		<action name="addDelivery" class="addToDelivery" method="add">
+			<result name="input">/controller/receiptplace/search.jsp</result>
+		</action>
+	</package>
+	<!-- 留言管理 -->
+	<package name="userProposal" namespace="/userProposal" extends="parent">
+
+		<!-- 留言列表查询action -->
+		<action name="search" class="searchUserProposal" method="search">
+			<result name="input">/controller/userProposal/search.jsp</result>
+			<result name="success">/controller/userProposal/search.jsp</result>
+		</action>
+		<!-- 收货地新增信息action -->
+		<action name="process" class="userProposal_updateStatus" method="process">
+			<result name="input">/controller/userProposal/search.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 日志action -->
+	<package name="log" namespace="/log" extends="parent">
+
+		<!-- 煤炭查询日志action -->
+		<action name="searchCoal" class="searchCoal" method="search">
+			<result name="input">/controller/log/searchcoal.jsp</result>
+			<result name="success">/controller/log/searchcoal.jsp</result>
+		</action>
+		<!-- 物流查询日志action -->
+		<action name="searchTransport" class="searchTransport" method="search">
+			<result name="input">/controller/log/searchtransport.jsp</result>
+			<result name="success">/controller/log/searchtransport.jsp</result>
+		</action>
+		<!-- 用户登录日志action -->
+		<action name="searchLogin" class="searchLogin" method="search">
+			<result name="input">/controller/log/searchlogin.jsp</result>
+			<result name="success">/controller/log/searchlogin.jsp</result>
+		</action>
+		<!-- 模块访问日志action -->
+		<action name="searchModule" class="searchModule" method="search">
+			<result name="input">/controller/log/searchmodule.jsp</result>
+			<result name="success">/controller/log/searchmodule.jsp</result>
+		</action>
+	</package>
+</struts>
