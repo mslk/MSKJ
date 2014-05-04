@@ -9,6 +9,7 @@ import com.meibaolian.dao.base.imple.BaseDao;
 import com.meibaolian.dao.nyt.Veneer_infoDao;
 import com.meibaolian.dto.CommonConditionDto;
 import com.meibaolian.entity.nyt.Veneer_infoBean;
+import com.meibaolian.util.UtilHelp;
 
 /**
  * 桉木dao实现类
@@ -30,10 +31,21 @@ public class Veneer_infoDaoImpl extends BaseDao<Veneer_infoBean> implements Vene
 			where.append(" and type=? ");
 			params.add(dto.getInt_valueA());
 		}
-//		if(null != userInfoDto.getStatus() && userInfoDto.getStatus() >-1){
-//			where.append(" and status=? ");
-//			params.add(userInfoDto.getStatus());
-//		}
+		/*类型 0为正常, 1为屏蔽*/
+		if(null != dto.getInt_valueB() && dto.getInt_valueB() > -1){
+			where.append(" and status=? ");
+			params.add(dto.getInt_valueB());
+		}
+		/*发布时间*/
+		if(UtilHelp.isNotNullStr(dto.getBegindate())){
+			where.append(" and addtime >= ? ");
+			params.add(dto.getBegindate());
+		}
+		if(UtilHelp.isNotNullStr(dto.getEnddate())){
+			where.append(" and addtime <= ? ");
+			params.add(dto.getEnddate());
+		}
+ 
 //		if(UtilHelp.isNotNullStr(userInfoDto.getKeyword())){
 //			String keyword = UtilHelp.setSQLLikeStr(userInfoDto.getKeyword());
 //			where.append(" and (realname like ? or companyname like ? or phone like ?)");
@@ -41,14 +53,7 @@ public class Veneer_infoDaoImpl extends BaseDao<Veneer_infoBean> implements Vene
 //			params.add(keyword);
 //			params.add(keyword);
 //		}
-//		if(UtilHelp.isNotNullStr(userInfoDto.getBegindate())){
-//			where.append(" and registertime >= ? ");
-//			params.add(userInfoDto.getBegindate());
-//		}
-//		if(UtilHelp.isNotNullStr(userInfoDto.getEnddate())){
-//			where.append(" and registertime <= ? ");
-//			params.add(userInfoDto.getEnddate());
-//		}
+//		
 		orders.put("orderid", " desc ");
 		orders.put("addtime", " desc ");
 		return super.search(page, pageSize, where.toString(), params.toArray(), orders);

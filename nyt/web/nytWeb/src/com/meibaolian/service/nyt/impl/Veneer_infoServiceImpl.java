@@ -26,21 +26,18 @@ public class Veneer_infoServiceImpl implements Veneer_infoService{
 	}
 
 	@Override
-	public int update(Veneer_infoBean t) {
+	public void update(Veneer_infoBean t) {
 		veneer_infoDao.update(t);
-		return 1;
 	}
 
 	@Override
-	public int delete(Integer id) {
+	public void delete(Integer id) {
 		veneer_infoDao.delete(id);
-		return 0;
 	}
 
 	@Override
-	public int add(Veneer_infoBean t) {
+	public void add(Veneer_infoBean t) {
 		veneer_infoDao.add(t);
-		return 0;
 	}
 
 

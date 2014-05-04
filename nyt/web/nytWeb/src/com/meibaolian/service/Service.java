@@ -37,20 +37,20 @@ public interface Service<T> {
 	 * @param t
 	 * @return
 	 */
-	public int update(T t);
+	public void update(T t);
 	
 	/**
 	 * 根据id删除对象
 	 * @param id
 	 * @return
 	 */
-	public int delete(Integer id);
+	public void delete(Integer id);
 	
 	/**
 	 * 新增对象
 	 * @param t
 	 * @return
 	 */
-	public int add(T t);
+	public void add(T t);
 	 
 }

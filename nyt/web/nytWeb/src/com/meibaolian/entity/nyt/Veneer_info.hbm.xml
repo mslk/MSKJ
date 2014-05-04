@@ -65,7 +65,7 @@
         <property name="type" type="java.lang.Integer">
             <column name="type" not-null="true" />
         </property>
-        <property name="addtime" type="java.sql.Timestamp">
+        <property name="addtime" type="java.lang.String">
             <column name="addtime" not-null="true" />
         </property>
         <property name="orderid" type="java.lang.Integer">

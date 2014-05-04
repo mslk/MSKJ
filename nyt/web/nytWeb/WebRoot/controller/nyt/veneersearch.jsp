@@ -50,23 +50,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td>
 			<% //1供应, 2求购  %>
 			<input type="hidden" name="dto.int_valueA" id="int_valueA" value="1"/>
-	 		
+
 			<select name="dto.int_valueB" id="int_valueB">
 			  <option value="-1">全部</option>
-			  <option value="0" <c:if test="${dto.int_valueB==1}">selected="selected"</c:if> >正常</option>
-			  <option value="1" <c:if test="${dto.int_valueB==2}">selected="selected"</c:if> >屏蔽</option>
-			</select> 
-			
-		</td>
-		<td />
-	</tr>
-	<tr>
+			  <option value="0" <c:if test="${dto.int_valueB==0}">selected="selected"</c:if> >正常</option>
+			  <option value="1" <c:if test="${dto.int_valueB==1}">selected="selected"</c:if> >屏蔽</option>
+			</select>  
 	<%--   	<td>关键字：</td>
 		<td >
 			<input type="text" id="keyword" name="dto.keyword" placeholder="姓名/公司名/手机号码"  value="${dto.keyword}"  />
 			<div class="tipsbox"><div id="keywordTip"></div></div>
 		</td>   --%>
-		<td>供应时间：</td>
+		<td>供货时间：</td>
 		<td colspan="3">
 		<input type="text" name="dto.begindate" id="begindate" size="20" readonly value="${dto.begindate}"  />
 		<input type="button" value="选择日期"   id="begindateBt"/>
@@ -91,21 +86,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<tr>
 		<td>供应者</td>
 	<!-- 	<td>手机号码</td> -->
-		<td>注册时间</td>
-		<td>类型</td>
-		<td>排序</td>
-		 
-	<%-- 	<c:if test="${admin.type==1 }">
-			<td>管理员</td>
-		</c:if> --%>
+		<td>价格</td>
+		<td>数量</td>
+		<td>用途</td>
+		<td>等级</td>
+		<td>供货时间</td>
+		<td>发布时间</td>
 		<td>状态</td>
+		<td>排序值</td>
 		<td>操作管理</td>
 	</tr>
 <c:forEach items="${request.result.queryList}" var="vo" >
 	<tr>
 		<td>${vo.userinfo.realname }</td>
+		<td>${vo.price }</td>
+		<td>${vo.number }</td>
+		<td>${vo.reference }</td>
+		<td>${vo.level }</td>
+	    <td>${vo.lead_time }</td>
 	    <td>${vo.addtime }</td>
-	    <td>${vo.orderid}</td>
 	   <%--  <td>
 	    	<c:choose>
 	    		<c:when test="${userInfo.type==100 }">游客</c:when>
@@ -126,19 +125,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</c:if> --%>
 	    <td>
 	    	<c:choose>
-	    		<c:when test="${vo.status==0 }">有效</c:when>
+	    		<c:when test="${vo.status==0 }">正常</c:when>
 	    		<c:when test="${vo.status==1 }"><label style="color: red">屏蔽</label></c:when>
 	    	</c:choose>
 	    </td>
+	    <td>${vo.orderid}</td>
 	    <td>
 	    	<a class="bts_link" href="userInfo/show.action?id=${vo.id}" target="main">详情</a> 
-	    	<a class="bts_link" href="userInfo/user_toEdit.action?id=${vo.id}" >修改</a> 
+	    	<a class="bts_link" href="userInfo/nyt/veneer_infoshield.action?dto.int_valueA=1&dto.int_valueB=${vo.id}&dto.int_valueC=0" >修改排序</a> 
 	    	<c:choose>
 	    		<c:when test="${vo.status==0 }">
-	    			<a class="bts_link" href="javascript:delTips('确定禁用?', 'userInfo/user_disable.action?id=${vo.id}')" >禁用</a>
+	    			<a class="bts_link" href="javascript:delTips('确定屏蔽?', 'nyt/veneer_infoshield.action?dto.int_valueA=1&dto.int_valueB=${vo.id}&dto.int_valueC=1')" >屏蔽</a>
 	    		</c:when>
-	    		<c:when test="${vo.status==2 }">
-	    			<a style="color: blue" class="bts_link" href="javascript:delTips('确定恢复?', 'userInfo/user_enable.action?id=${vo.id}')" >恢复</a>
+	    		<c:when test="${vo.status==1 }">
+	    			<a style="color: blue" class="bts_link" href="javascript:delTips('确定恢复?', 'nyt/veneer_infoshield.action?dto.int_valueA=1&dto.int_valueB=${vo.id}&dto.int_valueC=0')" >恢复</a>
 	    		</c:when>
 	    	</c:choose>
 	    </td>

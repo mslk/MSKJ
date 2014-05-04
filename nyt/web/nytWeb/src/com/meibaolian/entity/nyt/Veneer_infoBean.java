@@ -29,7 +29,7 @@ public class Veneer_infoBean{
 	private String valid;
 	private String described;
 	private int type;
-	private Timestamp addtime;
+	private String addtime;
 	private int orderid;
 	private int status;
 	private UserInfo userinfo;
@@ -172,14 +172,13 @@ public class Veneer_infoBean{
 	public void setType(int type){
 		this.type = type;
 	}
-
-	public Timestamp getAddtime(){
+	 
+	public String getAddtime() {
 		return addtime;
 	}
-	public void setAddtime(Timestamp addtime){
+	public void setAddtime(String addtime) {
 		this.addtime = addtime;
 	}
-
 	public int getOrderid(){
 		return orderid;
 	}

@@ -11,5 +11,12 @@ import com.meibaolian.entity.nyt.Veneer_infoBean;
  * @version 1.0[2014.05.03 15:21]
  */
 public interface Veneer_infoService extends Service<Veneer_infoBean>{
+	/**
+	 * 根据条件分页查找
+	 * @param dto
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 */
 	public QueryResult<Veneer_infoBean> searchList(CommonConditionDto dto, int page, int pageSize);
 }
