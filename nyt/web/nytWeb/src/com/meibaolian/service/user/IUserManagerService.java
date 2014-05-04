@@ -1,5 +1,7 @@
 package com.meibaolian.service.user;
 
+import java.util.List;
+
 import com.meibaolian.entity.Usermanager;
 
 public interface IUserManagerService
@@ -18,5 +20,8 @@ public interface IUserManagerService
 	 */
 	public void updatePwd(Usermanager usermanager);
 	
-
+	/**
+	 * 
+	 */
+	public List<Usermanager> searchAll();
 }

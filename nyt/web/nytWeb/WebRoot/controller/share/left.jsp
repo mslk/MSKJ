@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li><a href="controller/example/userInfo.jsp" class="tow_m_out" target="main">修改密码</a></li>
         <li><a href="" class="tow_m_out" target="_top">重新登录</a></li>
       </ul>
-       -->
+      
       <a href="javascript:onClick=viewChild('child_2')" class="one_m_out">推送任务管理</a>
       <ul id="child_2" style="display:none">
              <li><a href="controller/task/add.jsp" class="tow_m_out" target="main">添加推送任务</a></li>
@@ -89,17 +89,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              <li><a href="controller/coalparticlesize/add.jsp" class="tow_m_out" target="main">添加粒度</a></li>
              <li><a href="coal/coalParticleSizeSearch.action" class="tow_m_out" target="main">粒度列表</a></li>
       </ul>
+       -->
       <a href="javascript:onClick=viewChild('child_5')" class="one_m_out">客户端用户管理</a>
       <ul id="child_5" style="display:none">
         <li><a href="userInfo/search.action" class="tow_m_out" target="main">客户端用户列表</a></li>
       </ul>
-      <a href="javascript:onClick=viewChild('child_6')" class="one_m_out">求购信息管理</a>
-      <ul id="child_6" style="display:none">
-        <li><a href="purchase/search.action" class="tow_m_out" target="main">求购信息列表</a></li>
-      </ul>
       <a href="javascript:onClick=viewChild('child_7')" class="one_m_out">供应信息管理</a>
       <ul id="child_7" style="display:none">
-        <li><a href="provider/search.action" class="tow_m_out" target="main">供应信息列表</a></li>
+        <li><a href="nyt/veneer_infosearch.action?dto.int_value1=1" class="tow_m_out" target="main">桉木供应信息</a></li>
+<!--         <li><a href="provider/search.action" class="tow_m_out" target="main">供应信息列表</a></li> -->
+      </ul>
+       <a href="javascript:onClick=viewChild('child_6')" class="one_m_out">求购信息管理</a>
+      <ul id="child_6" style="display:none">
+        <li><a href="purchase/search.action" class="tow_m_out" target="main">求购信息列表</a></li>
       </ul>
 	  <!---->
       <a href="javascript:onClick=viewChild('child_8')" class="one_m_out">信息排序置顶管理</a>

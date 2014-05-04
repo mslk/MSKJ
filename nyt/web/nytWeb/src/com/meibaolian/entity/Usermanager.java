@@ -3,7 +3,11 @@ package com.meibaolian.entity;
 import java.sql.Timestamp;
 
 /**
- * Usermanager entity. @author MyEclipse Persistence Tools
+ * 
+ * @author Kawin 
+ * @since 新增realname,phone属性
+ * @version 2014.05.02 22:11
+ * 
  */
 
 public class Usermanager implements java.io.Serializable {
@@ -20,7 +24,10 @@ public class Usermanager implements java.io.Serializable {
 	private String password;
 	private Timestamp registertime;
 	private Integer status;
-
+	private String realname;
+	private String phone;
+	
+	
 	// Constructors
 
 	/** default constructor */
@@ -41,6 +48,22 @@ public class Usermanager implements java.io.Serializable {
 
 	public Integer getId() {
 		return this.id;
+	}
+
+	public String getRealname() {
+		return realname;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public void setId(Integer id) {

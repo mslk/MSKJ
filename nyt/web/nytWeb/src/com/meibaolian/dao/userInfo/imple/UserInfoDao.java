@@ -18,10 +18,19 @@ public class UserInfoDao extends BaseDao<UserInfo> implements IUserInfoDao {
 		
 		StringBuilder where = new StringBuilder("");
 		List<Object> params = new ArrayList<Object>(); 
-		
+		//1超级管理员显示所有客户记录,0非超级管理员显示自己管理的用户
+		if(null != userInfoDto.getUsermanager() && userInfoDto.getUsermanager().getType() != 1){
+			where.append(" and usermanagerid=? ");
+			params.add(userInfoDto.getUsermanager().getId());
+		}
 		if(null != userInfoDto.getType() && userInfoDto.getType() > -1){
 			where.append(" and type=? ");
 			params.add(userInfoDto.getType());
+		}
+		
+		if(null != userInfoDto.getLevel() && userInfoDto.getLevel() > -1){
+			where.append(" and level=? ");
+			params.add(userInfoDto.getLevel());
 		}
 		if(null != userInfoDto.getStatus() && userInfoDto.getStatus() >-1){
 			where.append(" and status=? ");

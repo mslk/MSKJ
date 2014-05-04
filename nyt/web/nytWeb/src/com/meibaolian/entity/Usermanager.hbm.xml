@@ -25,5 +25,11 @@
         <property name="status" type="java.lang.Integer">
             <column name="status" not-null="true" />
         </property>
+        <property name="realname" type="java.lang.String">
+            <column name="realname" not-null="true" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="phone" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

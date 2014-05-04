@@ -1,6 +1,5 @@
 package com.meibaolian.entity;
 
-import java.sql.Timestamp;
 
 /**
  * Userinfo entity. @author MyEclipse Persistence Tools
@@ -29,7 +28,8 @@ public class UserInfo implements java.io.Serializable {
 	private String carnumber;
 	private String frame;
 	private String engine;
-
+	private int level;
+	private Usermanager usermanager;
 	// Constructors
 
 	/** default constructor */
@@ -68,7 +68,24 @@ public class UserInfo implements java.io.Serializable {
 		this.engine = engine;
 	}
 
+	
 	// Property accessors
+
+	public int getLevel() {
+		return level;
+	}
+
+	public Usermanager getUsermanager() {
+		return usermanager;
+	}
+
+	public void setUsermanager(Usermanager usermanager) {
+		this.usermanager = usermanager;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
 
 	public Integer getId() {
 		return this.id;

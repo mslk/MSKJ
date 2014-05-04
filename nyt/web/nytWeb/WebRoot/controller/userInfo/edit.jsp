@@ -41,7 +41,7 @@
 				new Entity({id:"realname",name:"姓名",required:true,type:1,minLen:2,maxLen:20}),
 				new Entity({id:"companyname",name:"公司名称",required:true,type:1,minLen:2,maxLen:50}),
 				new Entity({id:"address",name:"联系地址",required:false,type:1,minLen:2,maxLen:50})
-				<c:if test="${userInfo.type==3 }">
+				<c:if test="${userInfo.type==7 }">
 				,
 				new Entity({id:"cardid",name:"身份证",required:true,type:7}),
 				new Entity({id:"carnumber",name:"车牌号",required:true,type:1,minLen:6,maxLen:50}),
@@ -81,8 +81,7 @@
 				<td width="70%">
 					<c:choose>
 						<c:when test="${userInfo.type==100 }">游客</c:when>
-						<c:when test="${userInfo.type==2 }">交易商</c:when>
-						<c:when test="${userInfo.type==3 }">物流商</c:when>
+						<c:when test="${userInfo.type!=100 }">会员</c:when>
 					</c:choose>
 				</td>
 			<tr>
@@ -117,7 +116,7 @@
 				<input type="text"	value="${userInfo.address }"  id="address" name="userInfo.address"/>
 				</td>
 			</tr>
-			<c:if test="${userInfo.type==3 }">
+			<c:if test="${userInfo.type==7 }">
 			<tr>
 			<td width="30%">
 					身份证:
@@ -151,16 +150,53 @@
 				</td>
 			</tr>
 			</c:if>
-			<tr>
-				<td width="30%">
-					状态:
-				</td>
-				<td width="70%">
-				  <c:if test="${userInfo.status==0 }">有效</c:if>
-				  <c:if test="${userInfo.status==2 }">黑名单</c:if>
-				</td>
-			</tr>
-			<tr>
+		<tr>
+			<td>客户权限：</td>
+			<td>
+				<select name="userInfo.level" id="level">
+				    <option value="0" <c:if test="${userInfo.level==0}">selected="selected"</c:if> >默认</option>
+				    <option value="2" <c:if test="${userInfo.level==2}">selected="selected"</c:if> >指定日期</option>
+				    <option value="1" <c:if test="${userInfo.level==1}">selected="selected"</c:if> >无限期</option>
+				</select> 
+			</td>
+		</tr>
+		<tr>
+			<td>状态：</td>
+			<td>
+				<select name="userInfo.status" id="status">
+				  <option value="0" <c:if test="${userInfo.status==0}">selected="selected"</c:if> >有效</option>
+				  <option value="2" <c:if test="${userInfo.status!=0}">selected="selected"</c:if> >禁用</option>
+				</select> 
+			</td>
+			<td />
+		</tr>
+		<%//超级管理员可以指定店小二 %>
+	<c:if test="${admin.type==1 }">
+		<tr>
+			<td width="30%">
+					管理员:
+			</td>
+			<td width="70%">
+				<select name="userInfo.usermanager.id" id="usermanagerid">
+					<c:forEach items="${usermanagers}" var="usermanager" >
+						  <option value="${usermanager.id }" <c:if test="${usermanager.id==userInfo.usermanager.id}">selected="selected"</c:if> >${usermanager.realname }</option>
+					</c:forEach>
+				</select> 
+			</td>
+		</tr>
+	</c:if>
+	<c:if test="${admin.type!=1 }">
+		<tr>
+			<td width="30%">
+					管理员:
+			</td>
+			<td width="70%">
+				<input type="hidden" name="userInfo.usermanager.id" value="${userInfo.usermanager.id}">
+			 	${userInfo.usermanager.realname }
+			</td>
+		</tr>
+	</c:if>
+		<tr>
 			<td width="30%">
 					注册时间:
 				</td>

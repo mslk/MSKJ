@@ -20,4 +20,5 @@ public interface IUserManagerDao extends IBaseDao<Usermanager>
 	 * @param newPwd
 	 */
 	public void updatePwd(Usermanager usermanager);
+	 
 }

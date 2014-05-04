@@ -51,6 +51,11 @@
         </property>
         <property name="engine" type="java.lang.String">
             <column name="engine" />
-        </property>
+        </property>    
+        <property name="level" type="java.lang.Integer">
+            <column name="level" not-null="true" />
+        </property> 
+        <many-to-one name="usermanager" column="usermanagerid" />
     </class>
+    
 </hibernate-mapping>

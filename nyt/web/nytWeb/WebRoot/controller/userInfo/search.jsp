@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	$("#enddateBt").click(function()
 		{  
-		   WdatePicker({el:'enddate',dateFmt:'yyyy-MM-dd 00:00:00', minDate: '#F{$dp.$D(\'begindate\')}' });
+		   WdatePicker({el:'enddate',dateFmt:'yyyy-MM-dd 23:59:59', minDate: '#F{$dp.$D(\'begindate\')}' });
 		});
  	//validateBase(list);
 	});
@@ -56,14 +56,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </td>
   </tr>
 	<tr>
-		
 		<td>类型：</td>
 		<td>
 			<select name="userInfoDto.type" id="type">
 			  <option value="-1">全部</option>
 			    <option value="100" <c:if test="${userInfoDto.type==100}">selected="selected"</c:if> >游客</option>
-			  <option value="2" <c:if test="${userInfoDto.type==2}">selected="selected"</c:if> >交易商</option>
-			  <option value="3" <c:if test="${userInfoDto.type==3}">selected="selected"</c:if> >物流商</option>
+			    <option value="1" <c:if test="${userInfoDto.type==1}">selected="selected"</c:if> >会员</option>
+			</select> 
+		</td>
+		<td>客户权限：</td>
+		<td>
+			<select name="userInfoDto.level" id="level">
+			  <option value="-1">全部</option>
+			    <option value="0" <c:if test="${userInfoDto.level==0}">selected="selected"</c:if> >默认</option>
+			    <option value="2" <c:if test="${userInfoDto.level==2}">selected="selected"</c:if> >指定日期</option>
+			    <option value="1" <c:if test="${userInfoDto.level==1}">selected="selected"</c:if> >无限期</option>
 			</select> 
 		</td>
 		<td>状态：</td>
@@ -71,19 +78,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<select name="userInfoDto.status" id="status">
 			  <option value="-1">全部</option>
 			  <option value="0" <c:if test="${userInfoDto.status==0}">selected="selected"</c:if> >有效</option>
-			  <option value="2" <c:if test="${userInfoDto.status==2}">selected="selected"</c:if> >黑名单</option>
+			  <option value="2" <c:if test="${userInfoDto.status==2}">selected="selected"</c:if> >禁用</option>
 			</select> 
 		</td>
+		<td />
+	</tr>
+	<tr>
 		<td>关键字：</td>
 		<td >
 			<input type="text" id="keyword" name="userInfoDto.keyword" placeholder="姓名/公司名/手机号码"  value="${userInfoDto.keyword}"  />
 			<div class="tipsbox"><div id="keywordTip"></div></div>
 		</td>
-		<td></td>
-	</tr>
-	<tr>
 		<td>注册时间：</td>
-		<td colspan="5">
+		<td colspan="3">
 		<input type="text" name="userInfoDto.begindate" id="begindate" size="20" readonly value="${userInfoDto.begindate}"  />
 		<input type="button" value="选择日期"   id="begindateBt"/>
 		至
@@ -100,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <table class="publictable" width="90%" border="0" cellspacing="1" cellpadding="0">
   <tr>
-    <td colspan="6" class="thead">
+    <td colspan="16" class="thead">
  <div class="tit_box">客户端用户列表</div>
     </td>
   </tr>
@@ -109,6 +116,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td>手机号码</td>
 		<td>注册时间</td>
 		<td>类型</td>
+		<td>客户权限</td>
+		<%//只有超级 管理员才显示  1超级管理员%>
+		<c:if test="${admin.type==1 }">
+			<td>管理员</td>
+		</c:if>
 		<td>状态</td>
 		<td>操作管理</td>
 	</tr>
@@ -120,25 +132,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <td>
 	    	<c:choose>
 	    		<c:when test="${userInfo.type==100 }">游客</c:when>
-	    		<c:when test="${userInfo.type==2 }">交易商</c:when>
-	    		<c:when test="${userInfo.type==3 }">物流商</c:when>
+	    		<c:when test="${userInfo.type!=100 }">会员</c:when>
+	    	</c:choose>
+	    </td> 
+	    <td>
+	    	<c:choose>
+	    		<c:when test="${userInfo.level==0 }">默认</c:when>
+	    		<c:when test="${userInfo.level==1 }">无限期</c:when>
+	    		<c:when test="${userInfo.level==2 }">指定日期</c:when>
 	    	</c:choose>
 	    </td>
+	<c:if test="${admin.type==1 }">
+		<td>
+		    ${userInfo.usermanager.realname }
+		</td>
+	</c:if>
 	    <td>
 	    	<c:choose>
 	    		<c:when test="${userInfo.status==0 }">有效</c:when>
-	    		<c:when test="${userInfo.status==2 }">黑名单</c:when>
+	    		<c:when test="${userInfo.status==2 }"><label style="color: red">禁用</label></c:when>
 	    	</c:choose>
 	    </td>
 	    <td>
-	    	<a class="bts_link" href="userInfo/show.action?id=${userInfo.id}" target="_blank">详情</a> 
+	    	<a class="bts_link" href="userInfo/show.action?id=${userInfo.id}" target="main">详情</a> 
 	    	<a class="bts_link" href="userInfo/user_toEdit.action?id=${userInfo.id}" >修改</a> 
 	    	<c:choose>
 	    		<c:when test="${userInfo.status==0 }">
-	    			<a class="bts_link" href="javascript:delTips('确定拉入黑名单?', 'userInfo/user_disable.action?id=${userInfo.id}')" >拉入黑名单</a>
+	    			<a class="bts_link" href="javascript:delTips('确定禁用?', 'userInfo/user_disable.action?id=${userInfo.id}')" >禁用</a>
 	    		</c:when>
 	    		<c:when test="${userInfo.status==2 }">
-	    			<a class="bts_link" href="javascript:delTips('确定恢复?', 'userInfo/user_enable.action?id=${userInfo.id}')" >恢复</a>
+	    			<a style="color: blue" class="bts_link" href="javascript:delTips('确定恢复?', 'userInfo/user_enable.action?id=${userInfo.id}')" >恢复</a>
 	    		</c:when>
 	    	</c:choose>
 	    </td>
@@ -147,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </c:forEach>
 
 	<tr>
-  		<td colspan="6">
+  		<td colspan="16">
            <c:import url="/controller/share/fenye.jsp"></c:import>
   		</td>
   	</tr>

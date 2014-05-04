@@ -6,6 +6,7 @@ import com.meibaolian.action.base.WebUtil;
 import com.meibaolian.dao.base.QueryResult;
 import com.meibaolian.dto.UserInfoDto;
 import com.meibaolian.entity.UserInfo;
+import com.meibaolian.entity.Usermanager;
 import com.meibaolian.service.userInfo.IUserInfoService;
 
 public class Search extends BaseAction {
@@ -22,6 +23,9 @@ public class Search extends BaseAction {
 	public String search(){
 		
 		userInfoDto.setKeyword( userInfoDto.getKeyword() != null ? userInfoDto.getKeyword().trim() : null );	
+		Usermanager usermanager = WebUtil.getAdmin(null);
+		if(null != usermanager)
+			userInfoDto.setUsermanager(usermanager);
 		QueryResult<UserInfo> qr = userInfoService.searchList(userInfoDto, getPage(),PAGESIZE);
 		savePageView(new PageView<UserInfo>(qr, getPage(), PAGESIZE));
 		WebUtil.setRequestValue("userInfoDto", userInfoDto);

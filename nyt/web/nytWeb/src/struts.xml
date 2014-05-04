@@ -107,15 +107,20 @@
 		</action>
 	</package>
 
-	
+  <!-- 农易通 -->
+  <package name="nyt" namespace="/nyt" extends="parent"> 
+	   <!-- 桉木action -->
+	   <action name="veneer_info*"  class="veneer_infoAction" method="{1}">
+			<result name="input">/controller/nyt/veneersearch.jsp</result>
+			<result name="success">/controller/nyt/veneersearch.jsp</result>
+	   </action> 
+  </package>
   <!-- 用户管理 -->
   <package name="user" namespace="/user" extends="parent"> 
    
    <!-- 用户管理action -->
    <action name="system_*"  class="userManager" method="{1}">
-    
-   </action>
- 
+   </action> 
   </package>
   <!-- 推送任务管理 -->
   <package name="pushTask" namespace="/pushTask" extends="parent"> 

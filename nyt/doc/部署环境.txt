@@ -1,0 +1,5 @@
+1. JDK1.6以上版本
+2. Tomcat6.0以上版本
+3. Apache2.2
+4. Redis2.8.1
+5. mysql5.6 

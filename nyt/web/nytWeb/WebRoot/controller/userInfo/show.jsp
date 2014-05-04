@@ -41,8 +41,7 @@
 				<td width="70%">
 					<c:choose>
 						<c:when test="${userInfo.type==100 }">游客</c:when>
-						<c:when test="${userInfo.type==2 }">交易商</c:when>
-						<c:when test="${userInfo.type==3 }">物流商</c:when>
+						<c:when test="${userInfo.type!=100 }">会员</c:when>
 					</c:choose>
 				</td>
 			</tr>
@@ -78,6 +77,35 @@
 					${userInfo.address }
 				</td>
 			</tr>
+			<tr>
+			<td>客户权限：</td>
+			<td>
+				<c:choose>
+					<c:when test="${userInfo.level==0}">默认</c:when>
+					<c:when test="${userInfo.level==1}">无限期</c:when>
+					<c:when test="${userInfo.level==2}">指定日期</c:when>
+				</c:choose>
+			</td>
+		</tr>
+			<tr>
+				<td width="30%">
+						管理员:
+				</td>
+				<td width="70%">
+				 	${userInfo.usermanager.realname }
+				</td>
+			</tr>
+			<tr>
+				<td width="30%">
+					状态:
+				</td>
+				<td width="70%">
+					<c:choose>
+						<c:when test="${userInfo.status==0 }">有效</c:when>
+						<c:when test="${userInfo.status==2 }">禁用</c:when>
+					</c:choose>
+				</td>
+			</tr>
 			<%--<tr>
 				<td width="30%">
 					登陆名:
@@ -94,18 +122,8 @@
 					${userInfo.registertime}
 				</td>
 			</tr>
-			<tr>
-				<td width="30%">
-					状态:
-				</td>
-				<td width="70%">
-					<c:choose>
-						<c:when test="${userInfo.status==0 }">有效</c:when>
-						<c:when test="${userInfo.status==2 }">黑名单</c:when>
-					</c:choose>
-				</td>
-			</tr>
-			<c:if test="${userInfo.type==3 }">
+		
+			<%-- <c:if test="${userInfo.type==7 }">
 			<tr>
 			<td width="30%">
 					身份证:
@@ -138,7 +156,7 @@
 				  ${userInfo.engine}
 				</td>
 			</tr>
-			</c:if>
+			</c:if> --%>
 			<!-- 
 			<tr>
 				<td width="30%">
@@ -152,6 +170,11 @@
 				</td>
 			</tr>
 			 -->
+			 <tr>
+	    		<td colspan="2"  style="text-align: center;">
+					<input type="button" value="返回"  onclick="javascript:location.href='userInfo/search.action'" />
+			 	</td>
+			 </tr>
 		</table>
 	</body>
 </html>

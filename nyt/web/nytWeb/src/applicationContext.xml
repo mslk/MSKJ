@@ -102,6 +102,8 @@
 		<property name="session" ref="sessionFactory"></property>
 	</bean>	
 
+	<!-- 桉木dao -->
+	<bean id="veneer_infoDao" class="com.meibaolian.dao.nyt.impl.Veneer_infoDaoImpl" parent="base"></bean>
 	<bean id="userManagerDao" class="com.meibaolian.dao.user.imple.UserManagerDao"
 		parent="base">
 	</bean>
@@ -176,6 +178,11 @@
 	
 	
 	<!-- ===service==== -->
+	<!-- 桉木service -->
+	<bean id="veneer_infoService" class="com.meibaolian.service.nyt.impl.Veneer_infoServiceImpl">
+		<property name="veneer_infoDao" ref="veneer_infoDao"></property>
+	</bean>
+	
 	<bean id="userManagerService" class="com.meibaolian.service.user.imple.UserManagerService">
 		<property name="userMangerDao" ref="userManagerDao"></property>
 	</bean>
@@ -306,6 +313,7 @@
 	<bean id="updateUserInfo" class="com.meibaolian.action.userInfo.Update"
 		scope="prototype">
 		<property name="userInfoService" ref="userInfoService"></property>
+		<property name="userManagerService" ref="userManagerService"></property>
 	</bean>
 		<!-- 求购信息action  -->
 	<bean id="searchPurchase" class="com.meibaolian.action.purchase.Search"
@@ -355,6 +363,10 @@
 	</bean>
 		<!-- action  -->
 		
+		<!-- 桉木action -->
+	<bean id="veneer_infoAction" class="com.meibaolian.action.nyt.Veneer_infoAction" scope="prototype">
+		<property name="veneer_infoService" ref="veneer_infoService"></property>
+	</bean>
    		<!-- 求购信息排序action  -->
 	<bean id="searchSortPurchase" class="com.meibaolian.action.sortOrder.SearchPurchase"
 		scope="prototype">

@@ -1,5 +1,7 @@
 package com.meibaolian.dto;
 
+import com.meibaolian.entity.Usermanager;
+
 public class UserInfoDto {
 	
 	private String keyword;//关键字
@@ -7,8 +9,21 @@ public class UserInfoDto {
 	private Integer status;//状态
 	private String begindate;//开始日期
 	private String enddate;//结束日期
+	private Integer level;//用户消息发布权限0 默认有限制 1 无限制 2 指定日期
+	private Usermanager usermanager;//管理员
 	
-	
+	public Usermanager getUsermanager() {
+		return usermanager;
+	}
+	public void setUsermanager(Usermanager usermanager) {
+		this.usermanager = usermanager;
+	}
+	public Integer getLevel() {
+		return level;
+	}
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
 	public String getKeyword() {
 		return keyword;
 	}
