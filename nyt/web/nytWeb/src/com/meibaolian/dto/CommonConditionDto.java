@@ -8,14 +8,14 @@ package com.meibaolian.dto;
 public class CommonConditionDto {
 	
 	private String keyword;//关键字
-	private Integer int_value1;
-	private Integer int_value2;
-	private Integer int_value3;
-	private String str_value1;
-	private String str_value2;
-	private String str_value3;
-	private String str_value4;
-	private String str_value5;
+	private Integer int_valueA;
+	private Integer int_valueB;
+	private Integer int_valueC;
+	private String str_valueA;
+	private String str_valueB;
+	private String str_valueC;
+	private String str_valueD;
+	private String str_valueE;
 	private String begindate;//开始日期
 	private String enddate;//结束日期
 	
@@ -26,53 +26,53 @@ public class CommonConditionDto {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	public Integer getInt_value1() {
-		return int_value1;
+	public Integer getInt_valueA() {
+		return int_valueA;
 	}
-	public void setInt_value1(Integer int_value1) {
-		this.int_value1 = int_value1;
+	public void setInt_valueA(Integer int_valueA) {
+		this.int_valueA = int_valueA;
 	}
-	public Integer getInt_value2() {
-		return int_value2;
+	public Integer getInt_valueB() {
+		return int_valueB;
 	}
-	public void setInt_value2(Integer int_value2) {
-		this.int_value2 = int_value2;
+	public void setInt_valueB(Integer int_valueB) {
+		this.int_valueB = int_valueB;
 	}
-	public Integer getInt_value3() {
-		return int_value3;
+	public Integer getInt_valueC() {
+		return int_valueC;
 	}
-	public void setInt_value3(Integer int_value3) {
-		this.int_value3 = int_value3;
+	public void setInt_valueC(Integer int_valueC) {
+		this.int_valueC = int_valueC;
 	}
-	public String getStr_value1() {
-		return str_value1;
+	public String getStr_valueA() {
+		return str_valueA;
 	}
-	public void setStr_value1(String str_value1) {
-		this.str_value1 = str_value1;
+	public void setStr_valueA(String str_valueA) {
+		this.str_valueA = str_valueA;
 	}
-	public String getStr_value2() {
-		return str_value2;
+	public String getStr_valueB() {
+		return str_valueB;
 	}
-	public void setStr_value2(String str_value2) {
-		this.str_value2 = str_value2;
+	public void setStr_valueB(String str_valueB) {
+		this.str_valueB = str_valueB;
 	}
-	public String getStr_value3() {
-		return str_value3;
+	public String getStr_valueC() {
+		return str_valueC;
 	}
-	public void setStr_value3(String str_value3) {
-		this.str_value3 = str_value3;
+	public void setStr_valueC(String str_valueC) {
+		this.str_valueC = str_valueC;
 	}
-	public String getStr_value4() {
-		return str_value4;
+	public String getStr_valueD() {
+		return str_valueD;
 	}
-	public void setStr_value4(String str_value4) {
-		this.str_value4 = str_value4;
+	public void setStr_valueD(String str_valueD) {
+		this.str_valueD = str_valueD;
 	}
-	public String getStr_value5() {
-		return str_value5;
+	public String getStr_valueE() {
+		return str_valueE;
 	}
-	public void setStr_value5(String str_value5) {
-		this.str_value5 = str_value5;
+	public void setStr_valueE(String str_valueE) {
+		this.str_valueE = str_valueE;
 	}
 	public String getBegindate() {
 		return begindate;

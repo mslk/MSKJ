@@ -9,7 +9,6 @@ import com.meibaolian.dao.base.imple.BaseDao;
 import com.meibaolian.dao.nyt.Veneer_infoDao;
 import com.meibaolian.dto.CommonConditionDto;
 import com.meibaolian.entity.nyt.Veneer_infoBean;
-import com.opensymphony.oscache.util.StringUtil;
 
 /**
  * 桉木dao实现类
@@ -27,9 +26,9 @@ public class Veneer_infoDaoImpl extends BaseDao<Veneer_infoBean> implements Vene
 		LinkedHashMap<String, String> orders = new  LinkedHashMap<String, String>();
 		
 		/*类型 1为供应, 2为求购*/
-		if(null != dto.getInt_value1() && dto.getInt_value1() > -1){
+		if(null != dto.getInt_valueA() && dto.getInt_valueA() > -1){
 			where.append(" and type=? ");
-			params.add(dto.getInt_value1());
+			params.add(dto.getInt_valueA());
 		}
 //		if(null != userInfoDto.getStatus() && userInfoDto.getStatus() >-1){
 //			where.append(" and status=? ");

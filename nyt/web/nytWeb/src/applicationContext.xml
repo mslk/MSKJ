@@ -17,9 +17,9 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
          <property name="driverClass" value="com.mysql.jdbc.Driver" />
          <!-- 内网测试    -->
-         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/nyt?characterEncoding=utf-8"/>
-         <property name="user" value="root"/>
-         <property name="password" value="kawin"/>
+         <property name="jdbcUrl" value="jdbc:mysql://192.168.1.66:3306/nyt?characterEncoding=utf-8"/>
+         <property name="user" value="consql"/>
+         <property name="password" value="consql123"/>
       
 
          <!-- 正式外网   

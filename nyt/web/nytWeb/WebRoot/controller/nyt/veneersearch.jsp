@@ -48,18 +48,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<tr>
 		<td>状态：</td>
 		<td>
+			<% //1供应, 2求购  %>
+			<input type="hidden" name="dto.int_valueA" id="int_valueA" value="1"/>
+	 		
+			<select name="dto.int_valueB" id="int_valueB">
+			  <option value="-1">全部</option>
+			  <option value="0" <c:if test="${dto.int_valueB==1}">selected="selected"</c:if> >正常</option>
+			  <option value="1" <c:if test="${dto.int_valueB==2}">selected="selected"</c:if> >屏蔽</option>
+			</select> 
 			
-	 
-			<select name="dto.int_value2" id="int_value2">
-			  <option value="-1">全部</option>
-			  <option value="0" <c:if test="${dto.int_value2==1}">selected="selected"</c:if> >正常</option>
-			  <option value="1" <c:if test="${dto.int_value2==2}">selected="selected"</c:if> >屏蔽</option>
-			</select> 
-			<select name="dto.int_value1" id="int_value1">
-			  <option value="-1">全部</option>
-			  <option value="1" <c:if test="${dto.int_value1==1}">selected="selected"</c:if> >供应</option>
-			  <option value="2" <c:if test="${dto.int_value1==2}">selected="selected"</c:if> >求购</option>
-			</select> 
 		</td>
 		<td />
 	</tr>

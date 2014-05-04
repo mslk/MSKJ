@@ -33,7 +33,12 @@ public class Veneer_infoAction  extends BaseAction{
 		return SUCCESS;
 	}
 
+	public CommonConditionDto getDto() {
+		return dto;
+	}
+
 	public void setDto(CommonConditionDto dto) {
 		this.dto = dto;
 	}
+
 }

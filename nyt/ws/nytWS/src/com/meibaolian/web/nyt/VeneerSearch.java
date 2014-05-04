@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.meibaolian.dao.base.QueryResult;
-import com.meibaolian.entity.SupplyInfoExpand;
 import com.meibaolian.entity.VennerSupplyInfo;
 import com.meibaolian.service.nyt.IVeneerService;
 import com.meibaolian.util.ConfigUtil;
@@ -23,6 +22,7 @@ import com.meibaolian.web.nyt.dto.VeneerDTo;
 /** 
  * 单板供应查询  
  * @author Kawin
+ * @version 1.0[2014.05.04 11:45]
  *
  */
 public class VeneerSearch extends BaseServlet {
