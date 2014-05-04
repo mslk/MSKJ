@@ -1,4 +1,9 @@
 *.jar
 *.log
-.svn 
-.settings
+.svn
+.svn/
+.settings/
+.gitignore
+*.project
+*.classpath 
+*.[classpath]
