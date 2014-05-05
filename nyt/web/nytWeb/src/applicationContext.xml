@@ -17,9 +17,9 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
          <property name="driverClass" value="com.mysql.jdbc.Driver" />
          <!-- 内网测试    -->
-         <property name="jdbcUrl" value="jdbc:mysql://192.168.1.66:3306/nyt?characterEncoding=utf-8"/>
-         <property name="user" value="consql"/>
-         <property name="password" value="consql123"/>
+         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/nyt?characterEncoding=utf-8"/>
+         <property name="user" value="root"/>
+         <property name="password" value="kawin"/>
       
 
          <!-- 正式外网   
@@ -181,6 +181,7 @@
 	<!-- 桉木service -->
 	<bean id="veneer_infoService" class="com.meibaolian.service.nyt.impl.Veneer_infoServiceImpl">
 		<property name="veneer_infoDao" ref="veneer_infoDao"></property>
+		<property name="userInfoDao" ref="userInfoDao"></property>
 	</bean>
 	
 	<bean id="userManagerService" class="com.meibaolian.service.user.imple.UserManagerService">

@@ -176,9 +176,10 @@ public abstract class BaseDao<T> implements IBaseDao<T>
 				+ className.getName()
 				+ ("".equals(UtilHelp.notNullStr(where)) ? "" : " where 1=1 "
 						+ where) + compagesOrders(orders);
-		// System.out.println("------sql:"+sql);
+		System.out.println(">>>>>>>>sql:"+sql );
 		Query query = session.getCurrentSession().createQuery(sql);
-		setParameter(query, params);
+		String sqlParams = setParameter(query, params);
+	    System.out.println("=============sqlParams:" + sqlParams );
 		if (page != -1 && pageSize != -1)
 		{
 			query.setFirstResult((page - 1) * pageSize).setMaxResults(pageSize);
@@ -194,7 +195,7 @@ public abstract class BaseDao<T> implements IBaseDao<T>
 					+ className.getName()
 					+ ("".equals(UtilHelp.notNullStr(where)) ? ""
 							: " where 1=1 " + where);
-			// System.out.println("------sqlCount" + sqlCount);
+			//System.out.println(">>>>>>>>>>>>sqlCount" + sqlCount);
 			query = session.getCurrentSession().createQuery(sqlCount);
 			setParameter(query, params);
 			Object obj = query.uniqueResult();
@@ -204,19 +205,20 @@ public abstract class BaseDao<T> implements IBaseDao<T>
 		return new QueryResult<T>(list, countNum);
 	}
 
-	protected final void setParameter(Query query, Object[] params)
+	protected final String setParameter(Query query, Object[] params)
 	{
-
+		StringBuffer sb = new StringBuffer();
 		if (query == null || params == null || params.length <= 0)
 		{
-			return;
+			return "";
 		}
 
 		for (int i = 0; i < params.length; i++)
 		{
 			query.setParameter(i, params[i]);
+			sb.append("【").append(params[i]).append("】");
 		}
-
+		return sb.toString();
 	}
 
 	protected static final String compagesOrders(
@@ -271,7 +273,7 @@ public abstract class BaseDao<T> implements IBaseDao<T>
 			countHql = countHql + where + compagesOrders(orders);
 		}
 		Query query = session.getCurrentSession().createQuery(hql);
-		setParameter(query, params);
+		String sqlParams = setParameter(query, params);
 		if (page != -1 && pageSize != -1)
 		{
 			query.setFirstResult((page - 1) * pageSize).setMaxResults(pageSize);

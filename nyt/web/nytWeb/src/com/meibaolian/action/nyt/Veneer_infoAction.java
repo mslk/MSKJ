@@ -3,9 +3,11 @@ package com.meibaolian.action.nyt;
 import com.meibaolian.action.base.BaseAction;
 import com.meibaolian.action.base.PageView;
 import com.meibaolian.action.base.WebUtil;
-import com.meibaolian.common.ActionContent;
+import com.meibaolian.common.CommonContent;
 import com.meibaolian.dao.base.QueryResult;
 import com.meibaolian.dto.CommonConditionDto;
+import com.meibaolian.dto.UserInfoDto;
+import com.meibaolian.entity.Usermanager;
 import com.meibaolian.entity.nyt.Veneer_infoBean;
 import com.meibaolian.service.nyt.Veneer_infoService;
 
@@ -35,10 +37,11 @@ public class Veneer_infoAction  extends BaseAction{
 	 */
 	public String search(){
 		dto.setKeyword( dto.getKeyword() != null ? dto.getKeyword().trim() : null );	
-	//	Usermanager usermanager = WebUtil.getAdmin(null);
-//		if(null != usermanager)
-//			userInfoDto.setUsermanager(usermanager);
- 		QueryResult<Veneer_infoBean> qr = veneer_infoService.searchList(dto, getPage(),PAGESIZE);
+		Usermanager usermanager = WebUtil.getAdmin(null);
+		 //dto.setInt_valueI(usermanager.getType());
+		UserInfoDto udto = new  UserInfoDto();
+		udto.setUsermanager(usermanager);
+ 		QueryResult<Veneer_infoBean> qr = veneer_infoService.searchList(udto ,dto, getPage(),PAGESIZE);
 		savePageView(new PageView<Veneer_infoBean>(qr, getPage(), PAGESIZE));
 		WebUtil.setRequestValue("dto", dto);
 		return SUCCESS;
@@ -49,18 +52,48 @@ public class Veneer_infoAction  extends BaseAction{
 	 * @return
 	 */
 	public String shield(){
-		String msg = ActionContent.MSG_OP_FAILE;
+		String msg = CommonContent.MSG_OP_FAILE;
 		if(null != dto.getInt_valueB() && dto.getInt_valueB() > 0 && dto.getInt_valueC() > -1) {
 			Veneer_infoBean bean = veneer_infoService.searchById(dto.getInt_valueB());
 			if(null != bean){
 				bean.setStatus(dto.getInt_valueC());
 				veneer_infoService.update(bean);
-				msg = ActionContent.MSG_OP_SUCCESS;
+				msg = CommonContent.MSG_OP_SUCCESS;
 			}
 		}
 		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
 		return MESSAGE;
 	}
-
+	
+	/**
+	 * 置顶,取消置顶
+	 * @return
+	 */
+	public String sortTop(){
+		String msg = CommonContent.MSG_OP_FAILE;
+		if(null != dto.getInt_valueB() && dto.getInt_valueB() > 0 && dto.getInt_valueC() > -1) {
+			Veneer_infoBean bean = veneer_infoService.searchById(dto.getInt_valueB());
+			if(null != bean){
+				bean.setOrderid(dto.getInt_valueC());
+				veneer_infoService.update(bean);
+				msg = CommonContent.MSG_OP_SUCCESS;
+			}
+		}
+		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
+		return MESSAGE;
+	}
+	/**
+	 * 删除
+	 * @return
+	 */
+	public String delete(){
+		String msg = CommonContent.MSG_OP_FAILE;
+		if(null != dto.getInt_id() && dto.getInt_id() > -1) {
+			veneer_infoService.delete(dto.getInt_id());
+			msg = CommonContent.MSG_OP_SUCCESS;
+		}
+		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
+		return MESSAGE;
+	}
 	 
 }

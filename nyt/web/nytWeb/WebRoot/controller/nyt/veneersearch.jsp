@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <form  id="form1" action="nyt/veneer_infosearch.action" method="post">
-<table class="publictable" width="90%" border="0" cellspacing="1" cellpadding="0">
+<table class="publictable" width="95%" border="0" cellspacing="1" cellpadding="0">
   <tr>
     <td colspan="7" class="thead">
  		<div class="tit_box">条件搜索</div>
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td>状态：</td>
 		<td>
 			<% //1供应, 2求购  %>
-			<input type="hidden" name="dto.int_valueA" id="int_valueA" value="1"/>
+			<input type="hidden" name="dto.int_valueA" id="int_valueA" value="${dto.int_valueA}"/>
 
 			<select name="dto.int_valueB" id="int_valueB">
 			  <option value="-1">全部</option>
@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<input type="text" id="keyword" name="dto.keyword" placeholder="姓名/公司名/手机号码"  value="${dto.keyword}"  />
 			<div class="tipsbox"><div id="keywordTip"></div></div>
 		</td>   --%>
-		<td>供货时间：</td>
+		<td>时间：</td>
 		<td colspan="3">
 		<input type="text" name="dto.begindate" id="begindate" size="20" readonly value="${dto.begindate}"  />
 		<input type="button" value="选择日期"   id="begindateBt"/>
@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</tr>
 </table>
 
-<table class="publictable" width="90%" border="0" cellspacing="1" cellpadding="0">
+<table class="publictable" width="95%" border="0" cellspacing="1" cellpadding="0">
   <tr>
     <td colspan="16" class="thead">
  <div class="tit_box">桉木供应列表</div>
@@ -90,13 +90,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td>数量</td>
 		<td>用途</td>
 		<td>等级</td>
-		<td>供货时间</td>
+		<td>时间</td>
 		<td>发布时间</td>
 		<td>状态</td>
-		<td>排序值</td>
+		<!--  <td>排序值</td>-->
 		<td>操作管理</td>
 	</tr>
-<c:forEach items="${request.result.queryList}" var="vo" >
+<c:forEach items="${request.result.queryList}" var="vo" varStatus="voindex">
 	<tr>
 		<td>${vo.userinfo.realname }</td>
 		<td>${vo.price }</td>
@@ -129,18 +129,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		<c:when test="${vo.status==1 }"><label style="color: red">屏蔽</label></c:when>
 	    	</c:choose>
 	    </td>
-	    <td>${vo.orderid}</td>
-	    <td>
-	    	<a class="bts_link" href="userInfo/show.action?id=${vo.id}" target="main">详情</a> 
-	    	<a class="bts_link" href="userInfo/nyt/veneer_infoshield.action?dto.int_valueA=1&dto.int_valueB=${vo.id}&dto.int_valueC=0" >修改排序</a> 
+	    <%--  <td>${vo.orderid}</td> --%>
+	    <td>	
+	    	<a class="bts_link" href="nyt/veneer_infodetail.action?dto.int_valueA=${dto.int_valueA}&dto.int_id=${vo.id}" target="main">详情</a> 
 	    	<c:choose>
 	    		<c:when test="${vo.status==0 }">
-	    			<a class="bts_link" href="javascript:delTips('确定屏蔽?', 'nyt/veneer_infoshield.action?dto.int_valueA=1&dto.int_valueB=${vo.id}&dto.int_valueC=1')" >屏蔽</a>
+	    			<a class="bts_link" href="javascript:delTips('确定屏蔽?', 'nyt/veneer_infoshield.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueB=${vo.id}&dto.int_valueC=1')" >屏蔽</a>
 	    		</c:when>
 	    		<c:when test="${vo.status==1 }">
-	    			<a style="color: blue" class="bts_link" href="javascript:delTips('确定恢复?', 'nyt/veneer_infoshield.action?dto.int_valueA=1&dto.int_valueB=${vo.id}&dto.int_valueC=0')" >恢复</a>
+	    			<a style="color: blue" class="bts_link" href="javascript:delTips('确定恢复?', 'nyt/veneer_infoshield.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueB=${vo.id}&dto.int_valueC=0')" >恢复</a>
 	    		</c:when>
 	    	</c:choose>
+	    	<a class="bts_link" href="javascript:delTips('确定删除?','nyt/veneer_infodelete.action?dto.int_valueA=${dto.int_valueA}&dto.int_id=${vo.id}')" target="main">删除</a> 
+	    	<%--首页,前5条显示取消置顶链接 --%>
+	    	<c:if test="${1==result.currentlyPage && voindex.index ==0}">
+	    		<a class="bts_link" href="javascript:delTips('确定取消置顶?', 'nyt/veneer_infosortTop.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueC=0&dto.int_valueB=${vo.id }')" >取消置顶</a> 
+	    	</c:if>
+	    	<%--首页第1条就不用置顶了 A类型1供应,2求购 B记录id C置顶值--%>
+	    	<c:if test="${!(1==result.currentlyPage && 0 == voindex.index)}">
+	    		<a class="bts_link" href="javascript:delTips('确定置顶?', 'nyt/veneer_infosortTop.action?dto.int_valueA=${dto.int_valueA }&dto.int_valueC=${vo.orderid+1}&dto.int_valueB=${vo.id }')" >置顶</a> 
+	    	</c:if>
+	    	
 	    </td>
 	</tr>
 	

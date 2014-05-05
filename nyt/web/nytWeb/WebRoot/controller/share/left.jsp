@@ -101,7 +101,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </ul>
        <a href="javascript:onClick=viewChild('child_6')" class="one_m_out">求购信息管理</a>
       <ul id="child_6" style="display:none">
-        <li><a href="purchase/search.action" class="tow_m_out" target="main">求购信息列表</a></li>
+       <li><a href="nyt/veneer_infosearch.action?dto.int_valueA=2" class="tow_m_out" target="main">桉木求购信息</a></li>
+      <!--   <li><a href="purchase/search.action" class="tow_m_out" target="main">求购信息列表</a></li> -->
       </ul>
 	  <!---->
       <a href="javascript:onClick=viewChild('child_8')" class="one_m_out">信息排序置顶管理</a>
