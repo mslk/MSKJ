@@ -17,9 +17,9 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
          <property name="driverClass" value="com.mysql.jdbc.Driver" />
          <!-- 内网测试    -->
-         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/nyt?characterEncoding=utf-8"/>
-         <property name="user" value="root"/>
-         <property name="password" value="kawin"/>
+         <property name="jdbcUrl" value="jdbc:mysql://192.168.1.66:3306/nyt?characterEncoding=utf-8"/>
+         <property name="user" value="consql"/>
+         <property name="password" value="consql123"/>
       
 
          <!-- 正式外网   
@@ -102,11 +102,18 @@
 		<property name="session" ref="sessionFactory"></property>
 	</bean>	
 
+
 	<!-- 桉木dao -->
 	<bean id="veneer_infoDao" class="com.meibaolian.dao.nyt.impl.Veneer_infoDaoImpl" parent="base"></bean>
+	<!-- 淀粉/原木/胶合板 供应 dao -->
+	<bean id="woodSupplyDao" class="com.meibaolian.dao.nyt.impl.WoodSupplyDaoImpl" parent="base"></bean>
+	<!-- 淀粉/原木/胶合板 求购 dao -->
+	<bean id="woodPurchaseDao" class="com.meibaolian.dao.nyt.impl.WoodPurchaseDaoImpl" parent="base"></bean>
+	 
 	<bean id="userManagerDao" class="com.meibaolian.dao.user.imple.UserManagerDao"
 		parent="base">
 	</bean>
+	
 
 	<bean id="pushTaskDao" class="com.meibaolian.dao.task.imple.PushTaskDao"
 		parent="base"></bean>
@@ -181,6 +188,16 @@
 	<!-- 桉木service -->
 	<bean id="veneer_infoService" class="com.meibaolian.service.nyt.impl.Veneer_infoServiceImpl">
 		<property name="veneer_infoDao" ref="veneer_infoDao"></property>
+		<property name="userInfoDao" ref="userInfoDao"></property>
+	</bean>
+	<!-- 淀粉/原木/胶合板 供应service -->
+	<bean id="woodSupplyService" class="com.meibaolian.service.nyt.impl.WoodSupplyServiceImpl">
+		<property name="woodSupplyDao" ref="woodSupplyDao"></property>
+		<property name="userInfoDao" ref="userInfoDao"></property>
+	</bean>
+	<!-- 淀粉/原木/胶合板 求购service -->
+	<bean id="woodPurchaseService" class="com.meibaolian.service.nyt.impl.WoodPurchaseServiceImpl">
+		<property name="woodPurchaseDao" ref="woodPurchaseDao"></property>
 		<property name="userInfoDao" ref="userInfoDao"></property>
 	</bean>
 	
@@ -364,11 +381,20 @@
 	</bean>
 		<!-- action  -->
 		
-		<!-- 桉木action -->
+	<!-- 桉木action -->
 	<bean id="veneer_infoAction" class="com.meibaolian.action.nyt.Veneer_infoAction" scope="prototype">
 		<property name="veneer_infoService" ref="veneer_infoService"></property>
 	</bean>
-   		<!-- 求购信息排序action  -->
+	<!-- 淀粉/原木/胶合板 供应action -->
+	<bean id="woodSupplyAction" class="com.meibaolian.action.nyt.WoodSupplyAction" scope="prototype">
+		<property name="woodSupplyService" ref="woodSupplyService"></property>
+	</bean>
+	<!-- 淀粉/原木/胶合板 求购action -->
+	<bean id="woodPurchaseAction" class="com.meibaolian.action.nyt.WoodPurchaseAction" scope="prototype">
+		<property name="woodPurchaseService" ref="woodPurchaseService"></property>
+	</bean>
+	
+   	<!-- 求购信息排序action  -->
 	<bean id="searchSortPurchase" class="com.meibaolian.action.sortOrder.SearchPurchase"
 		scope="prototype">
 		<property name="purchaseService" ref="purchaseService"></property>
@@ -378,7 +404,7 @@
 		scope="prototype">
 		<property name="purchaseService" ref="purchaseService"></property>
 	</bean>
-		<!-- 供应信息排序action  -->
+	<!-- 供应信息排序action  -->
 	<bean id="searchSortProvider" class="com.meibaolian.action.sortOrder.SearchProvider"
 		scope="prototype">
 		<property name="providerService" ref="providerService"></property>

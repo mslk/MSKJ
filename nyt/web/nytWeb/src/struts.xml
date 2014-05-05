@@ -113,7 +113,20 @@
 	   <action name="veneer_info*"  class="veneer_infoAction" method="{1}">
 			<result name="input">/controller/nyt/veneersearch.jsp</result>
 			<result name="success">/controller/nyt/veneersearch.jsp</result>
+			<result name="result">/controller/nyt/veneershow.jsp</result>
 	   </action> 
+	    <!-- 淀粉/原木/胶合板 供应 action -->
+	   <action name="woodSupply*"  class="woodSupplyAction" method="{1}">
+			<result name="input">/controller/nyt/woodsupplysearch.jsp</result>
+			<result name="success">/controller/nyt/woodsupplysearch.jsp</result>
+			<result name="result">/controller/nyt/woodsupplyshow.jsp</result>
+	   </action>
+	    <!-- 淀粉/原木/胶合板 求购 action -->
+	   <action name="woodPurchase*"  class="woodPurchaseAction" method="{1}">
+			<result name="input">/controller/nyt/woodpurchasesearch.jsp</result>
+			<result name="success">/controller/nyt/woodpurchasesearch.jsp</result>
+			<result name="result">/controller/nyt/woodpurchaseshow.jsp</result>
+	   </action>
   </package>
   <!-- 用户管理 -->
   <package name="user" namespace="/user" extends="parent"> 

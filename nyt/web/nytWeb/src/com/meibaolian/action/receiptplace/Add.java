@@ -71,7 +71,7 @@ public class Add extends BaseAction {
 				msg += "并加入到交货地地区。";
 			}
 		}
-		super.saveMessage(msg, null);
+		super.saveMessage(msg, "receiptplace/search.action");
 		return MESSAGE;
 	}
 

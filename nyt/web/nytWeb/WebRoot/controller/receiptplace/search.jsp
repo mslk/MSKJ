@@ -64,9 +64,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <td>${receiptPlace.name }</td>
 	    <td>${receiptPlace.shortname }</td>
 	    <td>
-	    	<a class="bts_link" href="receiptplace/show.action?id=${receiptPlace.id}" target="_blank">详情</a> 
-	    	<a class="bts_link" href="receiptplace/initUpdate.action?id=${receiptPlace.id}" target="_blank">修改</a> 
-	    	<a class="bts_link" href="javascript:delTips('确定加入交货地?', 'receiptplace/addDelivery.action?id=${receiptPlace.id}')" >加入交货地</a> 
+	    	<a class="bts_link" href="receiptplace/show.action?id=${receiptPlace.id}" target="main">详情</a> 
+	    	<a class="bts_link" href="receiptplace/initUpdate.action?id=${receiptPlace.id}" target="main">修改</a> 
+	    	<%-- <a class="bts_link" href="javascript:delTips('确定加入交货地?', 'receiptplace/addDelivery.action?id=${receiptPlace.id}')" >加入交货地</a>  --%>
 	    </td>
 	</tr>
 	

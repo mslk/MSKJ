@@ -8,6 +8,12 @@ import com.meibaolian.service.deliveryplace.IDeliveryPlaceService;
 import com.meibaolian.service.receiptplace.IReceiptPlaceService;
 import com.meibaolian.util.UtilHelp;
 
+/**
+ * 
+ * @author zhaojian
+ * @version 1.1[2014.05.05 11:59]
+ *
+ */
 public class Update extends BaseAction {
 
 	/**
@@ -54,7 +60,7 @@ public class Update extends BaseAction {
 				return SUCCESS;
 			}
 		}
-		super.saveMessage(msg, null);
+		super.saveMessage(msg, "receiptplace/search.action");
 		return MESSAGE;
 	}
 	
@@ -81,7 +87,7 @@ public class Update extends BaseAction {
 				msg = "此地区信息已不存在！";
 			}
 		}
-		super.saveMessage(msg, null);
+		super.saveMessage(msg, "receiptplace/search.action");
 		return MESSAGE;
 	}
 	/**

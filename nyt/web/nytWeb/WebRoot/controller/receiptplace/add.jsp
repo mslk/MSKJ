@@ -103,7 +103,7 @@
 					<div class="tipsbox"><div id="shortnameTip"></div></div>
 				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td width="30%">
 					加入交货地地区:
 				</td>
@@ -112,7 +112,7 @@
 				</td>
 				<td width="40%">
 				</td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td colspan="3" style="text-align: center">
 					  <input type="submit"  value="提交" />

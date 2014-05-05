@@ -97,11 +97,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <a href="javascript:onClick=viewChild('child_7')" class="one_m_out">供应信息管理</a>
       <ul id="child_7" style="display:none">
         <li><a href="nyt/veneer_infosearch.action?dto.int_valueA=1" class="tow_m_out" target="main">桉木供应信息</a></li>
+        <li><a href="nyt/woodSupplysearch.action?dto.int_valueA=2" class="tow_m_out" target="main">胶合板供应信息</a></li>
+        <li><a href="nyt/woodSupplysearch.action?dto.int_valueA=3" class="tow_m_out" target="main">原木供应信息</a></li>
+        <li><a href="nyt/woodSupplysearch.action?dto.int_valueA=4" class="tow_m_out" target="main">淀粉供应信息</a></li>
 <!--         <li><a href="provider/search.action" class="tow_m_out" target="main">供应信息列表</a></li> -->
       </ul>
        <a href="javascript:onClick=viewChild('child_6')" class="one_m_out">求购信息管理</a>
       <ul id="child_6" style="display:none">
        <li><a href="nyt/veneer_infosearch.action?dto.int_valueA=2" class="tow_m_out" target="main">桉木求购信息</a></li>
+       <li><a href="nyt/woodPurchasesearch.action?dto.int_valueA=2" class="tow_m_out" target="main">胶合板求购信息</a></li>
+       <li><a href="nyt/woodPurchasesearch.action?dto.int_valueA=3" class="tow_m_out" target="main">原木求购信息</a></li>
+       <li><a href="nyt/woodPurchasesearch.action?dto.int_valueA=4" class="tow_m_out" target="main">淀粉求购信息</a></li>
       <!--   <li><a href="purchase/search.action" class="tow_m_out" target="main">求购信息列表</a></li> -->
       </ul>
 	  <!---->

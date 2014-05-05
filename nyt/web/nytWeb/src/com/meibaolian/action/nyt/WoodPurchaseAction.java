@@ -8,21 +8,22 @@ import com.meibaolian.dao.base.QueryResult;
 import com.meibaolian.dto.CommonConditionDto;
 import com.meibaolian.dto.UserInfoDto;
 import com.meibaolian.entity.Usermanager;
-import com.meibaolian.entity.nyt.Veneer_infoBean;
-import com.meibaolian.service.nyt.Veneer_infoService;
+import com.meibaolian.entity.nyt.WoodPurchaseBean;
+import com.meibaolian.service.nyt.WoodPurchaseService;
 
 /**
- * 桉木
+ * 
+ * 淀粉/原木/胶合板 求购 Action
  * @author Kawin
- * @version 1.0[2014.05.03 21:02]
- *
+ * @version 1.0[2014.05.05 15:34]
+ * 
  */
-public class Veneer_infoAction  extends BaseAction{
+public class WoodPurchaseAction  extends BaseAction{
 	private static final long serialVersionUID = 1L;
-	private Veneer_infoService veneer_infoService;
+	private WoodPurchaseService woodPurchaseService;
 	private CommonConditionDto dto = new CommonConditionDto();
-	public void setVeneer_infoService(Veneer_infoService veneer_infoService) {
-		this.veneer_infoService = veneer_infoService;
+	public void setWoodPurchaseService(WoodPurchaseService woodPurchaseService) {
+		this.woodPurchaseService = woodPurchaseService;
 	}
 	public CommonConditionDto getDto() {
 		return dto;
@@ -41,8 +42,8 @@ public class Veneer_infoAction  extends BaseAction{
 		 //dto.setInt_valueI(usermanager.getType());
 		UserInfoDto udto = new  UserInfoDto();
 		udto.setUsermanager(usermanager);
- 		QueryResult<Veneer_infoBean> qr = veneer_infoService.searchList(udto ,dto, getPage(),PAGESIZE);
-		savePageView(new PageView<Veneer_infoBean>(qr, getPage(), PAGESIZE));
+ 		QueryResult<WoodPurchaseBean> qr = woodPurchaseService.searchList(udto ,dto, getPage(),PAGESIZE);
+		savePageView(new PageView<WoodPurchaseBean>(qr, getPage(), PAGESIZE));
 		WebUtil.setRequestValue("dto", dto);
 		return SUCCESS;
 	}
@@ -54,14 +55,14 @@ public class Veneer_infoAction  extends BaseAction{
 	public String shield(){
 		String msg = CommonContent.MSG_OP_FAILE;
 		if(null != dto.getInt_valueB() && dto.getInt_valueB() > 0 && dto.getInt_valueC() > -1) {
-			Veneer_infoBean bean = veneer_infoService.searchById(dto.getInt_valueB());
+			WoodPurchaseBean bean = woodPurchaseService.searchById(dto.getInt_valueB());
 			if(null != bean){
 				bean.setStatus(dto.getInt_valueC());
-				veneer_infoService.update(bean);
+				woodPurchaseService.update(bean);
 				msg = CommonContent.MSG_OP_SUCCESS;
 			}
 		}
-		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
+		super.saveMessage(msg, "nyt/woodPurchasesearch.action?dto.int_valueA="+dto.getInt_valueA());
 		return MESSAGE;
 	}
 	
@@ -72,14 +73,14 @@ public class Veneer_infoAction  extends BaseAction{
 	public String sortTop(){
 		String msg = CommonContent.MSG_OP_FAILE;
 		if(null != dto.getInt_valueB() && dto.getInt_valueB() > 0 && dto.getInt_valueC() > -1) {
-			Veneer_infoBean bean = veneer_infoService.searchById(dto.getInt_valueB());
+			WoodPurchaseBean bean = woodPurchaseService.searchById(dto.getInt_valueB());
 			if(null != bean){
 				bean.setOrderid(dto.getInt_valueC());
-				veneer_infoService.update(bean);
+				woodPurchaseService.update(bean);
 				msg = CommonContent.MSG_OP_SUCCESS;
 			}
 		}
-		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
+		super.saveMessage(msg, "nyt/woodPurchasesearch.action?dto.int_valueA="+dto.getInt_valueA());
 		return MESSAGE;
 	}
 	/**
@@ -89,10 +90,10 @@ public class Veneer_infoAction  extends BaseAction{
 	public String delete(){
 		String msg = CommonContent.MSG_OP_FAILE;
 		if(null != dto.getInt_id() && dto.getInt_id() > -1) {
-			veneer_infoService.delete(dto.getInt_id());
+			woodPurchaseService.delete(dto.getInt_id());
 			msg = CommonContent.MSG_OP_SUCCESS;
 		}
-		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
+		super.saveMessage(msg, "nyt/woodPurchasesearch.action?dto.int_valueA="+dto.getInt_valueA());
 		return MESSAGE;
 	}
 	
@@ -102,7 +103,7 @@ public class Veneer_infoAction  extends BaseAction{
 	 */
 	public String detail(){
 		if(null != dto.getInt_id() && dto.getInt_id() > -1) {
-			Veneer_infoBean vo = veneer_infoService.searchById(dto.getInt_id());
+			WoodPurchaseBean vo = woodPurchaseService.searchById(dto.getInt_id());
 				if(null != vo){
 					WebUtil.setRequestValue("vo", vo);
 					return SHOWRESULT;

@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>桉木查询</title>
+    <title>木材查询</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script id="themeScript" type="text/javascript" src="js/theme.js"></script>
 	<script type="text/javascript" src="js/jquery1.6.js"></script>
@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</script>
 </head>
 <body>
-<form  id="form1" action="nyt/veneer_infosearch.action" method="post">
+<form  id="form1" action="nyt/woodSupplysearch.action" method="post">
 <table class="publictable" width="95%" border="0" cellspacing="1" cellpadding="0">
   <tr>
     <td colspan="7" class="thead">
@@ -88,9 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 	<td>手机号码</td> -->
 		<td>价格</td>
 		<td>数量</td>
-		<td>用途</td>
-		<td>等级</td>
-		<td>时间</td>
+		<td>有效期</td>
 		<td>发布时间</td>
 		<td>状态</td>
 		<!--  <td>排序值</td>-->
@@ -101,9 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td>${vo.userinfo.realname }</td>
 		<td>${vo.price }</td>
 		<td>${vo.number }</td>
-		<td>${vo.reference }</td>
-		<td>${vo.level }</td>
-	    <td>${vo.lead_time }</td>
+		<td>${vo.valid }</td>
 	    <td>${vo.addtime }</td>
 	    <td>
 	    	<c:choose>
@@ -113,23 +109,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </td>
 	    <%--  <td>${vo.orderid}</td> --%>
 	    <td>	
-	    	<a class="bts_link" href="nyt/veneer_infodetail.action?dto.int_valueA=${dto.int_valueA}&dto.int_id=${vo.id}" target="main">详情</a> 
+	    	<a class="bts_link" href="nyt/woodSupplydetail.action?dto.int_valueA=${dto.int_valueA}&dto.int_id=${vo.id}" target="main">详情</a> 
 	    	<c:choose>
 	    		<c:when test="${vo.status==0 }">
-	    			<a class="bts_link" href="javascript:delTips('确定屏蔽?', 'nyt/veneer_infoshield.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueB=${vo.id}&dto.int_valueC=1')" >屏蔽</a>
+	    			<a class="bts_link" href="javascript:delTips('确定屏蔽?', 'nyt/woodSupplyshield.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueB=${vo.id}&dto.int_valueC=1')" >屏蔽</a>
 	    		</c:when>
 	    		<c:when test="${vo.status==1 }">
-	    			<a style="color: blue" class="bts_link" href="javascript:delTips('确定恢复?', 'nyt/veneer_infoshield.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueB=${vo.id}&dto.int_valueC=0')" >恢复</a>
+	    			<a style="color: blue" class="bts_link" href="javascript:delTips('确定恢复?', 'nyt/woodSupplyshield.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueB=${vo.id}&dto.int_valueC=0')" >恢复</a>
 	    		</c:when>
 	    	</c:choose>
-	    	<a class="bts_link" href="javascript:delTips('确定删除?','nyt/veneer_infodelete.action?dto.int_valueA=${dto.int_valueA}&dto.int_id=${vo.id}')" target="main">删除</a> 
+	    	<a class="bts_link" href="javascript:delTips('确定删除?','nyt/woodSupplydelete.action?dto.int_valueA=${dto.int_valueA}&dto.int_id=${vo.id}')" target="main">删除</a> 
 	    	<%--首页,前5条显示取消置顶链接 --%>
 	    	<c:if test="${1==result.currentlyPage && voindex.index ==0}">
-	    		<a class="bts_link" href="javascript:delTips('确定取消置顶?', 'nyt/veneer_infosortTop.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueC=0&dto.int_valueB=${vo.id }')" >取消置顶</a> 
+	    		<a class="bts_link" href="javascript:delTips('确定取消置顶?', 'nyt/woodSupplysortTop.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueC=0&dto.int_valueB=${vo.id }')" >取消置顶</a> 
 	    	</c:if>
 	    	<%--首页第1条就不用置顶了 A类型1供应,2求购 B记录id C置顶值--%>
 	    	<c:if test="${!(1==result.currentlyPage && 0 == voindex.index)}">
-	    		<a class="bts_link" href="javascript:delTips('确定置顶?', 'nyt/veneer_infosortTop.action?dto.int_valueA=${dto.int_valueA }&dto.int_valueC=${vo.orderid+1}&dto.int_valueB=${vo.id }')" >置顶</a> 
+	    		<a class="bts_link" href="javascript:delTips('确定置顶?', 'nyt/woodSupplysortTop.action?dto.int_valueA=${dto.int_valueA }&dto.int_valueC=${vo.orderid+1}&dto.int_valueB=${vo.id }')" >置顶</a> 
 	    	</c:if>
 	    	
 	    </td>
