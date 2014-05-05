@@ -22,7 +22,7 @@ import com.meibaolian.web.nyt.dto.VeneerDTo;
 /** 
  * 单板供应查询  
  * @author Kawin
- * @version 1.0[2014.05.04 11:45]
+ * @version 1.0[2014.05.05 10:45]
  *
  */
 public class VeneerSearch extends BaseServlet {
