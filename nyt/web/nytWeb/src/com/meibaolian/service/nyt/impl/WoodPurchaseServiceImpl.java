@@ -14,9 +14,11 @@ import com.meibaolian.entity.nyt.WoodPurchaseBean;
 import com.meibaolian.service.nyt.WoodPurchaseService;
 
 /**
+ * 
  * 淀粉/原木/胶合板 求购Service实现
- * @author Kawin
+ * @author Kawin.zhao zhaojian
  * @version 1.0[2014.05.05 15:22]
+ * 
  */
 public class WoodPurchaseServiceImpl implements WoodPurchaseService{
 	private WoodPurchaseDao woodPurchaseDao;
@@ -76,11 +78,4 @@ public class WoodPurchaseServiceImpl implements WoodPurchaseService{
 		}
 		return woodPurchaseDao.searchList(dto, page, pageSize);
 	}
-
-	/*public static void main(String[] args) {
-		StringBuffer sb = new StringBuffer("abcdefghijklmn");
-		String s = sb.substring(0,sb.length()-1).toString();
-		StringBuffer s2 = sb.replace(sb.length()-1, sb.length(), "y");
-		System.out.println(s2);
-	}*/
 }

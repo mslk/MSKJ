@@ -7,7 +7,7 @@ import com.meibaolian.entity.nyt.WoodSupplyBean;
 
 /**
  * 淀粉/原木/胶合板 供应dao接口
- * @author Kawin
+ * @author zhaojian
  * @version 1.0[2014.05.05 16:24]
  */
 public interface WoodSupplyDao extends IBaseDao<WoodSupplyBean>{

@@ -17,9 +17,9 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
          <property name="driverClass" value="com.mysql.jdbc.Driver" />
          <!-- 内网测试    -->
-         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/nyt?characterEncoding=utf-8"/>
-         <property name="user" value="root"/>
-         <property name="password" value="kawin"/>
+         <property name="jdbcUrl" value="jdbc:mysql://192.168.1.66:3306/nyt?characterEncoding=utf-8"/>
+         <property name="user" value="consql"/>
+         <property name="password" value="consql123"/>
       
 
          <!-- 正式外网   
@@ -109,6 +109,8 @@
 	<bean id="woodSupplyDao" class="com.meibaolian.dao.nyt.impl.WoodSupplyDaoImpl" parent="base"></bean>
 	<!-- 淀粉/原木/胶合板 求购 dao -->
 	<bean id="woodPurchaseDao" class="com.meibaolian.dao.nyt.impl.WoodPurchaseDaoImpl" parent="base"></bean>
+	<!-- 菜单选项列表 dao -->
+	<bean id="typeListDao" class="com.meibaolian.dao.nyt.impl.TypeListDaoImpl" parent="base"></bean>
 	 
 	<bean id="userManagerDao" class="com.meibaolian.dao.user.imple.UserManagerDao"
 		parent="base">
@@ -199,6 +201,10 @@
 	<bean id="woodPurchaseService" class="com.meibaolian.service.nyt.impl.WoodPurchaseServiceImpl">
 		<property name="woodPurchaseDao" ref="woodPurchaseDao"></property>
 		<property name="userInfoDao" ref="userInfoDao"></property>
+	</bean>
+	<!-- 菜单选项列表 service -->
+	<bean id="typeListService" class="com.meibaolian.service.nyt.impl.TypeListServiceImpl">
+		<property name="typeListDao" ref="typeListDao"></property>
 	</bean>
 	
 	<bean id="userManagerService" class="com.meibaolian.service.user.imple.UserManagerService">
@@ -392,6 +398,10 @@
 	<!-- 淀粉/原木/胶合板 求购action -->
 	<bean id="woodPurchaseAction" class="com.meibaolian.action.nyt.WoodPurchaseAction" scope="prototype">
 		<property name="woodPurchaseService" ref="woodPurchaseService"></property>
+	</bean>
+	<!-- 菜单选项列表 action -->
+	<bean id="typeListAction" class="com.meibaolian.action.nyt.TypeListAction" scope="prototype">
+		<property name="typeListService" ref="typeListService"></property>
 	</bean>
 	
    	<!-- 求购信息排序action  -->

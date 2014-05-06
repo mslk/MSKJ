@@ -12,7 +12,12 @@ import com.meibaolian.dto.UserInfoDto;
 import com.meibaolian.entity.UserInfo;
 import com.meibaolian.entity.nyt.Veneer_infoBean;
 import com.meibaolian.service.nyt.Veneer_infoService;
-
+/**
+ * 桉木Service实现类
+ * @author zhaojian
+ * @version 1.0[2014.05.03 15:33]
+ *
+ */
 public class Veneer_infoServiceImpl implements Veneer_infoService{
 	private Veneer_infoDao veneer_infoDao;
 	private IUserInfoDao userInfoDao;

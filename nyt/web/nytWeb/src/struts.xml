@@ -127,6 +127,12 @@
 			<result name="success">/controller/nyt/woodpurchasesearch.jsp</result>
 			<result name="result">/controller/nyt/woodpurchaseshow.jsp</result>
 	   </action>
+	    <!-- 菜单选项列表 action -->
+	   <action name="typeList*"  class="typeListAction" method="{1}">
+			<result name="input">/controller/nyt/typelistsearch.jsp</result>
+			<result name="success">/controller/nyt/typelistsearch.jsp</result>
+			<!-- <result name="result">/controller/nyt/typelistshow.jsp</result> -->
+	   </action>
   </package>
   <!-- 用户管理 -->
   <package name="user" namespace="/user" extends="parent"> 

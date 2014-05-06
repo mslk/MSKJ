@@ -15,7 +15,7 @@ import com.meibaolian.util.UtilHelp;
 
 /**
  * 桉木dao实现类
- * @author Kawin
+ * @author zhaojian
  * @version 1.0[2014.05.03 14:24]
  */
 public class Veneer_infoDaoImpl extends BaseDao<Veneer_infoBean> implements Veneer_infoDao{

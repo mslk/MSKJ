@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <li><a href="nyt/woodPurchasesearch.action?dto.int_valueA=4" class="tow_m_out" target="main">淀粉求购信息</a></li>
       <!--   <li><a href="purchase/search.action" class="tow_m_out" target="main">求购信息列表</a></li> -->
       </ul>
-	  <!---->
+	  <!--
       <a href="javascript:onClick=viewChild('child_8')" class="one_m_out">信息排序置顶管理</a>
       <ul id="child_8" style="display:none">
         <li><a href="sortOrder/searchPurchase.action" class="tow_m_out" target="main">求购信息</a></li>
@@ -125,13 +125,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li><a href="deliveryplace/searchArea.action" class="tow_m_out" target="main">交货地地区列表</a></li>
         <%--<li><a href="controller/deliveryplace/add.jsp" class="tow_m_out" target="main">添加交货地</a></li>
         --%><li><a href="deliveryplace/search.action" class="tow_m_out" target="main">交货地列表</a></li>
-      </ul>
+      </ul>-->
  	  <a href="javascript:onClick=viewChild('child_11')" class="one_m_out">地区管理</a>
       <ul id="child_11" style="display:none">
         <li><a href="controller/receiptplace/add.jsp" class="tow_m_out" target="main">添加地区</a></li>
         <li><a href="receiptplace/search.action" class="tow_m_out" target="main">地区列表</a></li>
       </ul>
-      
+      <!-- 
       <a href="javascript:onClick=viewChild('child_12')" class="one_m_out">货讯管理</a>
       <ul id="child_12" style="display:none">
         <li><a href="transportDemand/search.action" class="tow_m_out" target="main">货讯列表</a></li>
@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <a href="javascript:onClick=viewChild('child_13')" class="one_m_out">车讯管理</a>
       <ul id="child_13" style="display:none">
          <li><a href="transportSupply/search.action" class="tow_m_out" target="main">车讯列表</a></li>
-      </ul>
+      </ul> -->
       <a href="javascript:onClick=viewChild('child_9')" class="one_m_out">广告与菜单信息功能</a>
       	 <ul id="child_9" style="display:none">
       	    <li><a href="otherAid/advertisingShow.action" class="tow_m_out" target="main">广告管理</a></li>
@@ -151,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	   <li><a href="controller/version/upFile.jsp" class="tow_m_out" target="main">上传android新版本</a></li>
       	   <li><a href="controller/version/list.jsp" class="tow_m_out" target="main">修改版本信息</a></li>
       	   </ul>
-      <a href="javascript:onClick=viewChild('child_15')" class="one_m_out">留言管理</a>
+     <!--  <a href="javascript:onClick=viewChild('child_15')" class="one_m_out">留言管理</a>
    	   <ul id="child_15" style="display:none">
 	   	   <li><a href="userProposal/search.action" class="tow_m_out" target="main">留言列表</a></li>
    	   </ul>
@@ -167,14 +167,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   	   <li><a href="otherAid/searchQualityControl.action" class="tow_m_out" target="main">质检报告查询</a></li>
            <li><a href="controller/otherAid/addQualityControl.jsp" class="tow_m_out" target="main">添加质检报告</a></li>
    	   </ul>
-   	   
+   	    -->
    	   
       <a href="javascript:onClick=viewChild('child_18')" class="one_m_out">其他辅助功能</a>
       <ul id="child_18" style="display:none">
         <li><a href="otherAid/skipToImportRateData.action" class="tow_m_out" target="main">导入运价数据</a></li>
-        <li><a href="otherAid/phoneStats.action" class="tow_m_out" target="main">拨打电话次数统计</a></li>
+        <li><a href="nyt/typeListsearch.action" class="tow_m_out" target="main">选项列表管理</a></li>
+        
+        <%-- <li><a href="otherAid/phoneStats.action" class="tow_m_out" target="main">拨打电话次数统计</a></li>
         <li><a href="controller/userManager/update.jsp" class="tow_m_out" target="main">修改管理员密码</a></li>
-         <%--<li><a href="otherAid/searchQualityControl.action" class="tow_m_out" target="main">质检报告查询</a></li>
+        <li><a href="otherAid/searchQualityControl.action" class="tow_m_out" target="main">质检报告查询</a></li>
         <li><a href="controller/otherAid/addQualityControl.jsp" class="tow_m_out" target="main">添加质检报告</a></li>
        
         <li><a href="controller/otherAid/importAreaData.jsp" class="tow_m_out" target="main">导入地区数据</a></li>

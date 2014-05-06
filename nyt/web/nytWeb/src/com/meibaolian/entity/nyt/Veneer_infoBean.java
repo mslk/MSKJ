@@ -1,7 +1,5 @@
 package com.meibaolian.entity.nyt;
 
-import java.sql.Timestamp;
-
 import com.meibaolian.entity.UserInfo;
 
 /**

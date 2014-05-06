@@ -1,5 +1,27 @@
+
+工程运行环境:
 1. JDK1.6以上版本
 2. Tomcat6.0以上版本
-3. Apache2.2
+3. Apache2.2 ,配置好映射
 4. Redis2.8.1
 5. mysql5.6 
+6.在linux中创建如下目录: 
+   a. 文件上传路径: /opt/nyt/icon/
+   b. 临时路径: /tmp/nyt/
+   c. log日志路径:  /tmp/nytWS/
+		    /tmp/nytWeb/	
+部署需提供的条件
+1. 提供服务器ip,用户名,密码 
+2. 提供tomcat,Apache安装目录及版本(是否使用域名访问,是否已经做好文件夹映射)
+3. 提供数据库访问ip,数据库名,用户名,密码(确认库是否导入)
+4. 提供redis访问地址及端口
+
+接口程序部署步骤:
+1.更改jdbc.properties
+2.config.properties 运行模式servicemode/redis访问地址及端口
+3.log4j.properties配置的文件夹
+4.在linux中创建如下目录: 
+   a. 文件上传路径: /opt/nyt/icon/
+   b. 临时路径: /tmp/nyt/
+   c. log日志路径:  /tmp/nytWS/
+		    /tmp/nytWeb/		

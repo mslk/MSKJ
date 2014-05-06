@@ -8,7 +8,7 @@ import com.meibaolian.entity.nyt.WoodPurchaseBean;
 
 /**
  * 淀粉/原木/胶合板 求购dao接口
- * @author Kawin
+ * @author zhaojian
  * @version 1.0[2014.05.05 15:24]
  */
 public interface WoodPurchaseDao extends IBaseDao<WoodPurchaseBean>{

@@ -6,24 +6,22 @@ import com.meibaolian.action.base.WebUtil;
 import com.meibaolian.common.CommonContent;
 import com.meibaolian.dao.base.QueryResult;
 import com.meibaolian.dto.CommonConditionDto;
-import com.meibaolian.dto.UserInfoDto;
-import com.meibaolian.entity.Usermanager;
-import com.meibaolian.entity.nyt.Veneer_infoBean;
-import com.meibaolian.service.nyt.Veneer_infoService;
+import com.meibaolian.entity.nyt.TypeListBean;
+import com.meibaolian.service.nyt.TypeListService;
 
 /**
  * 
- * 桉木
+ * 菜单选项列表Action
  * @author Kawin.zhao
- * @version 1.0[2014.05.03 21:02]
+ * @version 1.0[2014.05.06 11:57]
  *
  */
-public class Veneer_infoAction  extends BaseAction{
+public class TypeListAction  extends BaseAction{
 	private static final long serialVersionUID = 1L;
-	private Veneer_infoService veneer_infoService;
+	private TypeListService typeListService;
 	private CommonConditionDto dto = new CommonConditionDto();
-	public void setVeneer_infoService(Veneer_infoService veneer_infoService) {
-		this.veneer_infoService = veneer_infoService;
+	public void setTypeListService(TypeListService typeListService) {
+		this.typeListService = typeListService;
 	}
 	public CommonConditionDto getDto() {
 		return dto;
@@ -38,12 +36,8 @@ public class Veneer_infoAction  extends BaseAction{
 	 */
 	public String search(){
 		dto.setKeyword( dto.getKeyword() != null ? dto.getKeyword().trim() : null );	
-		Usermanager usermanager = WebUtil.getAdmin(null);
-		 //dto.setInt_valueI(usermanager.getType());
-		UserInfoDto udto = new  UserInfoDto();
-		udto.setUsermanager(usermanager);
- 		QueryResult<Veneer_infoBean> qr = veneer_infoService.searchList(udto ,dto, getPage(),PAGESIZE);
-		savePageView(new PageView<Veneer_infoBean>(qr, getPage(), PAGESIZE));
+ 		QueryResult<TypeListBean> qr = typeListService.searchList(dto, getPage(),PAGESIZE);
+		savePageView(new PageView<TypeListBean>(qr, getPage(), PAGESIZE));
 		WebUtil.setRequestValue("dto", dto);
 		return SUCCESS;
 	}
@@ -51,36 +45,36 @@ public class Veneer_infoAction  extends BaseAction{
 	/**
 	 * 屏蔽,取消屏蔽方法
 	 * @return
-	 */
+	 *//*
 	public String shield(){
 		String msg = CommonContent.MSG_OP_FAILE;
 		if(null != dto.getInt_valueB() && dto.getInt_valueB() > 0 && dto.getInt_valueC() > -1) {
-			Veneer_infoBean bean = veneer_infoService.searchById(dto.getInt_valueB());
+			TypeListBean bean = typeListService.searchById(dto.getInt_valueB());
 			if(null != bean){
 				bean.setStatus(dto.getInt_valueC());
-				veneer_infoService.update(bean);
+				typeListService.update(bean);
 				msg = CommonContent.MSG_OP_SUCCESS;
 			}
 		}
-		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
+		super.saveMessage(msg, "nyt/typeListsearch.action?dto.int_valueA="+dto.getInt_valueA());
 		return MESSAGE;
-	}
+	}*/
 	
 	/**
-	 * 置顶,取消置顶
+	 * 前移/后移
 	 * @return
 	 */
 	public String sortTop(){
 		String msg = CommonContent.MSG_OP_FAILE;
 		if(null != dto.getInt_valueB() && dto.getInt_valueB() > 0 && dto.getInt_valueC() > -1) {
-			Veneer_infoBean bean = veneer_infoService.searchById(dto.getInt_valueB());
+			TypeListBean bean = typeListService.searchById(dto.getInt_valueB());
 			if(null != bean){
 				bean.setOrderid(dto.getInt_valueC());
-				veneer_infoService.update(bean);
+				typeListService.update(bean);
 				msg = CommonContent.MSG_OP_SUCCESS;
 			}
 		}
-		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
+		super.saveMessage(msg, "nyt/typeListsearch.action");
 		return MESSAGE;
 	}
 	/**
@@ -90,10 +84,10 @@ public class Veneer_infoAction  extends BaseAction{
 	public String delete(){
 		String msg = CommonContent.MSG_OP_FAILE;
 		if(null != dto.getInt_id() && dto.getInt_id() > -1) {
-			veneer_infoService.delete(dto.getInt_id());
+			typeListService.delete(dto.getInt_id());
 			msg = CommonContent.MSG_OP_SUCCESS;
 		}
-		super.saveMessage(msg, "nyt/veneer_infosearch.action?dto.int_valueA="+dto.getInt_valueA());
+		super.saveMessage(msg, "nyt/typeListsearch.action");
 		return MESSAGE;
 	}
 	
@@ -103,7 +97,7 @@ public class Veneer_infoAction  extends BaseAction{
 	 */
 	public String detail(){
 		if(null != dto.getInt_id() && dto.getInt_id() > -1) {
-			Veneer_infoBean vo = veneer_infoService.searchById(dto.getInt_id());
+			TypeListBean vo = typeListService.searchById(dto.getInt_id());
 				if(null != vo){
 					WebUtil.setRequestValue("vo", vo);
 					return SHOWRESULT;

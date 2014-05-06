@@ -7,7 +7,7 @@ import com.meibaolian.entity.nyt.Veneer_infoBean;
 
 /**
  * 桉木dao接口
- * @author Kawin
+ * @author zhaojian
  * @version 1.0[2014.05.03 14:24]
  */
 public interface Veneer_infoDao extends IBaseDao<Veneer_infoBean>{

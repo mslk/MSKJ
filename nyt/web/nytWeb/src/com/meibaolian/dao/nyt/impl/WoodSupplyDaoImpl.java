@@ -14,7 +14,7 @@ import com.meibaolian.util.UtilHelp;
 
 /**
  * 淀粉/原木/胶合板 供应dao实现类
- * @author Kawin
+ * @author zhaojian
  * @version 1.0[2014.05.05 17:24]
  */
 public class WoodSupplyDaoImpl extends BaseDao<WoodSupplyBean> implements WoodSupplyDao{
