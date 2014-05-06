@@ -13,7 +13,7 @@
 	<head>
 		<base href="<%=basePath%>">
 
-		<title>木材详情</title>
+		<title>供应详情</title>
 
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
@@ -29,15 +29,24 @@
 		<table class="publictable" border="0" cellspacing="1" cellpadding="0">
 			<tr>
 				<td colspan="2" class="thead">
-					<div class="tit_box">
-						详情
-					</div>
+					<c:choose>
+				    	<%--2胶合板,3原木,4淀粉 --%>
+				    	<c:when test="${dto.int_valueA ==2 }">
+				    		 <div class="tit_box">胶合板供应详情</div>
+				    	</c:when>
+				    	<c:when test="${dto.int_valueA ==3 }">
+				    		 <div class="tit_box">原木供应详情</div>
+				    	</c:when>
+				    	<c:when test="${dto.int_valueA ==4 }">
+				    		 <div class="tit_box">淀粉供应详情</div>
+				    	</c:when>
+				    </c:choose>
 				</td>
 			</tr>
 
 		　	<tr>
 				<td width="30%">
-					供应者
+					发布人
 				</td>
 				<td width="70%">
 					${vo.userinfo.realname }
@@ -58,7 +67,62 @@
 				<td>发布时间</td>
 				<td>${vo.addtime }</td>
 			</tr>
-			
+<c:choose>
+			<%--2胶合板,3原木,4淀粉 --%>
+			<c:when test="${dto.int_valueA ==2 }">
+				 <tr>
+					<td>长</td>
+					<td>${vo.length }</td>
+				</tr>
+				<tr>
+					<td>宽</td>
+					<td>${vo.width }</td>
+				</tr>
+				<tr>
+					<td>厚</td>
+					<td>${vo.thickness }</td>
+				</tr>
+			</c:when>
+			<c:when test="${dto.int_valueA ==3 }">
+				 <tr>
+					<td>材种</td>
+					<td>${vo.cultivated }</td>
+				</tr>
+				<tr>
+					<td>尾径</td>
+					<td>${vo.tail_directly }</td>
+				</tr>
+				<tr>
+					<td>单位</td>
+					<td>
+						<c:choose>
+							<c:when test="${vo.unit==1 }">吨</c:when>
+							<c:when test="${vo.unit!=1 }">立方米</c:when>
+						</c:choose>
+					</td>
+				</tr>
+			</c:when>
+			<c:when test="${dto.int_valueA ==4 }">
+				 <tr>
+					<td>品牌</td>
+					<td>${vo.brand }</td>
+				</tr>
+				<tr>
+					<td>等级</td>
+					<td>	
+						<c:choose>
+							<c:when test="${vo.level==1 }">优质品</c:when>
+							<c:when test="${vo.level==2 }">一级品</c:when>
+							<c:when test="${vo.level==3 }">合格品</c:when>
+						</c:choose>
+					</td>
+				</tr>
+				<tr>
+					<td>产地</td>
+					<td>${vo.producer }</td>
+				</tr>
+			</c:when>
+		</c:choose>			
 			<tr>
 				<td>状态</td>
 			 	<td>

@@ -80,11 +80,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <table class="publictable" width="95%" border="0" cellspacing="1" cellpadding="0">
   <tr>
     <td colspan="16" class="thead">
- <div class="tit_box">桉木供应列表</div>
+     <c:choose>
+    	<%--1供应,2求购 --%>
+    	<c:when test="${dto.int_valueA ==1 }">
+    		 <div class="tit_box">桉木供应列表</div>
+    	</c:when>
+    	<c:when test="${dto.int_valueA !=1 }">
+    		 <div class="tit_box">桉木求购列表</div>
+    	</c:when> 
+    </c:choose>
+ <div class="tit_box"></div>
     </td>
   </tr>
 	<tr>
-		<td>供应者</td>
+		<td>发布人</td>
 	<!-- 	<td>手机号码</td> -->
 		<td>价格</td>
 		<td>数量</td>
@@ -123,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		</c:when>
 	    	</c:choose>
 	    	<a class="bts_link" href="javascript:delTips('确定删除?','nyt/veneer_infodelete.action?dto.int_valueA=${dto.int_valueA}&dto.int_id=${vo.id}')" target="main">删除</a> 
-	    	<%--首页,前5条显示取消置顶链接 --%>
+	    	<%--首页,前1条显示取消置顶链接 --%>
 	    	<c:if test="${1==result.currentlyPage && voindex.index ==0}">
 	    		<a class="bts_link" href="javascript:delTips('确定取消置顶?', 'nyt/veneer_infosortTop.action?dto.int_valueA=${dto.int_valueA}&dto.int_valueC=0&dto.int_valueB=${vo.id }')" >取消置顶</a> 
 	    	</c:if>

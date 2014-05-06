@@ -29,15 +29,21 @@
 		<table class="publictable" border="0" cellspacing="1" cellpadding="0">
 			<tr>
 				<td colspan="2" class="thead">
-					<div class="tit_box">
-						桉木详情
-					</div>
+				     <c:choose>
+				    	<%--1供应,2求购 --%>
+				    	<c:when test="${dto.int_valueA ==1 }">
+				    		 <div class="tit_box">桉木供应详情</div>
+				    	</c:when>
+				    	<c:when test="${dto.int_valueA !=1 }">
+				    		 <div class="tit_box">桉木求购详情</div>
+				    	</c:when> 
+				     </c:choose>
 				</td>
 			</tr>
 
 		　	<tr>
 				<td width="30%">
-					供应者
+					发布人
 				</td>
 				<td width="70%">
 					${vo.userinfo.realname }
